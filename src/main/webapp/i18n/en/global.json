@@ -129,5 +129,7 @@
         "emailexists": "Email is already in use!",
         "idexists": "A new {{ entityName }} cannot already have an ID"
     },
-    "footer": "This is your footer"
+    "footer": "Demo prepared for the California Department of Technology by Visionary Integration Professionals",
+    "CDT": "California Department of Technology",
+    "VIP": "Visionary Integration Professionals (VIP)"
 }
