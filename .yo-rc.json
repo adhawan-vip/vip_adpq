@@ -34,6 +34,8 @@
       "en",
       "zh-tw",
       "es"
-    ]
+    ],
+    "herokuDeployType": "jar",
+    "herokuAppName": "vip-adpq"
   }
 }
