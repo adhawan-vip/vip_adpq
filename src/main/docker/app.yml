@@ -4,7 +4,7 @@ services:
         image: vip_adpq
         environment:
             - SPRING_PROFILES_ACTIVE=prod,swagger
-            - SPRING_DATASOURCE_URL=jdbc:mysql://b49c0476f8caf7:9deda333@us-cdbr-iron-east-05.cleardb.net/heroku_d87e242124be81f?reconnect=true&useUnicode=true&characterEncoding=utf8&useSSL=false
+            - SPRING_DATASOURCE_URL=jdbc:mysql://rxhah6ntilhcbznl:idcuz57ndhxgv2zz@tuy8t6uuvh43khkk.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/w504vki20zuaxsro?reconnect=true&useUnicode=true&characterEncoding=utf8&useSSL=false
             - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
         ports:
             - 8080:8080
