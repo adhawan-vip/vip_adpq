@@ -1,0 +1,41 @@
+
+<div *ngIf="article">
+    <h2><span jhiTranslate="vipAdpqApp.article.detail.title">Article</span> {{article.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="vipAdpqApp.article.articleName">Article Name</span></dt>
+        <dd>
+            <span>{{article.articleName}}</span>
+        </dd>
+        <dt><span jhiTranslate="vipAdpqApp.article.publishDate">Publish Date</span></dt>
+        <dd>
+            <span>{{article.publishDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="vipAdpqApp.article.content">Content</span></dt>
+        <dd>
+            <span>{{article.content}}</span>
+        </dd>
+        <dt><span jhiTranslate="vipAdpqApp.article.file">File</span></dt>
+        <dd>
+            <div *ngIf="article.file">
+                <a (click)="openFile(article.fileContentType, article.file)" jhiTranslate="entity.action.open">open</a>
+                {{article.fileContentType}}, {{byteSize(article.file)}}
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'article/'+ article.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

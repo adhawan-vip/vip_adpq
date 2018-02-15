@@ -46,10 +46,16 @@ spring:
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: false
     mail:
-        host: localhost
-        port: 25
-        username:
-        password:
+        host: smtp-mail.outlook.com
+        port: 587
+        username: adhawan-vip@outlook.com
+        password: innergie123
+        protocol: smtp
+        tls: true
+        properties.mail.smtp:
+            auth: true
+            starttls.enable: true
+            ssl.trust: smtp-mail.outlook.com
     thymeleaf:
         cache: true
 
@@ -98,8 +104,8 @@ jhipster:
             # security key (this key should be unique for your application, and kept secret)
             key: c7c0831e3b4192b92ffb303d79d1b706121d13a5
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: vip_adpq@localhost
-        base-url: http://my-server-url-to-change # Modify according to your server's URL
+        from: adhawan-vip@outlook.com
+        base-url: https://vip-adpq.herokuapp.com # Modify according to your server's URL
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true
         graphite:

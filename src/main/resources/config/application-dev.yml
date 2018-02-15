@@ -50,14 +50,14 @@ spring:
     mail:
         host: smtp-mail.outlook.com
         port: 587
-        username:adhawan-vip@outlook.com
-        password:innergie123
+        username: adhawan-vip@outlook.com
+        password: innergie123
         protocol: smtp
         tls: true
         properties.mail.smtp:
-        	auth: true
-        	starttls.enable: true
-        	sl.trust: smtp-mail.outlook.com
+            auth: true
+            starttls.enable: true
+            ssl.trust: smtp-mail.outlook.com
     messages:
         cache-seconds: 1
     thymeleaf:
