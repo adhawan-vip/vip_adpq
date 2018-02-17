@@ -48,7 +48,7 @@ spring:
     data:
         elasticsearch:
             cluster-name:
-            cluster-nodes: https://alder-3246121.us-east-1.bonsaisearch.net
+            cluster-nodes: localhost:9300
     mail:
         host: smtp-mail.outlook.com
         port: 587
