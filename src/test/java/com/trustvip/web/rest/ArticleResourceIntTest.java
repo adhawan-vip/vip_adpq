@@ -5,6 +5,7 @@ import com.trustvip.VipAdpqApp;
 import com.trustvip.domain.Article;
 import com.trustvip.repository.ArticleRepository;
 import com.trustvip.service.ArticleService;
+import com.trustvip.repository.search.ArticleSearchRepository;
 import com.trustvip.service.dto.ArticleDTO;
 import com.trustvip.service.mapper.ArticleMapper;
 import com.trustvip.web.rest.errors.ExceptionTranslator;
@@ -50,13 +51,13 @@ public class ArticleResourceIntTest {
     private static final LocalDate DEFAULT_PUBLISH_DATE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_PUBLISH_DATE = LocalDate.now(ZoneId.systemDefault());
 
-    private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
-    private static final String UPDATED_CONTENT = "BBBBBBBBBB";
-
     private static final byte[] DEFAULT_FILE = TestUtil.createByteArray(1, "0");
     private static final byte[] UPDATED_FILE = TestUtil.createByteArray(1, "1");
     private static final String DEFAULT_FILE_CONTENT_TYPE = "image/jpg";
     private static final String UPDATED_FILE_CONTENT_TYPE = "image/png";
+
+    private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
+    private static final String UPDATED_CONTENT = "BBBBBBBBBB";
 
     @Autowired
     private ArticleRepository articleRepository;
@@ -66,6 +67,9 @@ public class ArticleResourceIntTest {
 
     @Autowired
     private ArticleService articleService;
+
+    @Autowired
+    private ArticleSearchRepository articleSearchRepository;
 
     @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -104,14 +108,15 @@ public class ArticleResourceIntTest {
         Article article = new Article()
             .articleName(DEFAULT_ARTICLE_NAME)
             .publishDate(DEFAULT_PUBLISH_DATE)
-            .content(DEFAULT_CONTENT)
             .file(DEFAULT_FILE)
-            .fileContentType(DEFAULT_FILE_CONTENT_TYPE);
+            .fileContentType(DEFAULT_FILE_CONTENT_TYPE)
+            .content(DEFAULT_CONTENT);
         return article;
     }
 
     @Before
     public void initTest() {
+        articleSearchRepository.deleteAll();
         article = createEntity(em);
     }
 
@@ -133,9 +138,13 @@ public class ArticleResourceIntTest {
         Article testArticle = articleList.get(articleList.size() - 1);
         assertThat(testArticle.getArticleName()).isEqualTo(DEFAULT_ARTICLE_NAME);
         assertThat(testArticle.getPublishDate()).isEqualTo(DEFAULT_PUBLISH_DATE);
-        assertThat(testArticle.getContent()).isEqualTo(DEFAULT_CONTENT);
         assertThat(testArticle.getFile()).isEqualTo(DEFAULT_FILE);
         assertThat(testArticle.getFileContentType()).isEqualTo(DEFAULT_FILE_CONTENT_TYPE);
+        assertThat(testArticle.getContent()).isEqualTo(DEFAULT_CONTENT);
+
+        // Validate the Article in Elasticsearch
+        Article articleEs = articleSearchRepository.findOne(testArticle.getId());
+        assertThat(articleEs).isEqualToIgnoringGivenFields(testArticle);
     }
 
     @Test
@@ -228,9 +237,9 @@ public class ArticleResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(article.getId().intValue())))
             .andExpect(jsonPath("$.[*].articleName").value(hasItem(DEFAULT_ARTICLE_NAME.toString())))
             .andExpect(jsonPath("$.[*].publishDate").value(hasItem(DEFAULT_PUBLISH_DATE.toString())))
-            .andExpect(jsonPath("$.[*].content").value(hasItem(DEFAULT_CONTENT.toString())))
             .andExpect(jsonPath("$.[*].fileContentType").value(hasItem(DEFAULT_FILE_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].file").value(hasItem(Base64Utils.encodeToString(DEFAULT_FILE))));
+            .andExpect(jsonPath("$.[*].file").value(hasItem(Base64Utils.encodeToString(DEFAULT_FILE))))
+            .andExpect(jsonPath("$.[*].content").value(hasItem(DEFAULT_CONTENT.toString())));
     }
 
     @Test
@@ -246,9 +255,9 @@ public class ArticleResourceIntTest {
             .andExpect(jsonPath("$.id").value(article.getId().intValue()))
             .andExpect(jsonPath("$.articleName").value(DEFAULT_ARTICLE_NAME.toString()))
             .andExpect(jsonPath("$.publishDate").value(DEFAULT_PUBLISH_DATE.toString()))
-            .andExpect(jsonPath("$.content").value(DEFAULT_CONTENT.toString()))
             .andExpect(jsonPath("$.fileContentType").value(DEFAULT_FILE_CONTENT_TYPE))
-            .andExpect(jsonPath("$.file").value(Base64Utils.encodeToString(DEFAULT_FILE)));
+            .andExpect(jsonPath("$.file").value(Base64Utils.encodeToString(DEFAULT_FILE)))
+            .andExpect(jsonPath("$.content").value(DEFAULT_CONTENT.toString()));
     }
 
     @Test
@@ -264,6 +273,7 @@ public class ArticleResourceIntTest {
     public void updateArticle() throws Exception {
         // Initialize the database
         articleRepository.saveAndFlush(article);
+        articleSearchRepository.save(article);
         int databaseSizeBeforeUpdate = articleRepository.findAll().size();
 
         // Update the article
@@ -273,9 +283,9 @@ public class ArticleResourceIntTest {
         updatedArticle
             .articleName(UPDATED_ARTICLE_NAME)
             .publishDate(UPDATED_PUBLISH_DATE)
-            .content(UPDATED_CONTENT)
             .file(UPDATED_FILE)
-            .fileContentType(UPDATED_FILE_CONTENT_TYPE);
+            .fileContentType(UPDATED_FILE_CONTENT_TYPE)
+            .content(UPDATED_CONTENT);
         ArticleDTO articleDTO = articleMapper.toDto(updatedArticle);
 
         restArticleMockMvc.perform(put("/api/articles")
@@ -289,9 +299,13 @@ public class ArticleResourceIntTest {
         Article testArticle = articleList.get(articleList.size() - 1);
         assertThat(testArticle.getArticleName()).isEqualTo(UPDATED_ARTICLE_NAME);
         assertThat(testArticle.getPublishDate()).isEqualTo(UPDATED_PUBLISH_DATE);
-        assertThat(testArticle.getContent()).isEqualTo(UPDATED_CONTENT);
         assertThat(testArticle.getFile()).isEqualTo(UPDATED_FILE);
         assertThat(testArticle.getFileContentType()).isEqualTo(UPDATED_FILE_CONTENT_TYPE);
+        assertThat(testArticle.getContent()).isEqualTo(UPDATED_CONTENT);
+
+        // Validate the Article in Elasticsearch
+        Article articleEs = articleSearchRepository.findOne(testArticle.getId());
+        assertThat(articleEs).isEqualToIgnoringGivenFields(testArticle);
     }
 
     @Test
@@ -318,6 +332,7 @@ public class ArticleResourceIntTest {
     public void deleteArticle() throws Exception {
         // Initialize the database
         articleRepository.saveAndFlush(article);
+        articleSearchRepository.save(article);
         int databaseSizeBeforeDelete = articleRepository.findAll().size();
 
         // Get the article
@@ -325,9 +340,32 @@ public class ArticleResourceIntTest {
             .accept(TestUtil.APPLICATION_JSON_UTF8))
             .andExpect(status().isOk());
 
+        // Validate Elasticsearch is empty
+        boolean articleExistsInEs = articleSearchRepository.exists(article.getId());
+        assertThat(articleExistsInEs).isFalse();
+
         // Validate the database is empty
         List<Article> articleList = articleRepository.findAll();
         assertThat(articleList).hasSize(databaseSizeBeforeDelete - 1);
+    }
+
+    @Test
+    @Transactional
+    public void searchArticle() throws Exception {
+        // Initialize the database
+        articleRepository.saveAndFlush(article);
+        articleSearchRepository.save(article);
+
+        // Search the article
+        restArticleMockMvc.perform(get("/api/_search/articles?query=id:" + article.getId()))
+            .andExpect(status().isOk())
+            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+            .andExpect(jsonPath("$.[*].id").value(hasItem(article.getId().intValue())))
+            .andExpect(jsonPath("$.[*].articleName").value(hasItem(DEFAULT_ARTICLE_NAME.toString())))
+            .andExpect(jsonPath("$.[*].publishDate").value(hasItem(DEFAULT_PUBLISH_DATE.toString())))
+            .andExpect(jsonPath("$.[*].fileContentType").value(hasItem(DEFAULT_FILE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].file").value(hasItem(Base64Utils.encodeToString(DEFAULT_FILE))))
+            .andExpect(jsonPath("$.[*].content").value(hasItem(DEFAULT_CONTENT.toString())));
     }
 
     @Test

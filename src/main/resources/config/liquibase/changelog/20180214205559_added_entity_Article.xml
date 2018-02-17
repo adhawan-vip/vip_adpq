@@ -30,15 +30,15 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="content" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-
             <column name="jhi_file" type="longblob">
                 <constraints nullable="true" />
             </column>
             <column name="jhi_file_content_type" type="varchar(255)">
                 <constraints nullable="true" />
+            </column>
+
+            <column name="content" type="clob">
+                <constraints nullable="false" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->

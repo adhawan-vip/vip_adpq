@@ -4,11 +4,16 @@ services:
         image: vip_adpq
         environment:
             - SPRING_PROFILES_ACTIVE=prod,swagger
-            - SPRING_DATASOURCE_URL=jdbc:mysql://rxhah6ntilhcbznl:idcuz57ndhxgv2zz@tuy8t6uuvh43khkk.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/w504vki20zuaxsro?reconnect=true&useUnicode=true&characterEncoding=utf8&useSSL=false
+            - SPRING_DATASOURCE_URL=jdbc:mysql://vip_adpq-mysql:3306/vip_adpq?useUnicode=true&characterEncoding=utf8&useSSL=false
             - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=vip_adpq-elasticsearch:9300
         ports:
             - 8080:8080
     vip_adpq-mysql:
         extends:
             file: mysql.yml
             service: vip_adpq-mysql
+    vip_adpq-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: vip_adpq-elasticsearch

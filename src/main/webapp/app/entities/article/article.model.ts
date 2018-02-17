@@ -5,9 +5,9 @@ export class Article implements BaseEntity {
         public id?: number,
         public articleName?: string,
         public publishDate?: any,
-        public content?: string,
         public fileContentType?: string,
         public file?: any,
+        public content?: any,
     ) {
     }
 }

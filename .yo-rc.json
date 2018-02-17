@@ -15,7 +15,7 @@
     "databaseType": "sql",
     "devDatabaseType": "h2Disk",
     "prodDatabaseType": "mysql",
-    "searchEngine": false,
+    "searchEngine": "elasticsearch",
     "messageBroker": false,
     "serviceDiscoveryType": false,
     "buildTool": "maven",
@@ -36,6 +36,7 @@
       "es"
     ],
     "herokuDeployType": "jar",
-    "herokuAppName": "vip-adpq"
+    "herokuAppName": "vip-adpq",
+    "enableHibernateCache": false
   }
 }

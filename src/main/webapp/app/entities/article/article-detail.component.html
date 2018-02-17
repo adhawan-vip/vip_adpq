@@ -12,16 +12,16 @@
         <dd>
             <span>{{article.publishDate | date:'mediumDate'}}</span>
         </dd>
-        <dt><span jhiTranslate="vipAdpqApp.article.content">Content</span></dt>
-        <dd>
-            <span>{{article.content}}</span>
-        </dd>
         <dt><span jhiTranslate="vipAdpqApp.article.file">File</span></dt>
         <dd>
             <div *ngIf="article.file">
                 <a (click)="openFile(article.fileContentType, article.file)" jhiTranslate="entity.action.open">open</a>
                 {{article.fileContentType}}, {{byteSize(article.file)}}
             </div>
+        </dd>
+        <dt><span jhiTranslate="vipAdpqApp.article.content">Content</span></dt>
+        <dd>
+            <span>{{article.content}}</span>
         </dd>
     </dl>
 

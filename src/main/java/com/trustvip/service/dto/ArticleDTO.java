@@ -1,11 +1,15 @@
 package com.trustvip.service.dto;
 
 
-import java.time.LocalDate;
-import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Calendar;
 import java.util.Objects;
+
 import javax.persistence.Lob;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * A DTO for the Article entity.
@@ -21,13 +25,15 @@ public class ArticleDTO implements Serializable {
     @NotNull
     private LocalDate publishDate;
 
-    @NotNull
-    private String content;
-
     @Size(min = 1)
     @Lob
     private byte[] file;
     private String fileContentType;
+
+    @NotNull
+    @Size(min = 10)
+    @Lob
+    private String content;
 
     public Long getId() {
         return id;
@@ -50,15 +56,19 @@ public class ArticleDTO implements Serializable {
     }
 
     public void setPublishDate(LocalDate publishDate) {
-        this.publishDate = publishDate;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
+        // need custom conversion logic for publishDate since it
+        // is of type LocalDate.  This means that we cannot easily
+        // check future dates without attaching a time zone to it.
+        // therefore, we use a calendar, and go about it in this way :)
+        // Oh Java - I love thee!
+        java.util.Date date = java.sql.Date.valueOf(publishDate);
+        Calendar today = Calendar.getInstance();
+        today.set(Calendar.HOUR_OF_DAY, 0);
+        if( date.before(today.getTime()))
+        {
+            date = today.getTime();
+        }
+        this.publishDate  = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
     public byte[] getFile() {
@@ -75,6 +85,14 @@ public class ArticleDTO implements Serializable {
 
     public void setFileContentType(String fileContentType) {
         this.fileContentType = fileContentType;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     @Override
@@ -104,8 +122,8 @@ public class ArticleDTO implements Serializable {
             "id=" + getId() +
             ", articleName='" + getArticleName() + "'" +
             ", publishDate='" + getPublishDate() + "'" +
-            ", content='" + getContent() + "'" +
             ", file='" + getFile() + "'" +
+            ", content='" + getContent() + "'" +
             "}";
     }
 }

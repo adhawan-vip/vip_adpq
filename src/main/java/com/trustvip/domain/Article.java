@@ -4,6 +4,7 @@ package com.trustvip.domain;
 import javax.persistence.*;
 import javax.validation.constraints.*;
 
+import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -13,6 +14,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "article")
+@Document(indexName = "article")
 public class Article implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -30,10 +32,6 @@ public class Article implements Serializable {
     @Column(name = "publish_date", nullable = false)
     private LocalDate publishDate;
 
-    @NotNull
-    @Column(name = "content", nullable = false)
-    private String content;
-
     @Size(min = 1)
     @Lob
     @Column(name = "jhi_file")
@@ -41,6 +39,12 @@ public class Article implements Serializable {
 
     @Column(name = "jhi_file_content_type")
     private String fileContentType;
+
+    @NotNull
+    @Size(min = 10)
+    @Lob
+    @Column(name = "content", nullable = false)
+    private String content;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -77,19 +81,6 @@ public class Article implements Serializable {
         this.publishDate = publishDate;
     }
 
-    public String getContent() {
-        return content;
-    }
-
-    public Article content(String content) {
-        this.content = content;
-        return this;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
     public byte[] getFile() {
         return file;
     }
@@ -114,6 +105,19 @@ public class Article implements Serializable {
 
     public void setFileContentType(String fileContentType) {
         this.fileContentType = fileContentType;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public Article content(String content) {
+        this.content = content;
+        return this;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -143,9 +147,9 @@ public class Article implements Serializable {
             "id=" + getId() +
             ", articleName='" + getArticleName() + "'" +
             ", publishDate='" + getPublishDate() + "'" +
-            ", content='" + getContent() + "'" +
             ", file='" + getFile() + "'" +
             ", fileContentType='" + getFileContentType() + "'" +
+            ", content='" + getContent() + "'" +
             "}";
     }
 }

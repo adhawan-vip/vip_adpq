@@ -5,7 +5,8 @@
             "home": {
                 "title": "Articles",
                 "createLabel": "Crear nuevo Article",
-                "createOrEditLabel": "Crear o editar Article"
+                "createOrEditLabel": "Crear o editar Article",
+                "search": "Search for Article"
             },
             "created": "Un nuevo Article ha sido creado con el identificador {{ param }}",
             "updated": "Un Article ha sido actualizado con el identificador {{ param }}",
@@ -18,8 +19,8 @@
             },
             "articleName": "Article Name",
             "publishDate": "Publish Date",
-            "content": "Content",
-            "file": "File"
+            "file": "File",
+            "content": "Content"
         }
     }
 }
