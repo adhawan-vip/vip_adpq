@@ -56,19 +56,7 @@ public class ArticleDTO implements Serializable {
     }
 
     public void setPublishDate(LocalDate publishDate) {
-        // need custom conversion logic for publishDate since it
-        // is of type LocalDate.  This means that we cannot easily
-        // check future dates without attaching a time zone to it.
-        // therefore, we use a calendar, and go about it in this way :)
-        // Oh Java - I love thee!
-        java.util.Date date = java.sql.Date.valueOf(publishDate);
-        Calendar today = Calendar.getInstance();
-        today.set(Calendar.HOUR_OF_DAY, 0);
-        if( date.before(today.getTime()))
-        {
-            date = today.getTime();
-        }
-        this.publishDate  = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        this.publishDate  = publishDate;
     }
 
     public byte[] getFile() {
