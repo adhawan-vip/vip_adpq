@@ -45,6 +45,4 @@ deploy:
   app: vip_adpq
   on:
     repo: adhawan-vip/vip_adpq
-before_deploy:
-- mkdir -p dpl_cd_upload
-- mv vip-adpq-app dpl_cd_upload/vip-adpq-app
+
