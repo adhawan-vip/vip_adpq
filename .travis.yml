@@ -39,24 +39,12 @@ notifications:
     on_failure: always
     on_start: false
 deploy:
-- provider: s3
-  access_key_id: AKIAJRFDHQNWDWAGVM7Q
-  secret_access_key: &1
-    secure: HpRIHb7KrZjBwWfAc35y0C6w7WMb9F+y7POFBX3SKueY1nXam+mE3vyvgtAB2pc8g1kFvBPbx5ziAxxZSKoglVcE1DLbihhRtDLzPQEYzw3B4oSv1s0Ws57j921KQ61GU6yEnNfTUSvLn4W9ffy3dDM/SdNxomJjFENbltXcgMpxskZeb/GerWKDRnVrN8UFqU3/TwEhkdRLCZ4nhs57I80V2hsthGZVpiKm38jPgnIw9nWiJtZATVpopKRUsiFLkKDNCbYcKunqLqZZ8xobeXLd9JM1T/xxw1g0X0C1oFfXUeC189ArwRBO7coT4JknratAd4hPyBeqt+o6SsnQWjBX6j42oKnWXhAnHI/149gcD+KX41Bfm6mEhNv/D7caOCDK4febmHtO5MVogdailLA5vqnkfblgAA0kFCP0kbmn/bRR0TKa1hsLfZvRF9IhmfsisK/d2FjtgN7cONJ5wpZtZBrLQEc8N2vLyMZZP3Lm5GbM+QygF/1MyBGHXLiH6BE3Q513mM/kIjKWt4eqY247jLYyHbCRv4MCzfqAJnfSBzPJyWAnOoG+3ztn8C7jaY0cRFCL3f3csQ3ZDvv69IgEMGWic3Io+5uy3KlmKuP0xHvvAXHHldzgfZ9rWegmvQUz0puYYXhrpnnLJCE1+dJ8QVB+1ho38MKiXA5sn5g=
-  local_dir: dpl_cd_upload
-  skip_cleanup: true
-  on: &2
+  provider: heroku
+  api_key:
+    secure: cREjLzYf8ekqUvwaSEoWR3oBEJ0BoiifW/lvJFc7x1yid1z75S2j5sEc9F7LH6FIOBaWGahPl/T45wo56pbadAvcoraQJF4T5iAmGrghJ9VPtQNx0l30MeWM1d9+KgJG94YSUdB8h94bOgr2g9izNRfuoixuyL0W+quSPmRlnr+T85xCYoAmTBXZ6cbj9gxbMJwUouoTdVK+COjsanyT+QcTIguH0My8diqrzSw8lHVbv5NxLdOmum2yKV3qplpK6Y5KftIosY6d7zAFdjp4FNxdKa8/yM8Wc4IfJIzf4qcFpti5c2IkNdjAE5VByYXkiNERQL7dM3VoXyeKdms2JJJzaibNNNKyBokZSZ9Tenno6NQE+BDtI+tZQMPdW1/1JnsMuAD00roZm7Cw5b9T7O22fVL/D9na1F3QdgE5r7F+J1nnEah5i9wc5Iy8+YvQxzTO5EiDYYbZJZYrVwLYtP5yTn6l8zCj1xZTRKtqcm/ArOpJjr/DA+zQoKIdID1l+nx8fWM5jvYhJDjm3iHgNHIVuIcNveDo4UlfUEc258IfUaznq6+WtCSrqP+k/kg16gIG6gXlluH+/kzEgFQhwThDuqMVoM54nRt8XeARLy1n+8IC+ypuCtnwSLN0Uc+U/DWiLLGYkwE8dlFOrjD6uq6zkntkZvYxd5rnC977y90=
+  app: vip_adpq
+  on:
     repo: adhawan-vip/vip_adpq
-  bucket: vip-adpq
-- provider: codedeploy
-  access_key_id: AKIAJRFDHQNWDWAGVM7Q
-  secret_access_key: *1
-  bucket: vip-adpq
-  key: vip-adpq-app
-  bundle_type: ''
-  application: vip_adpq
-  deployment_group: ''
-  on: *2
 before_deploy:
 - mkdir -p dpl_cd_upload
 - mv vip-adpq-app dpl_cd_upload/vip-adpq-app
