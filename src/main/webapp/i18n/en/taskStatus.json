@@ -1,0 +1,9 @@
+{
+    "vipAdpqApp": {
+        "TaskStatus" : {
+            "null": "",
+            "OPEN": "OPEN",
+            "CLOSED": "CLOSED"
+        }
+    }
+}

@@ -4,44 +4,33 @@
     "fields": [
         {
             "fieldName": "articleName",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required",
-                "minlength"
-            ],
-            "fieldValidateRulesMinlength": "3"
+            "fieldType": "String"
         },
         {
             "fieldName": "publishDate",
-            "fieldType": "LocalDate",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "file",
-            "fieldType": "byte[]",
-            "fieldTypeBlobContent": "any",
-            "fieldValidateRules": [
-                "minbytes"
-            ],
-            "fieldValidateRulesMinbytes": "1"
+            "fieldType": "LocalDate"
         },
         {
             "fieldName": "content",
             "fieldType": "byte[]",
-            "fieldTypeBlobContent": "text",
-            "fieldValidateRules": [
-                "required",
-                "minlength"
-            ],
-            "fieldValidateRulesMinlength": "10"
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "ArticleType",
+            "fieldValues": "JOBAID,CONTENT,PACKAGE"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "ArticleStatus",
+            "fieldValues": "DRAFT,REVIEWED,PUBLISHED"
         }
     ],
     "changelogDate": "20180214205559",
-    "dto": "mapstruct",
-    "service": "serviceImpl",
     "entityTableName": "article",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
-    "pagination": "infinite-scroll"
+    "searchEngine": "elasticsearch"
 }

@@ -7,7 +7,12 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entities",
+                "main-articles": "Articles & Documents",
+                "main-tasks": "Task Tracking",
                 "article": "Article",
+                "task": "Task",
+                "relatedDocument": "Related Document",
+                "taskOwner": "Task Owner",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

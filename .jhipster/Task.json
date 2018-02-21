@@ -1,0 +1,46 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-one",
+            "relationshipName": "owner",
+            "otherEntityName": "taskOwner",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "task"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "article",
+            "otherEntityName": "article",
+            "otherEntityField": "articleName"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "taskName",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dueDate",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "TaskStatus",
+            "fieldValues": "OPEN,CLOSED"
+        }
+    ],
+    "changelogDate": "20180221192649",
+    "entityTableName": "task",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "searchEngine": "elasticsearch"
+}

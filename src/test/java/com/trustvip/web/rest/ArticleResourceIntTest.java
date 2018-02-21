@@ -36,6 +36,8 @@ import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+import com.trustvip.domain.enumeration.ArticleType;
+import com.trustvip.domain.enumeration.ArticleStatus;
 /**
  * Test class for the ArticleResource REST controller.
  *
@@ -51,13 +53,14 @@ public class ArticleResourceIntTest {
     private static final LocalDate DEFAULT_PUBLISH_DATE = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_PUBLISH_DATE = LocalDate.now(ZoneId.systemDefault());
 
-    private static final byte[] DEFAULT_FILE = TestUtil.createByteArray(1, "0");
-    private static final byte[] UPDATED_FILE = TestUtil.createByteArray(1, "1");
-    private static final String DEFAULT_FILE_CONTENT_TYPE = "image/jpg";
-    private static final String UPDATED_FILE_CONTENT_TYPE = "image/png";
-
     private static final String DEFAULT_CONTENT = "AAAAAAAAAA";
     private static final String UPDATED_CONTENT = "BBBBBBBBBB";
+
+    private static final ArticleType DEFAULT_TYPE = ArticleType.JOBAID;
+    private static final ArticleType UPDATED_TYPE = ArticleType.CONTENT;
+
+    private static final ArticleStatus DEFAULT_STATUS = ArticleStatus.DRAFT;
+    private static final ArticleStatus UPDATED_STATUS = ArticleStatus.REVIEWED;
 
     @Autowired
     private ArticleRepository articleRepository;
@@ -108,9 +111,9 @@ public class ArticleResourceIntTest {
         Article article = new Article()
             .articleName(DEFAULT_ARTICLE_NAME)
             .publishDate(DEFAULT_PUBLISH_DATE)
-            .file(DEFAULT_FILE)
-            .fileContentType(DEFAULT_FILE_CONTENT_TYPE)
-            .content(DEFAULT_CONTENT);
+            .content(DEFAULT_CONTENT)
+            .type(DEFAULT_TYPE)
+            .status(DEFAULT_STATUS);
         return article;
     }
 
@@ -138,9 +141,9 @@ public class ArticleResourceIntTest {
         Article testArticle = articleList.get(articleList.size() - 1);
         assertThat(testArticle.getArticleName()).isEqualTo(DEFAULT_ARTICLE_NAME);
         assertThat(testArticle.getPublishDate()).isEqualTo(DEFAULT_PUBLISH_DATE);
-        assertThat(testArticle.getFile()).isEqualTo(DEFAULT_FILE);
-        assertThat(testArticle.getFileContentType()).isEqualTo(DEFAULT_FILE_CONTENT_TYPE);
         assertThat(testArticle.getContent()).isEqualTo(DEFAULT_CONTENT);
+        assertThat(testArticle.getType()).isEqualTo(DEFAULT_TYPE);
+        assertThat(testArticle.getStatus()).isEqualTo(DEFAULT_STATUS);
 
         // Validate the Article in Elasticsearch
         Article articleEs = articleSearchRepository.findOne(testArticle.getId());
@@ -169,63 +172,6 @@ public class ArticleResourceIntTest {
 
     @Test
     @Transactional
-    public void checkArticleNameIsRequired() throws Exception {
-        int databaseSizeBeforeTest = articleRepository.findAll().size();
-        // set the field null
-        article.setArticleName(null);
-
-        // Create the Article, which fails.
-        ArticleDTO articleDTO = articleMapper.toDto(article);
-
-        restArticleMockMvc.perform(post("/api/articles")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(articleDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Article> articleList = articleRepository.findAll();
-        assertThat(articleList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkPublishDateIsRequired() throws Exception {
-        int databaseSizeBeforeTest = articleRepository.findAll().size();
-        // set the field null
-        article.setPublishDate(null);
-
-        // Create the Article, which fails.
-        ArticleDTO articleDTO = articleMapper.toDto(article);
-
-        restArticleMockMvc.perform(post("/api/articles")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(articleDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Article> articleList = articleRepository.findAll();
-        assertThat(articleList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkContentIsRequired() throws Exception {
-        int databaseSizeBeforeTest = articleRepository.findAll().size();
-        // set the field null
-        article.setContent(null);
-
-        // Create the Article, which fails.
-        ArticleDTO articleDTO = articleMapper.toDto(article);
-
-        restArticleMockMvc.perform(post("/api/articles")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(articleDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<Article> articleList = articleRepository.findAll();
-        assertThat(articleList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void getAllArticles() throws Exception {
         // Initialize the database
         articleRepository.saveAndFlush(article);
@@ -237,9 +183,9 @@ public class ArticleResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(article.getId().intValue())))
             .andExpect(jsonPath("$.[*].articleName").value(hasItem(DEFAULT_ARTICLE_NAME.toString())))
             .andExpect(jsonPath("$.[*].publishDate").value(hasItem(DEFAULT_PUBLISH_DATE.toString())))
-            .andExpect(jsonPath("$.[*].fileContentType").value(hasItem(DEFAULT_FILE_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].file").value(hasItem(Base64Utils.encodeToString(DEFAULT_FILE))))
-            .andExpect(jsonPath("$.[*].content").value(hasItem(DEFAULT_CONTENT.toString())));
+            .andExpect(jsonPath("$.[*].content").value(hasItem(DEFAULT_CONTENT.toString())))
+            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
 
     @Test
@@ -255,9 +201,9 @@ public class ArticleResourceIntTest {
             .andExpect(jsonPath("$.id").value(article.getId().intValue()))
             .andExpect(jsonPath("$.articleName").value(DEFAULT_ARTICLE_NAME.toString()))
             .andExpect(jsonPath("$.publishDate").value(DEFAULT_PUBLISH_DATE.toString()))
-            .andExpect(jsonPath("$.fileContentType").value(DEFAULT_FILE_CONTENT_TYPE))
-            .andExpect(jsonPath("$.file").value(Base64Utils.encodeToString(DEFAULT_FILE)))
-            .andExpect(jsonPath("$.content").value(DEFAULT_CONTENT.toString()));
+            .andExpect(jsonPath("$.content").value(DEFAULT_CONTENT.toString()))
+            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
     }
 
     @Test
@@ -283,9 +229,9 @@ public class ArticleResourceIntTest {
         updatedArticle
             .articleName(UPDATED_ARTICLE_NAME)
             .publishDate(UPDATED_PUBLISH_DATE)
-            .file(UPDATED_FILE)
-            .fileContentType(UPDATED_FILE_CONTENT_TYPE)
-            .content(UPDATED_CONTENT);
+            .content(UPDATED_CONTENT)
+            .type(UPDATED_TYPE)
+            .status(UPDATED_STATUS);
         ArticleDTO articleDTO = articleMapper.toDto(updatedArticle);
 
         restArticleMockMvc.perform(put("/api/articles")
@@ -299,9 +245,9 @@ public class ArticleResourceIntTest {
         Article testArticle = articleList.get(articleList.size() - 1);
         assertThat(testArticle.getArticleName()).isEqualTo(UPDATED_ARTICLE_NAME);
         assertThat(testArticle.getPublishDate()).isEqualTo(UPDATED_PUBLISH_DATE);
-        assertThat(testArticle.getFile()).isEqualTo(UPDATED_FILE);
-        assertThat(testArticle.getFileContentType()).isEqualTo(UPDATED_FILE_CONTENT_TYPE);
         assertThat(testArticle.getContent()).isEqualTo(UPDATED_CONTENT);
+        assertThat(testArticle.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testArticle.getStatus()).isEqualTo(UPDATED_STATUS);
 
         // Validate the Article in Elasticsearch
         Article articleEs = articleSearchRepository.findOne(testArticle.getId());
@@ -363,9 +309,9 @@ public class ArticleResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(article.getId().intValue())))
             .andExpect(jsonPath("$.[*].articleName").value(hasItem(DEFAULT_ARTICLE_NAME.toString())))
             .andExpect(jsonPath("$.[*].publishDate").value(hasItem(DEFAULT_PUBLISH_DATE.toString())))
-            .andExpect(jsonPath("$.[*].fileContentType").value(hasItem(DEFAULT_FILE_CONTENT_TYPE)))
-            .andExpect(jsonPath("$.[*].file").value(hasItem(Base64Utils.encodeToString(DEFAULT_FILE))))
-            .andExpect(jsonPath("$.[*].content").value(hasItem(DEFAULT_CONTENT.toString())));
+            .andExpect(jsonPath("$.[*].content").value(hasItem(DEFAULT_CONTENT.toString())))
+            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
 
     @Test

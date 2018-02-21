@@ -1,0 +1,25 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": "required",
+            "relationshipName": "article",
+            "otherEntityName": "article",
+            "otherEntityField": "articleName"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "docName",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180221192650",
+    "entityTableName": "related_document",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "searchEngine": "elasticsearch"
+}

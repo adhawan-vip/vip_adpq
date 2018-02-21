@@ -8,6 +8,9 @@
             "entities": {
                 "main": "實體",
                 "article": "Article",
+                "task": "Task",
+                "relatedDocument": "Related Document",
+                "taskOwner": "Task Owner",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {
