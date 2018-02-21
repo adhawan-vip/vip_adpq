@@ -23,7 +23,7 @@
         <dt><span jhiTranslate="vipAdpqApp.task.owner">Owner</span></dt>
         <dd>
             <div *ngIf="task.ownerId">
-                <a [routerLink]="['/task-owner', task.ownerId]">{{task.ownerId}}</a>
+                <a [routerLink]="['/task-owner', task.ownerId]">{{task.ownerName}}</a>
             </div>
         </dd>
         <dt><span jhiTranslate="vipAdpqApp.task.article">Article</span></dt>

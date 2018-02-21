@@ -6,6 +6,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
+import javax.persistence.Lob;
 
 /**
  * A DTO for the RelatedDocument entity.
@@ -15,6 +16,10 @@ public class RelatedDocumentDTO implements Serializable {
     private Long id;
 
     private String docName;
+
+    @Lob
+    private byte[] docFile;
+    private String docFileContentType;
 
     private Long articleId;
 
@@ -34,6 +39,22 @@ public class RelatedDocumentDTO implements Serializable {
 
     public void setDocName(String docName) {
         this.docName = docName;
+    }
+
+    public byte[] getDocFile() {
+        return docFile;
+    }
+
+    public void setDocFile(byte[] docFile) {
+        this.docFile = docFile;
+    }
+
+    public String getDocFileContentType() {
+        return docFileContentType;
+    }
+
+    public void setDocFileContentType(String docFileContentType) {
+        this.docFileContentType = docFileContentType;
     }
 
     public Long getArticleId() {
@@ -78,6 +99,7 @@ public class RelatedDocumentDTO implements Serializable {
         return "RelatedDocumentDTO{" +
             "id=" + getId() +
             ", docName='" + getDocName() + "'" +
+            ", docFile='" + getDocFile() + "'" +
             "}";
     }
 }

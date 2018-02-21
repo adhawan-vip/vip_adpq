@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -51,7 +52,7 @@ public class TaskOwnerResource {
      */
     @PostMapping("/task-owners")
     @Timed
-    public ResponseEntity<TaskOwnerDTO> createTaskOwner(@RequestBody TaskOwnerDTO taskOwnerDTO) throws URISyntaxException {
+    public ResponseEntity<TaskOwnerDTO> createTaskOwner(@Valid @RequestBody TaskOwnerDTO taskOwnerDTO) throws URISyntaxException {
         log.debug("REST request to save TaskOwner : {}", taskOwnerDTO);
         if (taskOwnerDTO.getId() != null) {
             throw new BadRequestAlertException("A new taskOwner cannot already have an ID", ENTITY_NAME, "idexists");
@@ -73,7 +74,7 @@ public class TaskOwnerResource {
      */
     @PutMapping("/task-owners")
     @Timed
-    public ResponseEntity<TaskOwnerDTO> updateTaskOwner(@RequestBody TaskOwnerDTO taskOwnerDTO) throws URISyntaxException {
+    public ResponseEntity<TaskOwnerDTO> updateTaskOwner(@Valid @RequestBody TaskOwnerDTO taskOwnerDTO) throws URISyntaxException {
         log.debug("REST request to update TaskOwner : {}", taskOwnerDTO);
         if (taskOwnerDTO.getId() == null) {
             return createTaskOwner(taskOwnerDTO);

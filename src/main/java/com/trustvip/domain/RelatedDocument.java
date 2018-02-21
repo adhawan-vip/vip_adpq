@@ -25,6 +25,13 @@ public class RelatedDocument implements Serializable {
     @Column(name = "doc_name")
     private String docName;
 
+    @Lob
+    @Column(name = "doc_file")
+    private byte[] docFile;
+
+    @Column(name = "doc_file_content_type")
+    private String docFileContentType;
+
     @ManyToOne(optional = false)
     @NotNull
     private Article article;
@@ -49,6 +56,32 @@ public class RelatedDocument implements Serializable {
 
     public void setDocName(String docName) {
         this.docName = docName;
+    }
+
+    public byte[] getDocFile() {
+        return docFile;
+    }
+
+    public RelatedDocument docFile(byte[] docFile) {
+        this.docFile = docFile;
+        return this;
+    }
+
+    public void setDocFile(byte[] docFile) {
+        this.docFile = docFile;
+    }
+
+    public String getDocFileContentType() {
+        return docFileContentType;
+    }
+
+    public RelatedDocument docFileContentType(String docFileContentType) {
+        this.docFileContentType = docFileContentType;
+        return this;
+    }
+
+    public void setDocFileContentType(String docFileContentType) {
+        this.docFileContentType = docFileContentType;
     }
 
     public Article getArticle() {
@@ -90,6 +123,8 @@ public class RelatedDocument implements Serializable {
         return "RelatedDocument{" +
             "id=" + getId() +
             ", docName='" + getDocName() + "'" +
+            ", docFile='" + getDocFile() + "'" +
+            ", docFileContentType='" + getDocFileContentType() + "'" +
             "}";
     }
 }

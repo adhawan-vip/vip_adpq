@@ -4,21 +4,33 @@
     "fields": [
         {
             "fieldName": "articleName",
-            "fieldType": "String"
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "publishDate",
-            "fieldType": "LocalDate"
+            "fieldType": "LocalDate",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "content",
             "fieldType": "byte[]",
-            "fieldTypeBlobContent": "text"
+            "fieldTypeBlobContent": "text",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "type",
             "fieldType": "ArticleType",
-            "fieldValues": "JOBAID,CONTENT,PACKAGE"
+            "fieldValues": "JOBAID,CONTENT,PACKAGE",
+            "fieldValidateRules": [
+                "required"
+            ]
         },
         {
             "fieldName": "status",

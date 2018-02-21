@@ -31,6 +31,7 @@
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="docName"><span jhiTranslate="vipAdpqApp.relatedDocument.docName">Doc Name</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="docFile"><span jhiTranslate="vipAdpqApp.relatedDocument.docFile">Doc File</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="articleArticleName"><span jhiTranslate="vipAdpqApp.relatedDocument.article">Article</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
@@ -39,6 +40,10 @@
             <tr *ngFor="let relatedDocument of relatedDocuments ;trackBy: trackId">
                 <td><a [routerLink]="['../related-document', relatedDocument.id ]">{{relatedDocument.id}}</a></td>
                 <td>{{relatedDocument.docName}}</td>
+                <td>
+                    <a *ngIf="relatedDocument.docFile" (click)="openFile(relatedDocument.docFileContentType, relatedDocument.docFile)" jhiTranslate="entity.action.open">open</a>
+                    <span *ngIf="relatedDocument.docFile">{{relatedDocument.docFileContentType}}, {{byteSize(relatedDocument.docFile)}}</span>
+                </td>
                 <td>
                     <div *ngIf="relatedDocument.articleId">
                         <a [routerLink]="['../article', relatedDocument.articleId  ]" >{{relatedDocument.articleArticleName}}</a>

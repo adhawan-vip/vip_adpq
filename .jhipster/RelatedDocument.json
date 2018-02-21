@@ -13,6 +13,11 @@
         {
             "fieldName": "docName",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "docFile",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "any"
         }
     ],
     "changelogDate": "20180221192650",

@@ -24,6 +24,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Base64Utils;
 
 import javax.persistence.EntityManager;
 import java.util.List;
@@ -45,6 +46,11 @@ public class RelatedDocumentResourceIntTest {
 
     private static final String DEFAULT_DOC_NAME = "AAAAAAAAAA";
     private static final String UPDATED_DOC_NAME = "BBBBBBBBBB";
+
+    private static final byte[] DEFAULT_DOC_FILE = TestUtil.createByteArray(1, "0");
+    private static final byte[] UPDATED_DOC_FILE = TestUtil.createByteArray(2, "1");
+    private static final String DEFAULT_DOC_FILE_CONTENT_TYPE = "image/jpg";
+    private static final String UPDATED_DOC_FILE_CONTENT_TYPE = "image/png";
 
     @Autowired
     private RelatedDocumentRepository relatedDocumentRepository;
@@ -93,7 +99,9 @@ public class RelatedDocumentResourceIntTest {
      */
     public static RelatedDocument createEntity(EntityManager em) {
         RelatedDocument relatedDocument = new RelatedDocument()
-            .docName(DEFAULT_DOC_NAME);
+            .docName(DEFAULT_DOC_NAME)
+            .docFile(DEFAULT_DOC_FILE)
+            .docFileContentType(DEFAULT_DOC_FILE_CONTENT_TYPE);
         // Add required entity
         Article article = ArticleResourceIntTest.createEntity(em);
         em.persist(article);
@@ -125,6 +133,8 @@ public class RelatedDocumentResourceIntTest {
         assertThat(relatedDocumentList).hasSize(databaseSizeBeforeCreate + 1);
         RelatedDocument testRelatedDocument = relatedDocumentList.get(relatedDocumentList.size() - 1);
         assertThat(testRelatedDocument.getDocName()).isEqualTo(DEFAULT_DOC_NAME);
+        assertThat(testRelatedDocument.getDocFile()).isEqualTo(DEFAULT_DOC_FILE);
+        assertThat(testRelatedDocument.getDocFileContentType()).isEqualTo(DEFAULT_DOC_FILE_CONTENT_TYPE);
 
         // Validate the RelatedDocument in Elasticsearch
         RelatedDocument relatedDocumentEs = relatedDocumentSearchRepository.findOne(testRelatedDocument.getId());
@@ -162,7 +172,9 @@ public class RelatedDocumentResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(relatedDocument.getId().intValue())))
-            .andExpect(jsonPath("$.[*].docName").value(hasItem(DEFAULT_DOC_NAME.toString())));
+            .andExpect(jsonPath("$.[*].docName").value(hasItem(DEFAULT_DOC_NAME.toString())))
+            .andExpect(jsonPath("$.[*].docFileContentType").value(hasItem(DEFAULT_DOC_FILE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].docFile").value(hasItem(Base64Utils.encodeToString(DEFAULT_DOC_FILE))));
     }
 
     @Test
@@ -176,7 +188,9 @@ public class RelatedDocumentResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(relatedDocument.getId().intValue()))
-            .andExpect(jsonPath("$.docName").value(DEFAULT_DOC_NAME.toString()));
+            .andExpect(jsonPath("$.docName").value(DEFAULT_DOC_NAME.toString()))
+            .andExpect(jsonPath("$.docFileContentType").value(DEFAULT_DOC_FILE_CONTENT_TYPE))
+            .andExpect(jsonPath("$.docFile").value(Base64Utils.encodeToString(DEFAULT_DOC_FILE)));
     }
 
     @Test
@@ -200,7 +214,9 @@ public class RelatedDocumentResourceIntTest {
         // Disconnect from session so that the updates on updatedRelatedDocument are not directly saved in db
         em.detach(updatedRelatedDocument);
         updatedRelatedDocument
-            .docName(UPDATED_DOC_NAME);
+            .docName(UPDATED_DOC_NAME)
+            .docFile(UPDATED_DOC_FILE)
+            .docFileContentType(UPDATED_DOC_FILE_CONTENT_TYPE);
         RelatedDocumentDTO relatedDocumentDTO = relatedDocumentMapper.toDto(updatedRelatedDocument);
 
         restRelatedDocumentMockMvc.perform(put("/api/related-documents")
@@ -213,6 +229,8 @@ public class RelatedDocumentResourceIntTest {
         assertThat(relatedDocumentList).hasSize(databaseSizeBeforeUpdate);
         RelatedDocument testRelatedDocument = relatedDocumentList.get(relatedDocumentList.size() - 1);
         assertThat(testRelatedDocument.getDocName()).isEqualTo(UPDATED_DOC_NAME);
+        assertThat(testRelatedDocument.getDocFile()).isEqualTo(UPDATED_DOC_FILE);
+        assertThat(testRelatedDocument.getDocFileContentType()).isEqualTo(UPDATED_DOC_FILE_CONTENT_TYPE);
 
         // Validate the RelatedDocument in Elasticsearch
         RelatedDocument relatedDocumentEs = relatedDocumentSearchRepository.findOne(testRelatedDocument.getId());
@@ -272,7 +290,9 @@ public class RelatedDocumentResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(relatedDocument.getId().intValue())))
-            .andExpect(jsonPath("$.[*].docName").value(hasItem(DEFAULT_DOC_NAME.toString())));
+            .andExpect(jsonPath("$.[*].docName").value(hasItem(DEFAULT_DOC_NAME.toString())))
+            .andExpect(jsonPath("$.[*].docFileContentType").value(hasItem(DEFAULT_DOC_FILE_CONTENT_TYPE)))
+            .andExpect(jsonPath("$.[*].docFile").value(hasItem(Base64Utils.encodeToString(DEFAULT_DOC_FILE))));
     }
 
     @Test

@@ -2,6 +2,7 @@ package com.trustvip.domain;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.*;
 
 import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
@@ -26,18 +27,22 @@ public class Article implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "article_name")
+    @NotNull
+    @Column(name = "article_name", nullable = false)
     private String articleName;
 
-    @Column(name = "publish_date")
+    @NotNull
+    @Column(name = "publish_date", nullable = false)
     private LocalDate publishDate;
 
+    @NotNull
     @Lob
-    @Column(name = "content")
+    @Column(name = "content", nullable = false)
     private String content;
 
+    @NotNull
     @Enumerated(EnumType.STRING)
-    @Column(name = "jhi_type")
+    @Column(name = "jhi_type", nullable = false)
     private ArticleType type;
 
     @Enumerated(EnumType.STRING)

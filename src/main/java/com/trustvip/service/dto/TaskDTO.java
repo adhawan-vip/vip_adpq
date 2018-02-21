@@ -16,15 +16,20 @@ public class TaskDTO implements Serializable {
 
     private Long id;
 
+    @NotNull
     private String taskName;
 
+    @NotNull
     private LocalDate dueDate;
 
+    @NotNull
     private String description;
 
     private TaskStatus status;
 
     private Long ownerId;
+
+    private String ownerName;
 
     private Long articleId;
 
@@ -76,6 +81,14 @@ public class TaskDTO implements Serializable {
 
     public void setOwnerId(Long taskOwnerId) {
         this.ownerId = taskOwnerId;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public void setOwnerName(String taskOwnerName) {
+        this.ownerName = taskOwnerName;
     }
 
     public Long getArticleId() {

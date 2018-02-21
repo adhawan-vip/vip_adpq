@@ -17,6 +17,24 @@
             <input type="text" class="form-control" name="docName" id="field_docName"
                 [(ngModel)]="relatedDocument.docName" />
         </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="vipAdpqApp.relatedDocument.docFile" for="field_docFile">Doc File</label>
+            <div>
+                <div *ngIf="relatedDocument.docFile" class="form-text text-danger clearfix">
+                    <a class="pull-left" (click)="openFile(relatedDocument.docFileContentType, relatedDocument.docFile)" jhiTranslate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{relatedDocument.docFileContentType}}, {{byteSize(relatedDocument.docFile)}}</span>
+                    <button type="button" (click)="relatedDocument.docFile=null;relatedDocument.docFileContentType=null;"
+                            class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_docFile" (change)="setFileData($event, relatedDocument, 'docFile', false)" jhiTranslate="entity.action.addblob"/>
+            </div>
+            <input type="hidden" class="form-control" name="docFile" id="field_docFile"
+                [(ngModel)]="relatedDocument.docFile" />
+            <input type="hidden" class="form-control" name="docFileContentType" id="field_docFileContentType"
+                [(ngModel)]="relatedDocument.docFileContentType" />
+        </div>
 
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="vipAdpqApp.relatedDocument.article" for="field_article">Article</label>

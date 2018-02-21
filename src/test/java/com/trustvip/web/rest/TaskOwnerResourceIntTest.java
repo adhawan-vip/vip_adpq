@@ -152,6 +152,25 @@ public class TaskOwnerResourceIntTest {
 
     @Test
     @Transactional
+    public void checkNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = taskOwnerRepository.findAll().size();
+        // set the field null
+        taskOwner.setName(null);
+
+        // Create the TaskOwner, which fails.
+        TaskOwnerDTO taskOwnerDTO = taskOwnerMapper.toDto(taskOwner);
+
+        restTaskOwnerMockMvc.perform(post("/api/task-owners")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(taskOwnerDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<TaskOwner> taskOwnerList = taskOwnerRepository.findAll();
+        assertThat(taskOwnerList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllTaskOwners() throws Exception {
         // Initialize the database
         taskOwnerRepository.saveAndFlush(taskOwner);

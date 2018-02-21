@@ -1,6 +1,7 @@
 package com.trustvip.service.dto;
 
 
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -11,6 +12,7 @@ public class TaskOwnerDTO implements Serializable {
 
     private Long id;
 
+    @NotNull
     private String name;
 
     private String email;

@@ -26,6 +26,13 @@
                 <constraints nullable="true" />
             </column>
 
+            <column name="doc_file" type="longblob">
+                <constraints nullable="true" />
+            </column>
+            <column name="doc_file_content_type" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
             <column name="article_id" type="bigint">
                 <constraints nullable="false" />
             </column>

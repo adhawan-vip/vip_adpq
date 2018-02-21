@@ -8,6 +8,13 @@
         <dd>
             <span>{{relatedDocument.docName}}</span>
         </dd>
+        <dt><span jhiTranslate="vipAdpqApp.relatedDocument.docFile">Doc File</span></dt>
+        <dd>
+            <div *ngIf="relatedDocument.docFile">
+                <a (click)="openFile(relatedDocument.docFileContentType, relatedDocument.docFile)" jhiTranslate="entity.action.open">open</a>
+                {{relatedDocument.docFileContentType}}, {{byteSize(relatedDocument.docFile)}}
+            </div>
+        </dd>
         <dt><span jhiTranslate="vipAdpqApp.relatedDocument.article">Article</span></dt>
         <dd>
             <div *ngIf="relatedDocument.articleId">

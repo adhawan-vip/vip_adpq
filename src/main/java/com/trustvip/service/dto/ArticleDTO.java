@@ -2,6 +2,7 @@ package com.trustvip.service.dto;
 
 
 import java.time.LocalDate;
+import javax.validation.constraints.*;
 import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Lob;
@@ -15,13 +16,17 @@ public class ArticleDTO implements Serializable {
 
     private Long id;
 
+    @NotNull
     private String articleName;
 
+    @NotNull
     private LocalDate publishDate;
 
+    @NotNull
     @Lob
     private String content;
 
+    @NotNull
     private ArticleType type;
 
     private ArticleStatus status;

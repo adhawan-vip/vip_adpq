@@ -15,30 +15,54 @@
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="vipAdpqApp.article.articleName" for="field_articleName">Article Name</label>
             <input type="text" class="form-control" name="articleName" id="field_articleName"
-                [(ngModel)]="article.articleName" />
+                [(ngModel)]="article.articleName" required/>
+            <div [hidden]="!(editForm.controls.articleName?.dirty && editForm.controls.articleName?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.articleName?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="vipAdpqApp.article.publishDate" for="field_publishDate">Publish Date</label>
             <div class="input-group">
                 <input id="field_publishDate" type="text" class="form-control" name="publishDate" ngbDatepicker  #publishDateDp="ngbDatepicker" [(ngModel)]="article.publishDate"
-                />
+                required/>
                 <span class="input-group-append">
                     <button type="button" class="btn btn-secondary" (click)="publishDateDp.toggle()"><i class="fa fa-calendar"></i></button>
                 </span>
+            </div>
+            <div [hidden]="!(editForm.controls.publishDate?.dirty && editForm.controls.publishDate?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.publishDate?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
             </div>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="vipAdpqApp.article.content" for="field_content">Content</label>
             <textarea class="form-control" name="content" id="field_content"
-                [(ngModel)]="article.content" ></textarea>
+                [(ngModel)]="article.content" required></textarea>
+            <div [hidden]="!(editForm.controls.content?.dirty && editForm.controls.content?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.content?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="vipAdpqApp.article.type" for="field_type">Type</label>
-            <select class="form-control" name="type" [(ngModel)]="article.type" id="field_type" >
+            <select class="form-control" name="type" [(ngModel)]="article.type" id="field_type"  required>
                 <option value="JOBAID">{{'vipAdpqApp.ArticleType.JOBAID' | translate}}</option>
                 <option value="CONTENT">{{'vipAdpqApp.ArticleType.CONTENT' | translate}}</option>
                 <option value="PACKAGE">{{'vipAdpqApp.ArticleType.PACKAGE' | translate}}</option>
             </select>
+            <div [hidden]="!(editForm.controls.type?.dirty && editForm.controls.type?.invalid)">
+                <small class="form-text text-danger"
+                   [hidden]="!editForm.controls.type?.errors?.required" jhiTranslate="entity.validation.required">
+                   This field is required.
+                </small>
+            </div>
         </div>
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="vipAdpqApp.article.status" for="field_status">Status</label>

@@ -34,7 +34,7 @@
             <th jhiSortBy="dueDate"><span jhiTranslate="vipAdpqApp.task.dueDate">Due Date</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="description"><span jhiTranslate="vipAdpqApp.task.description">Description</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="status"><span jhiTranslate="vipAdpqApp.task.status">Status</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="ownerId"><span jhiTranslate="vipAdpqApp.task.owner">Owner</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="ownerName"><span jhiTranslate="vipAdpqApp.task.owner">Owner</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="articleArticleName"><span jhiTranslate="vipAdpqApp.task.article">Article</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
@@ -48,7 +48,7 @@
                 <td jhiTranslate="{{'vipAdpqApp.TaskStatus.' + task.status}}">{{task.status}}</td>
                 <td>
                     <div *ngIf="task.ownerId">
-                        <a [routerLink]="['../task-owner', task.ownerId  ]" >{{task.ownerId}}</a>
+                        <a [routerLink]="['../task-owner', task.ownerId  ]" >{{task.ownerName}}</a>
                     </div>
                 </td>
                 <td>
