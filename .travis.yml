@@ -42,7 +42,7 @@ deploy:
   provider: heroku
   api_key:
     secure: cREjLzYf8ekqUvwaSEoWR3oBEJ0BoiifW/lvJFc7x1yid1z75S2j5sEc9F7LH6FIOBaWGahPl/T45wo56pbadAvcoraQJF4T5iAmGrghJ9VPtQNx0l30MeWM1d9+KgJG94YSUdB8h94bOgr2g9izNRfuoixuyL0W+quSPmRlnr+T85xCYoAmTBXZ6cbj9gxbMJwUouoTdVK+COjsanyT+QcTIguH0My8diqrzSw8lHVbv5NxLdOmum2yKV3qplpK6Y5KftIosY6d7zAFdjp4FNxdKa8/yM8Wc4IfJIzf4qcFpti5c2IkNdjAE5VByYXkiNERQL7dM3VoXyeKdms2JJJzaibNNNKyBokZSZ9Tenno6NQE+BDtI+tZQMPdW1/1JnsMuAD00roZm7Cw5b9T7O22fVL/D9na1F3QdgE5r7F+J1nnEah5i9wc5Iy8+YvQxzTO5EiDYYbZJZYrVwLYtP5yTn6l8zCj1xZTRKtqcm/ArOpJjr/DA+zQoKIdID1l+nx8fWM5jvYhJDjm3iHgNHIVuIcNveDo4UlfUEc258IfUaznq6+WtCSrqP+k/kg16gIG6gXlluH+/kzEgFQhwThDuqMVoM54nRt8XeARLy1n+8IC+ypuCtnwSLN0Uc+U/DWiLLGYkwE8dlFOrjD6uq6zkntkZvYxd5rnC977y90=
-  app: vip_adpq
+  app: vip-adpq
   on:
     repo: adhawan-vip/vip_adpq
 
