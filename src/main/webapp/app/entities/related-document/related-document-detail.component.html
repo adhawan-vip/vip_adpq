@@ -1,0 +1,39 @@
+
+<div *ngIf="relatedDocument">
+    <h2><span jhiTranslate="vipAdpqApp.relatedDocument.detail.title">Related Document</span> {{relatedDocument.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="vipAdpqApp.relatedDocument.docName">Doc Name</span></dt>
+        <dd>
+            <span>{{relatedDocument.docName}}</span>
+        </dd>
+        <dt><span jhiTranslate="vipAdpqApp.relatedDocument.docFile">Doc File</span></dt>
+        <dd>
+            <div *ngIf="relatedDocument.docFile">
+                <a (click)="openFile(relatedDocument.docFileContentType, relatedDocument.docFile)" jhiTranslate="entity.action.open">open</a>
+                {{relatedDocument.docFileContentType}}, {{byteSize(relatedDocument.docFile)}}
+            </div>
+        </dd>
+        <dt><span jhiTranslate="vipAdpqApp.relatedDocument.article">Article</span></dt>
+        <dd>
+            <div *ngIf="relatedDocument.articleId">
+                <a [routerLink]="['/article', relatedDocument.articleId]">{{relatedDocument.articleArticleName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'related-document/'+ relatedDocument.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

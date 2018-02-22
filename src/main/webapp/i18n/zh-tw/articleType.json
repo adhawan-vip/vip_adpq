@@ -1,0 +1,10 @@
+{
+    "vipAdpqApp": {
+        "ArticleType" : {
+            "null": "",
+            "JOBAID": "JOBAID",
+            "CONTENT": "CONTENT",
+            "PACKAGE": "PACKAGE"
+        }
+    }
+}

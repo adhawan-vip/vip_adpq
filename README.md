@@ -1,5 +1,10 @@
 # vip_adpq
-This application was generated using JHipster 4.14.0, you can find documentation and help at [http://www.jhipster.tech/documentation-archive/v4.14.0](http://www.jhipster.tech/documentation-archive/v4.14.0).
+Our prototype is located at: https://vip-adpq.herokuapp.com/#/
+
+Admin Credentials: admin/admin
+User Credentials: user/user
+
+The prototype also allows new user account creation via self-registration
 
 ## Development
 

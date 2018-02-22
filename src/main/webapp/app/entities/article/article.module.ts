@@ -13,6 +13,7 @@ import {
     ArticleDeleteDialogComponent,
     articleRoute,
     articlePopupRoute,
+    ArticleResolvePagingParams,
 } from './';
 
 const ENTITY_STATES = [
@@ -43,6 +44,7 @@ const ENTITY_STATES = [
     providers: [
         ArticleService,
         ArticlePopupService,
+        ArticleResolvePagingParams,
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

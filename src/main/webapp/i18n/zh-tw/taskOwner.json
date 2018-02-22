@@ -1,0 +1,24 @@
+
+{
+    "vipAdpqApp": {
+        "taskOwner" : {
+            "home": {
+                "title": "Task Owners",
+                "createLabel": "建立一筆新的 Task Owner",
+                "createOrEditLabel": "建立或編輯 Task Owner",
+                "search": "搜尋 Task Owner"
+            },
+            "created": "新的 Task Owner 建立成功，識別碼為 {{ param }}",
+            "updated": "識別碼為 {{ param }} 的 Task Owner 更新成功",
+            "deleted": "識別碼為 {{ param }} 的 Task Owner 刪除成功",
+            "delete": {
+                "question": "您確定要刪除 Task Owner {{ id }} 嗎?"
+            },
+            "detail": {
+                "title": "Task Owner"
+            },
+            "name": "Name",
+            "email": "Email"
+        }
+    }
+}

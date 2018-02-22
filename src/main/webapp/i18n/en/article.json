@@ -19,8 +19,9 @@
             },
             "articleName": "Article Name",
             "publishDate": "Publish Date",
-            "file": "File",
-            "content": "Content"
+            "content": "Content",
+            "type": "Type",
+            "status": "Status"
         }
     }
 }

@@ -1,0 +1,50 @@
+
+<div *ngIf="task">
+    <h2><span jhiTranslate="vipAdpqApp.task.detail.title">Task</span> {{task.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="vipAdpqApp.task.taskName">Task Name</span></dt>
+        <dd>
+            <span>{{task.taskName}}</span>
+        </dd>
+        <dt><span jhiTranslate="vipAdpqApp.task.dueDate">Due Date</span></dt>
+        <dd>
+            <span>{{task.dueDate | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="vipAdpqApp.task.description">Description</span></dt>
+        <dd>
+            <span>{{task.description}}</span>
+        </dd>
+        <dt><span jhiTranslate="vipAdpqApp.task.status">Status</span></dt>
+        <dd>
+            <span jhiTranslate="{{'vipAdpqApp.TaskStatus.' + task.status}}">{{task.status}}</span>
+        </dd>
+        <dt><span jhiTranslate="vipAdpqApp.task.owner">Owner</span></dt>
+        <dd>
+            <div *ngIf="task.ownerId">
+                <a [routerLink]="['/task-owner', task.ownerId]">{{task.ownerName}}</a>
+            </div>
+        </dd>
+        <dt><span jhiTranslate="vipAdpqApp.task.article">Article</span></dt>
+        <dd>
+            <div *ngIf="task.articleId">
+                <a [routerLink]="['/article', task.articleId]">{{task.articleArticleName}}</a>
+            </div>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            (click)="previousState()"
+            class="btn btn-info">
+        <span class="fa fa-arrow-left"></span>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button"
+            [routerLink]="['/', { outlets: { popup: 'task/'+ task.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+</div>

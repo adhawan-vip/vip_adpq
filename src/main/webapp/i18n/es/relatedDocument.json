@@ -1,0 +1,25 @@
+
+{
+    "vipAdpqApp": {
+        "relatedDocument" : {
+            "home": {
+                "title": "Related Documents",
+                "createLabel": "Crear nuevo Related Document",
+                "createOrEditLabel": "Crear o editar Related Document",
+                "search": "Search for Related Document"
+            },
+            "created": "Un nuevo Related Document ha sido creado con el identificador {{ param }}",
+            "updated": "Un Related Document ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Related Document ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Related Document {{ id }}?"
+            },
+            "detail": {
+                "title": "Related Document"
+            },
+            "docName": "Doc Name",
+            "docFile": "Doc File",
+            "article": "Article"
+        }
+    }
+}

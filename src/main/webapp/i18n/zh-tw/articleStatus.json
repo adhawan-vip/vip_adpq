@@ -1,0 +1,10 @@
+{
+    "vipAdpqApp": {
+        "ArticleStatus" : {
+            "null": "",
+            "DRAFT": "DRAFT",
+            "REVIEWED": "REVIEWED",
+            "PUBLISHED": "PUBLISHED"
+        }
+    }
+}

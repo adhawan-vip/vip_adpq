@@ -1,15 +1,13 @@
 package com.trustvip.service.dto;
 
 
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Calendar;
+import javax.validation.constraints.*;
+import java.io.Serializable;
 import java.util.Objects;
-
 import javax.persistence.Lob;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import com.trustvip.domain.enumeration.ArticleType;
+import com.trustvip.domain.enumeration.ArticleStatus;
 
 /**
  * A DTO for the Article entity.
@@ -19,21 +17,19 @@ public class ArticleDTO implements Serializable {
     private Long id;
 
     @NotNull
-    @Size(min = 3)
     private String articleName;
 
     @NotNull
     private LocalDate publishDate;
 
-    @Size(min = 1)
-    @Lob
-    private byte[] file;
-    private String fileContentType;
-
     @NotNull
-    @Size(min = 10)
     @Lob
     private String content;
+
+    @NotNull
+    private ArticleType type;
+
+    private ArticleStatus status;
 
     public Long getId() {
         return id;
@@ -56,23 +52,7 @@ public class ArticleDTO implements Serializable {
     }
 
     public void setPublishDate(LocalDate publishDate) {
-        this.publishDate  = publishDate;
-    }
-
-    public byte[] getFile() {
-        return file;
-    }
-
-    public void setFile(byte[] file) {
-        this.file = file;
-    }
-
-    public String getFileContentType() {
-        return fileContentType;
-    }
-
-    public void setFileContentType(String fileContentType) {
-        this.fileContentType = fileContentType;
+        this.publishDate = publishDate;
     }
 
     public String getContent() {
@@ -81,6 +61,22 @@ public class ArticleDTO implements Serializable {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public ArticleType getType() {
+        return type;
+    }
+
+    public void setType(ArticleType type) {
+        this.type = type;
+    }
+
+    public ArticleStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(ArticleStatus status) {
+        this.status = status;
     }
 
     @Override
@@ -110,8 +106,9 @@ public class ArticleDTO implements Serializable {
             "id=" + getId() +
             ", articleName='" + getArticleName() + "'" +
             ", publishDate='" + getPublishDate() + "'" +
-            ", file='" + getFile() + "'" +
             ", content='" + getContent() + "'" +
+            ", type='" + getType() + "'" +
+            ", status='" + getStatus() + "'" +
             "}";
     }
 }

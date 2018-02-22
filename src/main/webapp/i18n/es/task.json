@@ -1,0 +1,28 @@
+
+{
+    "vipAdpqApp": {
+        "task" : {
+            "home": {
+                "title": "Tasks",
+                "createLabel": "Crear nuevo Task",
+                "createOrEditLabel": "Crear o editar Task",
+                "search": "Search for Task"
+            },
+            "created": "Un nuevo Task ha sido creado con el identificador {{ param }}",
+            "updated": "Un Task ha sido actualizado con el identificador {{ param }}",
+            "deleted": "Un Task ha sido eliminado con el identificador {{ param }}",
+            "delete": {
+                "question": "¿Seguro que quiere eliminar Task {{ id }}?"
+            },
+            "detail": {
+                "title": "Task"
+            },
+            "taskName": "Task Name",
+            "dueDate": "Due Date",
+            "description": "Description",
+            "status": "Status",
+            "owner": "Owner",
+            "article": "Article"
+        }
+    }
+}

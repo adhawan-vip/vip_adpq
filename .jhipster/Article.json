@@ -6,10 +6,8 @@
             "fieldName": "articleName",
             "fieldType": "String",
             "fieldValidateRules": [
-                "required",
-                "minlength"
-            ],
-            "fieldValidateRulesMinlength": "3"
+                "required"
+            ]
         },
         {
             "fieldName": "publishDate",
@@ -19,29 +17,32 @@
             ]
         },
         {
-            "fieldName": "file",
-            "fieldType": "byte[]",
-            "fieldTypeBlobContent": "any",
-            "fieldValidateRules": [
-                "minbytes"
-            ],
-            "fieldValidateRulesMinbytes": "1"
-        },
-        {
             "fieldName": "content",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "text",
             "fieldValidateRules": [
-                "required",
-                "minlength"
-            ],
-            "fieldValidateRulesMinlength": "10"
+                "required"
+            ]
+        },
+        {
+            "fieldName": "type",
+            "fieldType": "ArticleType",
+            "fieldValues": "JOBAID,CONTENT,PACKAGE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "ArticleStatus",
+            "fieldValues": "DRAFT,REVIEWED,PUBLISHED"
         }
     ],
     "changelogDate": "20180214205559",
-    "dto": "mapstruct",
-    "service": "serviceImpl",
     "entityTableName": "article",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
-    "pagination": "infinite-scroll"
+    "searchEngine": "elasticsearch"
 }

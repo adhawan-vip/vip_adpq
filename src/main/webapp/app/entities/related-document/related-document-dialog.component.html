@@ -1,0 +1,61 @@
+<form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+
+    <div class="modal-header">
+        <h4 class="modal-title" id="myRelatedDocumentLabel" jhiTranslate="vipAdpqApp.relatedDocument.home.createOrEditLabel">Create or edit a Related Document</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                (click)="clear()">&times;</button>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" [hidden]="!relatedDocument.id">
+            <label for="id" jhiTranslate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                   [(ngModel)]="relatedDocument.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="vipAdpqApp.relatedDocument.docName" for="field_docName">Doc Name</label>
+            <input type="text" class="form-control" name="docName" id="field_docName"
+                [(ngModel)]="relatedDocument.docName" />
+        </div>
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="vipAdpqApp.relatedDocument.docFile" for="field_docFile">Doc File</label>
+            <div>
+                <div *ngIf="relatedDocument.docFile" class="form-text text-danger clearfix">
+                    <a class="pull-left" (click)="openFile(relatedDocument.docFileContentType, relatedDocument.docFile)" jhiTranslate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{relatedDocument.docFileContentType}}, {{byteSize(relatedDocument.docFile)}}</span>
+                    <button type="button" (click)="relatedDocument.docFile=null;relatedDocument.docFileContentType=null;"
+                            class="btn btn-secondary btn-xs pull-right">
+                        <span class="fa fa-times"></span>
+                    </button>
+                </div>
+                <input type="file" id="file_docFile" (change)="setFileData($event, relatedDocument, 'docFile', false)" jhiTranslate="entity.action.addblob"/>
+            </div>
+            <input type="hidden" class="form-control" name="docFile" id="field_docFile"
+                [(ngModel)]="relatedDocument.docFile" />
+            <input type="hidden" class="form-control" name="docFileContentType" id="field_docFileContentType"
+                [(ngModel)]="relatedDocument.docFileContentType" />
+        </div>
+
+        <div class="form-group">
+            <label class="form-control-label" jhiTranslate="vipAdpqApp.relatedDocument.article" for="field_article">Article</label>
+            <select class="form-control" id="field_article" name="article" [(ngModel)]="relatedDocument.articleId"  required>
+                <option *ngIf="!editForm.value.article" [ngValue]="null" selected></option>
+                <option [ngValue]="articleOption.id" *ngFor="let articleOption of articles; trackBy: trackArticleById">{{articleOption.articleName}}</option>
+            </select>
+        </div>
+        <div [hidden]="!(editForm.controls.article?.dirty && editForm.controls.article?.invalid)">
+            <small class="form-text text-danger"
+                [hidden]="!editForm.controls.article?.errors?.required" jhiTranslate="entity.validation.required">
+                This field is required.
+            </small>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="clear()">
+            <span class="fa fa-ban"></span>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+            <span class="fa fa-save"></span>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>
