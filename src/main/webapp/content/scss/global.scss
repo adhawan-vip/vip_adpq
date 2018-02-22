@@ -76,8 +76,22 @@ Generic styles
     opacity: 1;
 }
 
+.card {
+	background-color: #f1f1f1;
+}
+
 .footer {
     border-top: 1px solid rgba(0,0,0,.125);
+	padding: 1.5%;
+	margin-top: 20px;
+}
+
+.footer-img-logo {
+	width: 330px;
+	max-height: 80px;
+	height: auto;
+	position: static;
+	vertical-align: middle;
 }
 
 /* ==========================================================================
