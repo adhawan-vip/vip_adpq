@@ -1,20 +1,22 @@
 package com.trustvip.service.impl;
 
-import com.trustvip.service.ArticleService;
-import com.trustvip.domain.Article;
-import com.trustvip.repository.ArticleRepository;
-import com.trustvip.repository.search.ArticleSearchRepository;
-import com.trustvip.service.dto.ArticleDTO;
-import com.trustvip.service.mapper.ArticleMapper;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import com.trustvip.domain.Article;
+import com.trustvip.domain.enumeration.ArticleStatus;
+import com.trustvip.repository.ArticleRepository;
+import com.trustvip.repository.search.ArticleSearchRepository;
+import com.trustvip.service.ArticleService;
+import com.trustvip.service.dto.ArticleDTO;
+import com.trustvip.service.mapper.ArticleMapper;
 
 /**
  * Service Implementation for managing Article.
@@ -46,6 +48,12 @@ public class ArticleServiceImpl implements ArticleService {
     @Override
     public ArticleDTO save(ArticleDTO articleDTO) {
         log.debug("Request to save Article : {}", articleDTO);
+        // if status is not set, implies first time create
+        // by non-admin user.  Set to draft by default.
+        if( articleDTO.getStatus() == null )
+        {
+            articleDTO.setStatus(ArticleStatus.DRAFT);
+        }
         Article article = articleMapper.toEntity(articleDTO);
         article = articleRepository.save(article);
         ArticleDTO result = articleMapper.toDto(article);
@@ -81,6 +89,23 @@ public class ArticleServiceImpl implements ArticleService {
         return articleMapper.toDto(article);
     }
 
+    /**
+     * Get all the articles by status
+     *
+     * @param pageable the pagination information
+     * @return the list of entities
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Page<ArticleDTO> findAllByStatus(ArticleStatus status, Pageable pageable) {
+        log.debug("Request to get all Articles");
+        Article article = new Article();
+        article.setStatus(status);
+        Example<Article> example = Example.of(article);
+        return articleRepository.findAll(example, pageable)
+            .map(articleMapper::toDto);
+       }
+    
     /**
      * Delete the article by id.
      *

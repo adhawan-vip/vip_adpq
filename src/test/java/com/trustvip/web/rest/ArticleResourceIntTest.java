@@ -60,7 +60,7 @@ public class ArticleResourceIntTest {
     private static final ArticleType UPDATED_TYPE = ArticleType.CONTENT;
 
     private static final ArticleStatus DEFAULT_STATUS = ArticleStatus.DRAFT;
-    private static final ArticleStatus UPDATED_STATUS = ArticleStatus.REVIEWED;
+    private static final ArticleStatus UPDATED_STATUS = ArticleStatus.PUBLISHED;
 
     @Autowired
     private ArticleRepository articleRepository;
