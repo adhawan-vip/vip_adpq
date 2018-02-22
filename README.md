@@ -1,10 +1,5 @@
 # vip_adpq
-Our prototype is located at: https://vip-adpq.herokuapp.com/#/
-
-Admin Credentials: admin/admin
-User Credentials: user/user
-
-The prototype also allows new user account creation via self-registration
+This application was generated using JHipster 4.14.0, you can find documentation and help at [http://www.jhipster.tech/documentation-archive/v4.14.0](http://www.jhipster.tech/documentation-archive/v4.14.0).
 
 ## Development
 
@@ -21,6 +16,12 @@ You will only need to run this command when dependencies change in [package.json
     yarn install
 
 We use yarn scripts and [Webpack][] as our build system.
+
+Once Node and Yarn are installed, do the following
+
+yarn global add yo
+yarn global add generator-jhipster
+jhipster
 
 
 Run the following commands in two separate terminals to create a blissful development experience where your browser
