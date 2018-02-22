@@ -17,7 +17,8 @@ You will only need to run this command when dependencies change in [package.json
 
 We use yarn scripts and [Webpack][] as our build system.
 
-Once Node and Yarn are installed, do the following
+Once Node and Yarn are installed, do the following:
+
 
 yarn global add yo
 yarn global add generator-jhipster
