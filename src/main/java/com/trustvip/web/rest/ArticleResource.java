@@ -1,12 +1,13 @@
 package com.trustvip.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
-import com.trustvip.service.ArticleService;
-import com.trustvip.web.rest.errors.BadRequestAlertException;
-import com.trustvip.web.rest.util.HeaderUtil;
-import com.trustvip.web.rest.util.PaginationUtil;
-import com.trustvip.service.dto.ArticleDTO;
-import io.github.jhipster.web.util.ResponseUtil;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -14,17 +15,29 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.net.URI;
-import java.net.URISyntaxException;
+import com.codahale.metrics.annotation.Timed;
+import com.trustvip.domain.enumeration.ArticleStatus;
+import com.trustvip.security.AuthoritiesConstants;
+import com.trustvip.service.ArticleService;
+import com.trustvip.service.dto.ArticleDTO;
+import com.trustvip.web.rest.errors.BadRequestAlertException;
+import com.trustvip.web.rest.util.HeaderUtil;
+import com.trustvip.web.rest.util.PaginationUtil;
 
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.StreamSupport;
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import io.github.jhipster.web.util.ResponseUtil;
 
 /**
  * REST controller for managing Article.
@@ -95,7 +108,27 @@ public class ArticleResource {
     @Timed
     public ResponseEntity<List<ArticleDTO>> getAllArticles(Pageable pageable) {
         log.debug("REST request to get a page of Articles");
-        Page<ArticleDTO> page = articleService.findAll(pageable);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>)    SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+        //by default, only published articles are accessible
+        Page<ArticleDTO> page = articleService.findAllByStatus(ArticleStatus.PUBLISHED, pageable);
+        for (SimpleGrantedAuthority authority: authorities)
+        {
+            System.out.println(authority.getAuthority());
+            //admins can see everything
+            if( authority.getAuthority().equals(AuthoritiesConstants.ADMIN) )
+            {
+                page = articleService.findAll(pageable);
+                break;
+            }
+            //reviewers and authors can see drafts
+            else if (authority.getAuthority().equals(AuthoritiesConstants.REVIEWER) || authority.getAuthority().equals(AuthoritiesConstants.AUTHOR) )
+            {
+                page = articleService.findAllByStatus(ArticleStatus.DRAFT, pageable);;
+                break;
+            }
+        }
+        
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/articles");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }

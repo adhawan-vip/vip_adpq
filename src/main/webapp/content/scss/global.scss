@@ -76,9 +76,37 @@ Generic styles
     opacity: 1;
 }
 
+/*
+.card {
+	background-color: #f1f1f1;
+}
+*/
+
+.jh-create-entity, .btn-info {
+	background-color: #164675;
+}
+
 .footer {
     border-top: 1px solid rgba(0,0,0,.125);
+	padding: 1.5%;
+	margin-top: 20px;
 }
+
+.footer-img-logo {
+	width: 330px;
+	max-height: 80px;
+	height: auto;
+	position: static;
+	vertical-align: middle;
+}
+
+.home-img-logo-image {
+	width: 200px;
+	height: auto;
+	position: static;
+	vertical-align: middle;
+}
+
 
 /* ==========================================================================
 make sure browsers use the pointer cursor for anchors, even with no href
