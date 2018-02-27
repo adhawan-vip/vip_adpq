@@ -3,8 +3,26 @@ Our prototype is located at: https://vip-adpq.herokuapp.com/#/
 
 Admin Credentials: admin/admin
 User Credentials: user/user
+Author Credentials: author/author
+Reviewer Credentials: reviewer/reviewer
 
-The prototype also allows new user account creation via self-registration
+The prototype also allows new user account creation via the admin account or via self-registration.  Self-Registration will auto-assign the role of a "User".
+
+The easiest way to create a new user is to use the Administration UI.  Log in using the admin credentials listed above.  
+Once logged in, navigate to Administration -> User Management.  Click on "Create New User" and complete the required fields.
+** _ By default, when an admin creates an account the password is the same as the user name. _ **
+
+## Architectural Approach
+In order to accelerate development on the prototype, the VIP team quickly organized around a proven, Java based, open source technology stack.  Our framework
+of choice, JHipster is an industry leading development accelerator which packages and integrates several modern frameworks together including:
+> Spring, Spring Boot, Spring Security as core
+> AngularJS for UI
+> Node.JS for glue code
+> Liquibase for DB scripting including DDL and DML Scripts
+> maven for packaging and dependency management
+> heroku for deployment
+> TravisCI for Continuous Integration
+> Docker for containerized database deployment
 
 ## Development
 
