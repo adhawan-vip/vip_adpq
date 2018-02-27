@@ -16,14 +16,29 @@ Once logged in, navigate to Administration -> User Management.  Click on "Create
 In order to accelerate development on the prototype, the VIP team quickly organized around a proven, Java based, open source technology stack.  Our framework
 of choice, JHipster is an industry leading development accelerator which packages and integrates several modern frameworks together including:
 > Spring, Spring Boot, Spring Security as core
+
 > AngularJS for UI
+
 > Node.JS for glue code
+
 > Liquibase for DB scripting including DDL and DML Scripts
+
 > maven for packaging and dependency management
+
 > heroku for deployment
+
 > TravisCI for Continuous Integration
+
 > Docker for containerized database deployment
 
+Additionally, we used:
+> Github for code versioning and management
+
+> Swagger to document our API
+
+> MySQL as the open source database
+
+> H2 as the in-memory database
 ## Development
 
 Before you can build this project, you must install and configure the following dependencies on your machine:
