@@ -32,7 +32,7 @@ export const articleRoute: Routes = [
             'pagingParams': ArticleResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_AUTHOR', 'ROLE_REVIEWER'],
             pageTitle: 'vipAdpqApp.article.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -40,7 +40,7 @@ export const articleRoute: Routes = [
         path: 'article/:id',
         component: ArticleDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_USER', 'ROLE_AUTHOR', 'ROLE_REVIEWER'],
             pageTitle: 'vipAdpqApp.article.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -52,7 +52,7 @@ export const articlePopupRoute: Routes = [
         path: 'article-new',
         component: ArticlePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_AUTHOR'],
             pageTitle: 'vipAdpqApp.article.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -62,7 +62,7 @@ export const articlePopupRoute: Routes = [
         path: 'article/:id/edit',
         component: ArticlePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_AUTHOR', 'ROLE_REVIEWER'],
             pageTitle: 'vipAdpqApp.article.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -72,7 +72,7 @@ export const articlePopupRoute: Routes = [
         path: 'article/:id/delete',
         component: ArticleDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_AUTHOR', 'ROLE_REVIEWER'],
             pageTitle: 'vipAdpqApp.article.home.title'
         },
         canActivate: [UserRouteAccessService],

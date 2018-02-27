@@ -108,6 +108,7 @@ public class ArticleResource {
     @Timed
     public ResponseEntity<List<ArticleDTO>> getAllArticles(Pageable pageable) {
         log.debug("REST request to get a page of Articles");
+        log.debug("--------------------------------------");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>)    SecurityContextHolder.getContext().getAuthentication().getAuthorities();
         //by default, only published articles are accessible
