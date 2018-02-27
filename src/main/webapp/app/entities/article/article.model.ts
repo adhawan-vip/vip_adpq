@@ -20,6 +20,10 @@ export class Article implements BaseEntity {
         public content?: any,
         public type?: ArticleType,
         public status?: ArticleStatus,
+        public createdBy?: string,
+        public createdOn?: any,
+        public modifiedBy?: string,
+        public modifiedOn?: any,
     ) {
     }
 }

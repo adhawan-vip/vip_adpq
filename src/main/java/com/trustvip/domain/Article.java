@@ -49,6 +49,18 @@ public class Article implements Serializable {
     @Column(name = "status")
     private ArticleStatus status;
 
+    @Column(name = "created_by")
+    private String createdBy;
+
+    @Column(name = "created_on")
+    private LocalDate createdOn;
+
+    @Column(name = "modified_by")
+    private String modifiedBy;
+
+    @Column(name = "modified_on")
+    private LocalDate modifiedOn;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -122,6 +134,58 @@ public class Article implements Serializable {
     public void setStatus(ArticleStatus status) {
         this.status = status;
     }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public Article createdBy(String createdBy) {
+        this.createdBy = createdBy;
+        return this;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
+    public LocalDate getCreatedOn() {
+        return createdOn;
+    }
+
+    public Article createdOn(LocalDate createdOn) {
+        this.createdOn = createdOn;
+        return this;
+    }
+
+    public void setCreatedOn(LocalDate createdOn) {
+        this.createdOn = createdOn;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public Article modifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+        return this;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
+    public LocalDate getModifiedOn() {
+        return modifiedOn;
+    }
+
+    public Article modifiedOn(LocalDate modifiedOn) {
+        this.modifiedOn = modifiedOn;
+        return this;
+    }
+
+    public void setModifiedOn(LocalDate modifiedOn) {
+        this.modifiedOn = modifiedOn;
+    }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
@@ -153,6 +217,10 @@ public class Article implements Serializable {
             ", content='" + getContent() + "'" +
             ", type='" + getType() + "'" +
             ", status='" + getStatus() + "'" +
+            ", createdBy='" + getCreatedBy() + "'" +
+            ", createdOn='" + getCreatedOn() + "'" +
+            ", modifiedBy='" + getModifiedBy() + "'" +
+            ", modifiedOn='" + getModifiedOn() + "'" +
             "}";
     }
 }

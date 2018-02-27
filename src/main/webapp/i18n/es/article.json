@@ -21,7 +21,11 @@
             "publishDate": "Publish Date",
             "content": "Content",
             "type": "Type",
-            "status": "Status"
+            "status": "Status",
+            "createdBy": "Created By",
+            "createdOn": "Created On",
+            "modifiedBy": "Modified By",
+            "modifiedOn": "Modified On"
         }
     }
 }

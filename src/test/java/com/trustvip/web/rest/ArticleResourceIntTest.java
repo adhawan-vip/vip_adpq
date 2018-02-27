@@ -62,6 +62,18 @@ public class ArticleResourceIntTest {
     private static final ArticleStatus DEFAULT_STATUS = ArticleStatus.DRAFT;
     private static final ArticleStatus UPDATED_STATUS = ArticleStatus.PUBLISHED;
 
+    private static final String DEFAULT_CREATED_BY = "AAAAAAAAAA";
+    private static final String UPDATED_CREATED_BY = "BBBBBBBBBB";
+
+    private static final LocalDate DEFAULT_CREATED_ON = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_CREATED_ON = LocalDate.now(ZoneId.systemDefault());
+
+    private static final String DEFAULT_MODIFIED_BY = "AAAAAAAAAA";
+    private static final String UPDATED_MODIFIED_BY = "BBBBBBBBBB";
+
+    private static final LocalDate DEFAULT_MODIFIED_ON = LocalDate.ofEpochDay(0L);
+    private static final LocalDate UPDATED_MODIFIED_ON = LocalDate.now(ZoneId.systemDefault());
+
     @Autowired
     private ArticleRepository articleRepository;
 
@@ -113,7 +125,11 @@ public class ArticleResourceIntTest {
             .publishDate(DEFAULT_PUBLISH_DATE)
             .content(DEFAULT_CONTENT)
             .type(DEFAULT_TYPE)
-            .status(DEFAULT_STATUS);
+            .status(DEFAULT_STATUS)
+            .createdBy(DEFAULT_CREATED_BY)
+            .createdOn(DEFAULT_CREATED_ON)
+            .modifiedBy(DEFAULT_MODIFIED_BY)
+            .modifiedOn(DEFAULT_MODIFIED_ON);
         return article;
     }
 
@@ -144,6 +160,10 @@ public class ArticleResourceIntTest {
         assertThat(testArticle.getContent()).isEqualTo(DEFAULT_CONTENT);
         assertThat(testArticle.getType()).isEqualTo(DEFAULT_TYPE);
         assertThat(testArticle.getStatus()).isEqualTo(DEFAULT_STATUS);
+        assertThat(testArticle.getCreatedBy()).isEqualTo(DEFAULT_CREATED_BY);
+        assertThat(testArticle.getCreatedOn()).isEqualTo(DEFAULT_CREATED_ON);
+        assertThat(testArticle.getModifiedBy()).isEqualTo(DEFAULT_MODIFIED_BY);
+        assertThat(testArticle.getModifiedOn()).isEqualTo(DEFAULT_MODIFIED_ON);
 
         // Validate the Article in Elasticsearch
         Article articleEs = articleSearchRepository.findOne(testArticle.getId());
@@ -261,7 +281,11 @@ public class ArticleResourceIntTest {
             .andExpect(jsonPath("$.[*].publishDate").value(hasItem(DEFAULT_PUBLISH_DATE.toString())))
             .andExpect(jsonPath("$.[*].content").value(hasItem(DEFAULT_CONTENT.toString())))
             .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
-            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
+            .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY.toString())))
+            .andExpect(jsonPath("$.[*].createdOn").value(hasItem(DEFAULT_CREATED_ON.toString())))
+            .andExpect(jsonPath("$.[*].modifiedBy").value(hasItem(DEFAULT_MODIFIED_BY.toString())))
+            .andExpect(jsonPath("$.[*].modifiedOn").value(hasItem(DEFAULT_MODIFIED_ON.toString())));
     }
 
     @Test
@@ -279,7 +303,11 @@ public class ArticleResourceIntTest {
             .andExpect(jsonPath("$.publishDate").value(DEFAULT_PUBLISH_DATE.toString()))
             .andExpect(jsonPath("$.content").value(DEFAULT_CONTENT.toString()))
             .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
-            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
+            .andExpect(jsonPath("$.createdBy").value(DEFAULT_CREATED_BY.toString()))
+            .andExpect(jsonPath("$.createdOn").value(DEFAULT_CREATED_ON.toString()))
+            .andExpect(jsonPath("$.modifiedBy").value(DEFAULT_MODIFIED_BY.toString()))
+            .andExpect(jsonPath("$.modifiedOn").value(DEFAULT_MODIFIED_ON.toString()));
     }
 
     @Test
@@ -307,7 +335,11 @@ public class ArticleResourceIntTest {
             .publishDate(UPDATED_PUBLISH_DATE)
             .content(UPDATED_CONTENT)
             .type(UPDATED_TYPE)
-            .status(UPDATED_STATUS);
+            .status(UPDATED_STATUS)
+            .createdBy(UPDATED_CREATED_BY)
+            .createdOn(UPDATED_CREATED_ON)
+            .modifiedBy(UPDATED_MODIFIED_BY)
+            .modifiedOn(UPDATED_MODIFIED_ON);
         ArticleDTO articleDTO = articleMapper.toDto(updatedArticle);
 
         restArticleMockMvc.perform(put("/api/articles")
@@ -324,6 +356,10 @@ public class ArticleResourceIntTest {
         assertThat(testArticle.getContent()).isEqualTo(UPDATED_CONTENT);
         assertThat(testArticle.getType()).isEqualTo(UPDATED_TYPE);
         assertThat(testArticle.getStatus()).isEqualTo(UPDATED_STATUS);
+        assertThat(testArticle.getCreatedBy()).isEqualTo(UPDATED_CREATED_BY);
+        assertThat(testArticle.getCreatedOn()).isEqualTo(UPDATED_CREATED_ON);
+        assertThat(testArticle.getModifiedBy()).isEqualTo(UPDATED_MODIFIED_BY);
+        assertThat(testArticle.getModifiedOn()).isEqualTo(UPDATED_MODIFIED_ON);
 
         // Validate the Article in Elasticsearch
         Article articleEs = articleSearchRepository.findOne(testArticle.getId());
@@ -387,7 +423,11 @@ public class ArticleResourceIntTest {
             .andExpect(jsonPath("$.[*].publishDate").value(hasItem(DEFAULT_PUBLISH_DATE.toString())))
             .andExpect(jsonPath("$.[*].content").value(hasItem(DEFAULT_CONTENT.toString())))
             .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
-            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
+            .andExpect(jsonPath("$.[*].createdBy").value(hasItem(DEFAULT_CREATED_BY.toString())))
+            .andExpect(jsonPath("$.[*].createdOn").value(hasItem(DEFAULT_CREATED_ON.toString())))
+            .andExpect(jsonPath("$.[*].modifiedBy").value(hasItem(DEFAULT_MODIFIED_BY.toString())))
+            .andExpect(jsonPath("$.[*].modifiedOn").value(hasItem(DEFAULT_MODIFIED_ON.toString())));
     }
 
     @Test

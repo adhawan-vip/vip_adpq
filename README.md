@@ -45,9 +45,9 @@ their local development environments.
 
 Before you can build this project, you must install and configure the following dependencies on your machine:
 
-1. [Node.js][]: We use Node to run a development web server and build the project.
+1. Node.js: We use Node to run a development web server and build the project.
    Depending on your system, you can install Node either from source or as a pre-packaged bundle.
-2. [Yarn][]: We use Yarn to manage Node dependencies.
+2. Yarn: We use Yarn to manage Node dependencies.
    Depending on your system, you can install Yarn either from source or as a pre-packaged bundle.
 
 After installing Node, you should be able to run the following command to install development tools.
@@ -82,8 +82,6 @@ To ensure everything worked, run:
     java -jar target/*.war
 
 Then navigate to [http://localhost:8080](http://localhost:8080) in your browser.
-
-Refer to [Using JHipster in production][] for more details.
 
 ## Testing
 

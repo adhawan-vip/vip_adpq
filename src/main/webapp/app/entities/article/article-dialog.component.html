@@ -64,14 +64,14 @@
                 </small>
             </div>
         </div>
-        <div *jhiHasAnyAuthority="'ROLE_ADMIN'" class="form-group">
+        <div *jhiHasAnyAuthority="['ROLE_REVIEWER', 'ROLE_ADMIN']" class="form-group">
             <label class="form-control-label" jhiTranslate="vipAdpqApp.article.status" for="field_status">Status</label>
             <select class="form-control" name="status" [(ngModel)]="article.status" id="field_status" >
                 <option value="DRAFT">{{'vipAdpqApp.ArticleStatus.DRAFT' | translate}}</option>
-                <option value="REVIEWED">{{'vipAdpqApp.ArticleStatus.REVIEWED' | translate}}</option>
                 <option value="PUBLISHED">{{'vipAdpqApp.ArticleStatus.PUBLISHED' | translate}}</option>
             </select>
         </div>
+      
 
     </div>
     <div class="modal-footer">

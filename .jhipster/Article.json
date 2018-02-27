@@ -36,6 +36,22 @@
             "fieldName": "status",
             "fieldType": "ArticleStatus",
             "fieldValues": "DRAFT,REVIEWED,PUBLISHED"
+        },
+        {
+            "fieldName": "createdBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "createdOn",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "modifiedBy",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "modifiedOn",
+            "fieldType": "LocalDate"
         }
     ],
     "changelogDate": "20180214205559",
