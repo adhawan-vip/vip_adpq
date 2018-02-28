@@ -27,11 +27,11 @@
             </div>
         </div>
 
-        <p>
+        <p  *jhiHasAnyAuthority="['ROLE_USER', 'ROLE_AUTHOR', 'ROLE_REVIEWER', 'ROLE_ADMIN']">
            You have the following roles and permissions: 
         </p>
 
-        <ul>
+        <ul *jhiHasAnyAuthority="['ROLE_USER', 'ROLE_AUTHOR', 'ROLE_REVIEWER', 'ROLE_ADMIN']">
             <li>    
                  <span *jhiHasAnyAuthority="['ROLE_USER']"> <b>USER:</b> Users can view Articles and Related Documents <BR></span>
                  <span *jhiHasAnyAuthority="['ROLE_AUTHOR']"> <b>AUTHOR:</b> Authors can create, view, edit, and delete Articles and Related Documents<BR></span>

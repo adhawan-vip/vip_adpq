@@ -6,6 +6,7 @@ import java.time.LocalDate;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -72,7 +73,7 @@ public class ArticleServiceImpl implements ArticleService {
             articleDTO.setCreatedBy(SecurityUtils.getCurrentUserLogin().get());
         if (articleDTO.getCreatedOn() == null)
             articleDTO.setCreatedOn(LocalDate.now());
-        if( articleDTO.getStatus() == null )
+        if (articleDTO.getStatus() == null)
             articleDTO.setStatus(ArticleStatus.DRAFT);
         articleDTO.setModifiedBy(SecurityUtils.getCurrentUserLogin().get());
         articleDTO.setModifiedOn(LocalDate.now());
@@ -137,4 +138,22 @@ public class ArticleServiceImpl implements ArticleService {
         Page<Article> result = articleSearchRepository.search(queryStringQuery(query), pageable);
         return result.map(articleMapper::toDto);
     }
+
+    /**
+     * Get all the articles by status
+     *
+     * @param pageable
+     *            the pagination information
+     * @return the list of entities
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Page<ArticleDTO> findAllByStatus(ArticleStatus status, Pageable pageable) {
+        log.debug("Request to get all Articles");
+        Article article = new Article();
+        article.setStatus(status);
+        Example<Article> example = Example.of(article);
+        return articleRepository.findAll(example, pageable).map(articleMapper::toDto);
+    }
+
 }
