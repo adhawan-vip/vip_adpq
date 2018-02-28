@@ -32,7 +32,7 @@ export const taskOwnerRoute: Routes = [
             'pagingParams': TaskOwnerResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'vipAdpqApp.taskOwner.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -40,7 +40,7 @@ export const taskOwnerRoute: Routes = [
         path: 'task-owner/:id',
         component: TaskOwnerDetailComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'vipAdpqApp.taskOwner.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -52,7 +52,7 @@ export const taskOwnerPopupRoute: Routes = [
         path: 'task-owner-new',
         component: TaskOwnerPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'vipAdpqApp.taskOwner.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -62,7 +62,7 @@ export const taskOwnerPopupRoute: Routes = [
         path: 'task-owner/:id/edit',
         component: TaskOwnerPopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'vipAdpqApp.taskOwner.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -72,7 +72,7 @@ export const taskOwnerPopupRoute: Routes = [
         path: 'task-owner/:id/delete',
         component: TaskOwnerDeletePopupComponent,
         data: {
-            authorities: ['ROLE_USER'],
+            authorities: ['ROLE_ADMIN'],
             pageTitle: 'vipAdpqApp.taskOwner.home.title'
         },
         canActivate: [UserRouteAccessService],

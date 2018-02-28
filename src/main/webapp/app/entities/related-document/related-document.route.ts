@@ -32,7 +32,7 @@ export const relatedDocumentRoute: Routes = [
             'pagingParams': RelatedDocumentResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_USER', 'ROLE_AUTHOR', 'ROLE_REVIEWER'],
+            authorities: ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_AUTHOR', 'ROLE_REVIEWER'],
             pageTitle: 'vipAdpqApp.relatedDocument.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -40,7 +40,7 @@ export const relatedDocumentRoute: Routes = [
         path: 'related-document/:id',
         component: RelatedDocumentDetailComponent,
         data: {
-            authorities: ['ROLE_USER', 'ROLE_AUTHOR', 'ROLE_REVIEWER'],
+            authorities: ['ROLE_ADMIN', 'ROLE_USER', 'ROLE_AUTHOR', 'ROLE_REVIEWER'],
             pageTitle: 'vipAdpqApp.relatedDocument.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -52,7 +52,7 @@ export const relatedDocumentPopupRoute: Routes = [
         path: 'related-document-new',
         component: RelatedDocumentPopupComponent,
         data: {
-            authorities: ['ROLE_AUTHOR'],
+            authorities: ['ROLE_ADMIN', 'ROLE_AUTHOR'],
             pageTitle: 'vipAdpqApp.relatedDocument.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -62,7 +62,7 @@ export const relatedDocumentPopupRoute: Routes = [
         path: 'related-document/:id/edit',
         component: RelatedDocumentPopupComponent,
         data: {
-            authorities: ['ROLE_AUTHOR', 'ROLE_REVIEWER'],
+            authorities: ['ROLE_ADMIN', 'ROLE_AUTHOR', 'ROLE_REVIEWER'],
             pageTitle: 'vipAdpqApp.relatedDocument.home.title'
         },
         canActivate: [UserRouteAccessService],
@@ -72,7 +72,7 @@ export const relatedDocumentPopupRoute: Routes = [
         path: 'related-document/:id/delete',
         component: RelatedDocumentDeletePopupComponent,
         data: {
-            authorities: ['ROLE_AUTHOR', 'ROLE_REVIEWER'],
+            authorities: ['ROLE_ADMIN', 'ROLE_AUTHOR'],
             pageTitle: 'vipAdpqApp.relatedDocument.home.title'
         },
         canActivate: [UserRouteAccessService],

@@ -32,7 +32,7 @@ export const taskRoute: Routes = [
             'pagingParams': TaskResolvePagingParams
         },
         data: {
-            authorities: ['ROLE_REVIEWER'],
+            authorities: ['ROLE_ADMIN', 'ROLE_REVIEWER'],
             pageTitle: 'vipAdpqApp.task.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -40,7 +40,7 @@ export const taskRoute: Routes = [
         path: 'task/:id',
         component: TaskDetailComponent,
         data: {
-            authorities: ['ROLE_REVIEWER'],
+            authorities: ['ROLE_ADMIN', 'ROLE_REVIEWER'],
             pageTitle: 'vipAdpqApp.task.home.title'
         },
         canActivate: [UserRouteAccessService]
@@ -62,7 +62,7 @@ export const taskPopupRoute: Routes = [
         path: 'task/:id/edit',
         component: TaskPopupComponent,
         data: {
-            authorities: ['ROLE_REVIEWER'],
+            authorities: ['ROLE_ADMIN', 'ROLE_REVIEWER'],
             pageTitle: 'vipAdpqApp.task.home.title'
         },
         canActivate: [UserRouteAccessService],
