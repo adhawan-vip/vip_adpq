@@ -54,6 +54,11 @@ public class ArticleResource {
 
     private final ArticleService articleService;
     private final RelatedDocumentService documentService;
+    
+    public ArticleResource(ArticleService articleService)
+    {
+        this( articleService, null );
+    }
     public ArticleResource(ArticleService articleService, RelatedDocumentService documentService) {
         this.articleService = articleService;
         this.documentService = documentService;
