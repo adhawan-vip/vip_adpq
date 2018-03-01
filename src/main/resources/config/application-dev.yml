@@ -47,19 +47,17 @@ spring:
             hibernate.cache.use_second_level_cache: false
             hibernate.cache.use_query_cache: false
             hibernate.generate_statistics: true
-    data:
-        elasticsearch:
-            cluster-name:
-            cluster-nodes:
-            properties:
-                path:
-                    logs: target/elasticsearch/log
-                    data: target/elasticsearch/data
     mail:
-        host: localhost
-        port: 25
-        username:
-        password:
+        host: smtp-mail.outlook.com
+        port: 587
+        username: adhawan-vip@outlook.com
+        password: innergie123
+        protocol: smtp
+        tls: true
+        properties.mail.smtp:
+            auth: true
+            starttls.enable: true
+            ssl.trust: smtp-mail.outlook.com
     messages:
         cache-seconds: 1
     thymeleaf:
@@ -110,7 +108,7 @@ jhipster:
             # security key (this key should be unique for your application, and kept secret)
             key: c7c0831e3b4192b92ffb303d79d1b706121d13a5
     mail: # specific JHipster mail property, for standard properties see MailProperties
-        from: vip_adpq@localhost
+        from: adhawan-vip@outlook.com
         base-url: http://127.0.0.1:8080
     metrics: # DropWizard Metrics configuration, used by MetricsConfiguration
         jmx.enabled: true

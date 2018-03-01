@@ -94,6 +94,8 @@ public class ArticleServiceImpl implements ArticleService {
         return articleRepository.findAll(pageable).map(articleMapper::toDto);
     }
 
+    
+    
     /**
      * Get one article by id.
      *

@@ -4,9 +4,11 @@ package com.trustvip.service.dto;
 import java.time.LocalDate;
 import javax.validation.constraints.*;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.Lob;
 import com.trustvip.domain.enumeration.ArticleType;
+import com.trustvip.domain.RelatedDocument;
 import com.trustvip.domain.enumeration.ArticleStatus;
 
 /**
@@ -38,6 +40,16 @@ public class ArticleDTO implements Serializable {
     private String modifiedBy;
 
     private LocalDate modifiedOn;
+    
+    private List<RelatedDocument> docList;
+    
+    public List<RelatedDocument> getDocList() {
+        return docList;
+    }
+
+    public void setDocList(List<RelatedDocument> docList) {
+        this.docList = docList;
+    }
 
     public Long getId() {
         return id;
@@ -46,6 +58,7 @@ public class ArticleDTO implements Serializable {
     public void setId(Long id) {
         this.id = id;
     }
+    
 
     public String getArticleName() {
         return articleName;

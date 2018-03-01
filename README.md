@@ -70,6 +70,11 @@ auto-refreshes when files change on your hard drive.
 `yarn start`
 
 
+## API Documentation
+Our API is documented using Swagger.  Swagger is based on the OpenAPI specification.  Our API documentation can be found here: https://vip-adpq.herokuapp.com/#/docs
+
+Please use login credentials: admin/admin to log in and view the API.
+
 ## Building for production
 
 To optimize the vip_adpq application for production, run:

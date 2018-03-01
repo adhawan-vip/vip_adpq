@@ -40,6 +40,13 @@
         <dd>
             <span>{{article.modifiedOn | date:'mediumDate'}}</span>
         </dd>
+        <dt><span>Related Documents</span></dt>        
+          <dd>
+          <li *ngFor="let document of article.docList">
+             <a (click)="openFile(document.docFileContentType, document.docFile)">{{document.docName}} (Click to Open)</a>
+          </li>
+          </dd>
+       
     </dl>
 
     <button type="submit"

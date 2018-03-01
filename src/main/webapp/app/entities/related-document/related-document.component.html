@@ -1,7 +1,7 @@
 <div>
     <h2>
         <span jhiTranslate="vipAdpqApp.relatedDocument.home.title">Related Documents</span>
-        <button *jhiHasAnyAuthority="['ROLE_AUTHOR']"  class="btn btn-primary float-right jh-create-entity create-related-document" [routerLink]="['/', { outlets: { popup: ['related-document-new'] } }]">
+        <button *jhiHasAnyAuthority="['ROLE_AUTHOR', 'ROLE_ADMIN']"  class="btn btn-primary float-right jh-create-entity create-related-document" [routerLink]="['/', { outlets: { popup: ['related-document-new'] } }]">
             <span class="fa fa-plus"></span>
             <span class="hidden-sm-down"  jhiTranslate="vipAdpqApp.relatedDocument.home.createLabel">
             Create new Related Document
