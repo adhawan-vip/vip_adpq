@@ -1,4 +1,5 @@
 # vip_adpq
+
 Our prototype is located at: https://vip-adpq.herokuapp.com/#/
 
 Admin Credentials: admin/admin
@@ -55,6 +56,7 @@ You will only need to run this command when dependencies change in [package.json
 
 `yarn install`
 
+
 Once Node and Yarn are installed, do the following
 
 `yarn global add yo`
@@ -63,8 +65,7 @@ Once Node and Yarn are installed, do the following
 
 `jhipster`
 
-Run the following commands in two separate terminals to ensure that your browser
-auto-refreshes when files change on your hard drive.
+Run the following commands in two separate terminals to ensure that your browser auto-refreshes when files change on your hard drive.
 
 `./mvnw`
 `yarn start`
