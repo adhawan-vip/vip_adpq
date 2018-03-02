@@ -44,8 +44,8 @@
             </thead>
             <tbody>
             <tr *ngFor="let article of articles ;trackBy: trackId">
-                <td><a [routerLink]="['../article', article.id ]">{{article.id}}</a></td>
-                <td>{{article.articleName}}</td>
+                <td>{{article.id}}</td>
+                <td><a [routerLink]="['../article', article.id ]">{{article.articleName}}</a></td>
                 <td>{{article.publishDate | date:'mediumDate'}}</td>
                 <td>{{article.content}}</td>
                 <td jhiTranslate="{{'vipAdpqApp.ArticleType.' + article.type}}">{{article.type}}</td>
