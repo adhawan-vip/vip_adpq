@@ -72,6 +72,10 @@ export class ArticleService {
         const copy: Article = Object.assign({}, article);
         copy.publishDate = this.dateUtils
             .convertLocalDateFromServer(article.publishDate);
+        copy.createdOn = this.dateUtils
+            .convertLocalDateFromServer(article.createdOn);
+        copy.modifiedOn = this.dateUtils
+            .convertLocalDateFromServer(article.modifiedOn);
         return copy;
     }
 
@@ -82,6 +86,10 @@ export class ArticleService {
         const copy: Article = Object.assign({}, article);
         copy.publishDate = this.dateUtils
             .convertLocalDateToServer(article.publishDate);
+        copy.createdOn = this.dateUtils
+            .convertLocalDateToServer(article.createdOn);
+        copy.modifiedOn = this.dateUtils
+            .convertLocalDateToServer(article.modifiedOn);
         return copy;
     }
 }

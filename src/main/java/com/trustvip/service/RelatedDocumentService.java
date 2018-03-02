@@ -1,8 +1,12 @@
 package com.trustvip.service;
 
-import com.trustvip.service.dto.RelatedDocumentDTO;
+import java.util.List;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+
+import com.trustvip.domain.RelatedDocument;
+import com.trustvip.service.dto.RelatedDocumentDTO;
 
 /**
  * Service Interface for managing RelatedDocument.
@@ -49,4 +53,14 @@ public interface RelatedDocumentService {
      * @return the list of entities
      */
     Page<RelatedDocumentDTO> search(String query, Pageable pageable);
+
+    /**
+     * Search for the relatedDocument by article id
+     *
+     * @param articleId - Id of the article
+     * 
+     * @param pageable the pagination information
+     * @return the list of entities
+     */
+    List<RelatedDocument> findAllByArticleId(Long id);
 }

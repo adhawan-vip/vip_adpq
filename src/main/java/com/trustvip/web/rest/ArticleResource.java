@@ -29,9 +29,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
+import com.trustvip.domain.RelatedDocument;
 import com.trustvip.domain.enumeration.ArticleStatus;
 import com.trustvip.security.AuthoritiesConstants;
 import com.trustvip.service.ArticleService;
+import com.trustvip.service.RelatedDocumentService;
 import com.trustvip.service.dto.ArticleDTO;
 import com.trustvip.web.rest.errors.BadRequestAlertException;
 import com.trustvip.web.rest.util.HeaderUtil;
@@ -51,106 +53,127 @@ public class ArticleResource {
     private static final String ENTITY_NAME = "article";
 
     private final ArticleService articleService;
-
-    public ArticleResource(ArticleService articleService) {
+    private final RelatedDocumentService documentService;
+    
+    public ArticleResource(ArticleService articleService)
+    {
+        this( articleService, null );
+    }
+    public ArticleResource(ArticleService articleService, RelatedDocumentService documentService) {
         this.articleService = articleService;
+        this.documentService = documentService;
     }
 
     /**
-     * POST  /articles : Create a new article.
+     * POST /articles : Create a new article.
      *
-     * @param articleDTO the articleDTO to create
-     * @return the ResponseEntity with status 201 (Created) and with body the new articleDTO, or with status 400 (Bad Request) if the article has already an ID
-     * @throws URISyntaxException if the Location URI syntax is incorrect
+     * @param articleDTO
+     *            the articleDTO to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new
+     *         articleDTO, or with status 400 (Bad Request) if the article has
+     *         already an ID
+     * @throws URISyntaxException
+     *             if the Location URI syntax is incorrect
      */
     @PostMapping("/articles")
     @Timed
-    public ResponseEntity<ArticleDTO> createArticle(@Valid @RequestBody ArticleDTO articleDTO) throws URISyntaxException {
+    public ResponseEntity<ArticleDTO> createArticle(@Valid @RequestBody ArticleDTO articleDTO)
+            throws URISyntaxException {
         log.debug("REST request to save Article : {}", articleDTO);
         if (articleDTO.getId() != null) {
             throw new BadRequestAlertException("A new article cannot already have an ID", ENTITY_NAME, "idexists");
         }
         ArticleDTO result = articleService.save(articleDTO);
         return ResponseEntity.created(new URI("/api/articles/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())).body(result);
     }
 
     /**
-     * PUT  /articles : Updates an existing article.
+     * PUT /articles : Updates an existing article.
      *
-     * @param articleDTO the articleDTO to update
-     * @return the ResponseEntity with status 200 (OK) and with body the updated articleDTO,
-     * or with status 400 (Bad Request) if the articleDTO is not valid,
-     * or with status 500 (Internal Server Error) if the articleDTO couldn't be updated
-     * @throws URISyntaxException if the Location URI syntax is incorrect
+     * @param articleDTO
+     *            the articleDTO to update
+     * @return the ResponseEntity with status 200 (OK) and with body the updated
+     *         articleDTO, or with status 400 (Bad Request) if the articleDTO is not
+     *         valid, or with status 500 (Internal Server Error) if the articleDTO
+     *         couldn't be updated
+     * @throws URISyntaxException
+     *             if the Location URI syntax is incorrect
      */
     @PutMapping("/articles")
     @Timed
-    public ResponseEntity<ArticleDTO> updateArticle(@Valid @RequestBody ArticleDTO articleDTO) throws URISyntaxException {
+    public ResponseEntity<ArticleDTO> updateArticle(@Valid @RequestBody ArticleDTO articleDTO)
+            throws URISyntaxException {
         log.debug("REST request to update Article : {}", articleDTO);
         if (articleDTO.getId() == null) {
             return createArticle(articleDTO);
         }
         ArticleDTO result = articleService.save(articleDTO);
         return ResponseEntity.ok()
-            .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, articleDTO.getId().toString()))
-            .body(result);
+                .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, articleDTO.getId().toString())).body(result);
     }
 
     /**
-     * GET  /articles : get all the articles.
+     * GET /articles : get all the articles.
      *
-     * @param pageable the pagination information
-     * @return the ResponseEntity with status 200 (OK) and the list of articles in body
+     * @param pageable
+     *            the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of articles in
+     *         body
      */
     @GetMapping("/articles")
     @Timed
     public ResponseEntity<List<ArticleDTO>> getAllArticles(Pageable pageable) {
         log.debug("REST request to get a page of Articles");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>)    SecurityContextHolder.getContext().getAuthentication().getAuthorities();
-        //by default, only published articles are accessible
+        Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>) SecurityContextHolder
+                .getContext().getAuthentication().getAuthorities();
+        // by default, only published articles are accessible
         Page<ArticleDTO> page = articleService.findAllByStatus(ArticleStatus.PUBLISHED, pageable);
-        for (SimpleGrantedAuthority authority: authorities)
-        {
+        for (SimpleGrantedAuthority authority : authorities) {
             System.out.println(authority.getAuthority());
-            //admins can see everything
-            if( authority.getAuthority().equals(AuthoritiesConstants.ADMIN) )
-            {
+            // admins can see everything
+            if (authority.getAuthority().equals(AuthoritiesConstants.ADMIN)) {
                 page = articleService.findAll(pageable);
                 break;
             }
-            //reviewers and authors can see drafts
-            else if (authority.getAuthority().equals(AuthoritiesConstants.REVIEWER) || authority.getAuthority().equals(AuthoritiesConstants.AUTHOR) )
-            {
-                page = articleService.findAllByStatus(ArticleStatus.DRAFT, pageable);;
+            // reviewers and authors can see drafts
+            else if (authority.getAuthority().equals(AuthoritiesConstants.REVIEWER)
+                    || authority.getAuthority().equals(AuthoritiesConstants.AUTHOR)) {
+                page = articleService.findAllByStatus(ArticleStatus.DRAFT, pageable);
+                ;
                 break;
             }
         }
-        
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/articles");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
     /**
-     * GET  /articles/:id : get the "id" article.
+     * GET /articles/:id : get the "id" article.
      *
-     * @param id the id of the articleDTO to retrieve
-     * @return the ResponseEntity with status 200 (OK) and with body the articleDTO, or with status 404 (Not Found)
+     * @param id
+     *            the id of the articleDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the articleDTO,
+     *         or with status 404 (Not Found)
      */
     @GetMapping("/articles/{id}")
     @Timed
     public ResponseEntity<ArticleDTO> getArticle(@PathVariable Long id) {
         log.debug("REST request to get Article : {}", id);
         ArticleDTO articleDTO = articleService.findOne(id);
+
+        articleDTO.setDocList(documentService.findAllByArticleId(articleDTO.getId()));
+        log.debug("DOCLIST: " + articleDTO.getDocList().toString());
+        
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(articleDTO));
     }
 
     /**
-     * DELETE  /articles/:id : delete the "id" article.
+     * DELETE /articles/:id : delete the "id" article.
      *
-     * @param id the id of the articleDTO to delete
+     * @param id
+     *            the id of the articleDTO to delete
      * @return the ResponseEntity with status 200 (OK)
      */
     @DeleteMapping("/articles/{id}")
@@ -162,11 +185,13 @@ public class ArticleResource {
     }
 
     /**
-     * SEARCH  /_search/articles?query=:query : search for the article corresponding
+     * SEARCH /_search/articles?query=:query : search for the article corresponding
      * to the query.
      *
-     * @param query the query of the article search
-     * @param pageable the pagination information
+     * @param query
+     *            the query of the article search
+     * @param pageable
+     *            the pagination information
      * @return the result of the search
      */
     @GetMapping("/_search/articles")

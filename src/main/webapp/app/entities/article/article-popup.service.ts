@@ -36,6 +36,20 @@ export class ArticlePopupService {
                                 day: article.publishDate.getDate()
                             };
                         }
+                        if (article.createdOn) {
+                            article.createdOn = {
+                                year: article.createdOn.getFullYear(),
+                                month: article.createdOn.getMonth() + 1,
+                                day: article.createdOn.getDate()
+                            };
+                        }
+                        if (article.modifiedOn) {
+                            article.modifiedOn = {
+                                year: article.modifiedOn.getFullYear(),
+                                month: article.modifiedOn.getMonth() + 1,
+                                day: article.modifiedOn.getDate()
+                            };
+                        }
                         this.ngbModalRef = this.articleModalRef(component, article);
                         resolve(this.ngbModalRef);
                     });

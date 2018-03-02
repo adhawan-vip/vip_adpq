@@ -24,6 +24,29 @@
         <dd>
             <span jhiTranslate="{{'vipAdpqApp.ArticleStatus.' + article.status}}">{{article.status}}</span>
         </dd>
+        <dt><span jhiTranslate="vipAdpqApp.article.createdBy">Created By</span></dt>
+        <dd>
+            <span>{{article.createdBy}}</span>
+        </dd>
+        <dt><span jhiTranslate="vipAdpqApp.article.createdOn">Created On</span></dt>
+        <dd>
+            <span>{{article.createdOn | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span jhiTranslate="vipAdpqApp.article.modifiedBy">Modified By</span></dt>
+        <dd>
+            <span>{{article.modifiedBy}}</span>
+        </dd>
+        <dt><span jhiTranslate="vipAdpqApp.article.modifiedOn">Modified On</span></dt>
+        <dd>
+            <span>{{article.modifiedOn | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Related Documents</span></dt>        
+          <dd>
+          <li *ngFor="let document of article.docList">
+             <a (click)="openFile(document.docFileContentType, document.docFile)">{{document.docName}} (Click to Open)</a>
+          </li>
+          </dd>
+       
     </dl>
 
     <button type="submit"
@@ -37,6 +60,6 @@
             replaceUrl="true"
             queryParamsHandling="merge"
             class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+        <span *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_AUTHOR']" class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
     </button>
 </div>

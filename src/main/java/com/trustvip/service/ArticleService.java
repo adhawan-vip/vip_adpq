@@ -1,10 +1,9 @@
 package com.trustvip.service;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-
 import com.trustvip.domain.enumeration.ArticleStatus;
 import com.trustvip.service.dto.ArticleDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * Service Interface for managing Article.
@@ -51,11 +50,12 @@ public interface ArticleService {
      * @return the list of entities
      */
     Page<ArticleDTO> search(String query, Pageable pageable);
-
+    
     /**
      * Get all the articles by status
      *
-     * @param pageable the pagination information
+     * @param pageable
+     *            the pagination information
      * @return the list of entities
      */
     Page<ArticleDTO> findAllByStatus(ArticleStatus status, Pageable pageable);

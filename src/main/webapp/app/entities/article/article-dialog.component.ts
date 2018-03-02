@@ -19,6 +19,8 @@ export class ArticleDialogComponent implements OnInit {
     article: Article;
     isSaving: boolean;
     publishDateDp: any;
+    createdOnDp: any;
+    modifiedOnDp: any;
 
     constructor(
         public activeModal: NgbActiveModal,
