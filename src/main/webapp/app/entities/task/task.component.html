@@ -34,7 +34,6 @@
             <th jhiSortBy="dueDate"><span jhiTranslate="vipAdpqApp.task.dueDate">Due Date</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="description"><span jhiTranslate="vipAdpqApp.task.description">Description</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="status"><span jhiTranslate="vipAdpqApp.task.status">Status</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="ownerName"><span jhiTranslate="vipAdpqApp.task.owner">Owner</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="articleArticleName"><span jhiTranslate="vipAdpqApp.task.article">Article</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
@@ -46,11 +45,6 @@
                 <td>{{task.dueDate | date:'mediumDate'}}</td>
                 <td>{{task.description}}</td>
                 <td jhiTranslate="{{'vipAdpqApp.TaskStatus.' + task.status}}">{{task.status}}</td>
-                <td>
-                    <div *ngIf="task.ownerId">
-                        <a [routerLink]="['../task-owner', task.ownerId  ]" >{{task.ownerName}}</a>
-                    </div>
-                </td>
                 <td>
                     <div *ngIf="task.articleId">
                         <a [routerLink]="['../article', task.articleId  ]" >{{task.articleArticleName}}</a>
@@ -64,7 +58,7 @@
                             <span class="fa fa-eye"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
                         </button>
-                        <button type="submit"
+                        <button *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_REVIEWER']"  type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'task/'+ task.id + '/edit'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"
@@ -72,7 +66,7 @@
                             <span class="fa fa-pencil"></span>
                             <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
                         </button>
-                        <button type="submit"
+                        <button *jhiHasAnyAuthority="['ROLE_ADMIN']" type="submit"
                                 [routerLink]="['/', { outlets: { popup: 'task/'+ task.id + '/delete'} }]"
                                 replaceUrl="true"
                                 queryParamsHandling="merge"

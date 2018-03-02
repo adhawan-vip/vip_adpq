@@ -1,7 +1,9 @@
 package com.trustvip.repository;
 
 import com.trustvip.domain.User;
+import com.trustvip.service.dto.UserDTO;
 
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
@@ -37,4 +39,5 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findOneWithAuthoritiesByEmail(String email);
 
     Page<User> findAllByLoginNot(Pageable pageable, String login);
+   
 }

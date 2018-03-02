@@ -1,20 +1,22 @@
 package com.trustvip.service.impl;
 
-import com.trustvip.service.TaskService;
-import com.trustvip.domain.Task;
-import com.trustvip.repository.TaskRepository;
-import com.trustvip.repository.search.TaskSearchRepository;
-import com.trustvip.service.dto.TaskDTO;
-import com.trustvip.service.mapper.TaskMapper;
+import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import com.trustvip.domain.Task;
+import com.trustvip.domain.enumeration.TaskStatus;
+import com.trustvip.repository.TaskRepository;
+import com.trustvip.repository.search.TaskSearchRepository;
+import com.trustvip.service.TaskService;
+import com.trustvip.service.dto.TaskDTO;
+import com.trustvip.service.mapper.TaskMapper;
 
 /**
  * Service Implementation for managing Task.
@@ -106,5 +108,22 @@ public class TaskServiceImpl implements TaskService {
         log.debug("Request to search for a page of Tasks for query {}", query);
         Page<Task> result = taskSearchRepository.search(queryStringQuery(query), pageable);
         return result.map(taskMapper::toDto);
+    }
+    
+    /**
+     * Get all the articles by status
+     *
+     * @param pageable
+     *            the pagination information
+     * @return the list of entities
+     */
+    @Override
+    @Transactional(readOnly = true)
+    public Page<TaskDTO> findAllByStatus(TaskStatus status, Pageable pageable) {
+        log.debug("Request to get tasks by status:" + status);
+        Task task = new Task();
+        task.setStatus(status);
+        Example<Task> example = Example.of(task);
+        return taskRepository.findAll(example, pageable).map(taskMapper::toDto);
     }
 }

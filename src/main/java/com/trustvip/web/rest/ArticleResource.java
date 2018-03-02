@@ -2,9 +2,11 @@ package com.trustvip.web.rest;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 import javax.validation.Valid;
 
@@ -29,12 +31,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
-import com.trustvip.domain.RelatedDocument;
+import com.trustvip.domain.User;
 import com.trustvip.domain.enumeration.ArticleStatus;
+import com.trustvip.domain.enumeration.TaskStatus;
 import com.trustvip.security.AuthoritiesConstants;
 import com.trustvip.service.ArticleService;
 import com.trustvip.service.RelatedDocumentService;
+import com.trustvip.service.TaskService;
+import com.trustvip.service.UserService;
 import com.trustvip.service.dto.ArticleDTO;
+import com.trustvip.service.dto.TaskDTO;
 import com.trustvip.web.rest.errors.BadRequestAlertException;
 import com.trustvip.web.rest.util.HeaderUtil;
 import com.trustvip.web.rest.util.PaginationUtil;
@@ -54,14 +60,15 @@ public class ArticleResource {
 
     private final ArticleService articleService;
     private final RelatedDocumentService documentService;
-    
-    public ArticleResource(ArticleService articleService)
-    {
-        this( articleService, null );
-    }
-    public ArticleResource(ArticleService articleService, RelatedDocumentService documentService) {
+    private final TaskService taskService;
+    private final UserService userService;
+
+    public ArticleResource(ArticleService articleService, RelatedDocumentService documentService,
+            TaskService taskService, UserService userService) {
         this.articleService = articleService;
         this.documentService = documentService;
+        this.taskService = taskService;
+        this.userService = userService;
     }
 
     /**
@@ -83,10 +90,26 @@ public class ArticleResource {
         if (articleDTO.getId() != null) {
             throw new BadRequestAlertException("A new article cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        ArticleDTO result = articleService.save(articleDTO);
-        return ResponseEntity.created(new URI("/api/articles/" + result.getId()))
-                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString())).body(result);
+        ArticleDTO article = articleService.save(articleDTO);
+        createTask(article);
+        return ResponseEntity.created(new URI("/api/articles/" + article.getId()))
+                .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, article.getId().toString())).body(article);
     }
+    
+    
+    private void createTask(ArticleDTO article)
+    {
+        TaskDTO task = new TaskDTO();
+        task.setArticleId(article.getId());
+        task.setTaskName("Review: " + article.getArticleName());
+        task.setDueDate(LocalDate.now().plusDays(7));
+        task.setDescription(task.getTaskName());
+        task.setStatus(TaskStatus.OPEN);
+        //assignTask(task, AuthoritiesConstants.REVIEWER);
+        taskService.save(task);
+    }
+    
+  
 
     /**
      * PUT /articles : Updates an existing article.
@@ -165,7 +188,7 @@ public class ArticleResource {
 
         articleDTO.setDocList(documentService.findAllByArticleId(articleDTO.getId()));
         log.debug("DOCLIST: " + articleDTO.getDocList().toString());
-        
+
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(articleDTO));
     }
 

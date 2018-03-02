@@ -1,19 +1,17 @@
 package com.trustvip.service;
 
-import com.trustvip.domain.Authority;
-import com.trustvip.domain.User;
-import com.trustvip.repository.AuthorityRepository;
-import com.trustvip.repository.PersistentTokenRepository;
-import com.trustvip.config.Constants;
-import com.trustvip.repository.UserRepository;
-import com.trustvip.repository.search.UserSearchRepository;
-import com.trustvip.security.AuthoritiesConstants;
-import com.trustvip.security.SecurityUtils;
-import com.trustvip.service.util.RandomUtil;
-import com.trustvip.service.dto.UserDTO;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -21,11 +19,17 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.util.*;
-import java.util.stream.Collectors;
+import com.trustvip.config.Constants;
+import com.trustvip.domain.Authority;
+import com.trustvip.domain.User;
+import com.trustvip.repository.AuthorityRepository;
+import com.trustvip.repository.PersistentTokenRepository;
+import com.trustvip.repository.UserRepository;
+import com.trustvip.repository.search.UserSearchRepository;
+import com.trustvip.security.AuthoritiesConstants;
+import com.trustvip.security.SecurityUtils;
+import com.trustvip.service.dto.UserDTO;
+import com.trustvip.service.util.RandomUtil;
 
 /**
  * Service class for managing users.
@@ -273,5 +277,4 @@ public class UserService {
     public List<String> getAuthorities() {
         return authorityRepository.findAll().stream().map(Authority::getName).collect(Collectors.toList());
     }
-
 }

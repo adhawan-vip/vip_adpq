@@ -58,13 +58,7 @@
             </select>
         </div>
 
-        <div class="form-group">
-            <label class="form-control-label" jhiTranslate="vipAdpqApp.task.owner" for="field_owner">Owner</label>
-            <select class="form-control" id="field_owner" name="owner" [(ngModel)]="task.ownerId">
-                <option [ngValue]="null"></option>
-                <option [ngValue]="taskOwnerOption.id" *ngFor="let taskOwnerOption of owners; trackBy: trackTaskOwnerById">{{taskOwnerOption.name}}</option>
-            </select>
-        </div>
+        
         <div class="form-group">
             <label class="form-control-label" jhiTranslate="vipAdpqApp.task.article" for="field_article">Article</label>
             <select class="form-control" id="field_article" name="article" [(ngModel)]="task.articleId"  required>
