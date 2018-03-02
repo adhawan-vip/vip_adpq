@@ -1,16 +1,13 @@
 package com.trustvip.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
-import com.trustvip.domain.enumeration.ArticleStatus;
-import com.trustvip.domain.enumeration.TaskStatus;
-import com.trustvip.security.AuthoritiesConstants;
-import com.trustvip.service.TaskService;
-import com.trustvip.web.rest.errors.BadRequestAlertException;
-import com.trustvip.web.rest.util.HeaderUtil;
-import com.trustvip.web.rest.util.PaginationUtil;
-import com.trustvip.service.dto.ArticleDTO;
-import com.trustvip.service.dto.TaskDTO;
-import io.github.jhipster.web.util.ResponseUtil;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.Collection;
+import java.util.List;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -21,17 +18,29 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.validation.Valid;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.StreamSupport;
+import com.codahale.metrics.annotation.Timed;
+import com.trustvip.domain.enumeration.ArticleStatus;
+import com.trustvip.domain.enumeration.TaskStatus;
+import com.trustvip.security.AuthoritiesConstants;
+import com.trustvip.service.ArticleService;
+import com.trustvip.service.TaskService;
+import com.trustvip.service.dto.ArticleDTO;
+import com.trustvip.service.dto.TaskDTO;
+import com.trustvip.web.rest.errors.BadRequestAlertException;
+import com.trustvip.web.rest.util.HeaderUtil;
+import com.trustvip.web.rest.util.PaginationUtil;
 
-import static org.elasticsearch.index.query.QueryBuilders.*;
+import io.github.jhipster.web.util.ResponseUtil;
 
 /**
  * REST controller for managing Task.
@@ -45,9 +54,12 @@ public class TaskResource {
     private static final String ENTITY_NAME = "task";
 
     private final TaskService taskService;
+    
+    private final ArticleService articleService;
 
-    public TaskResource(TaskService taskService) {
+    public TaskResource(TaskService taskService, ArticleService articleService) {
         this.taskService = taskService;
+        this.articleService = articleService;
     }
 
     /**
@@ -87,6 +99,12 @@ public class TaskResource {
             return createTask(taskDTO);
         }
         TaskDTO result = taskService.save(taskDTO);
+        if( taskDTO.getStatus().equals(TaskStatus.CLOSED))
+        {
+            ArticleDTO article = articleService.findOne(taskDTO.getArticleId());
+            article.setStatus(ArticleStatus.PUBLISHED);
+            articleService.save(article);
+        }
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, taskDTO.getId().toString()))
             .body(result);
