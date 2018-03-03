@@ -17,6 +17,7 @@ import { VipAdpqAccountModule } from './account/account.module';
 import { VipAdpqEntityModule } from './entities/entity.module';
 import { PaginationConfig } from './blocks/config/uib-pagination.config';
 import { StateStorageService } from './shared/auth/state-storage.service';
+import { VipAdpqDashboardModule } from './dashboard/dashboard.module';
 // jhipster-needle-angular-add-module-import JHipster will add new module here
 import {
     JhiMainComponent,
@@ -38,6 +39,7 @@ import {
         VipAdpqAdminModule,
         VipAdpqAccountModule,
         VipAdpqEntityModule,
+        VipAdpqDashboardModule,
         // jhipster-needle-angular-add-module JHipster will add new module here
     ],
     declarations: [
