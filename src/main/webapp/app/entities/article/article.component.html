@@ -39,6 +39,7 @@
             <th jhiSortBy="createdOn"><span jhiTranslate="vipAdpqApp.article.createdOn">Created On</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="modifiedBy"><span jhiTranslate="vipAdpqApp.article.modifiedBy">Modified By</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="modifiedOn"><span jhiTranslate="vipAdpqApp.article.modifiedOn">Modified On</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="rating"><span>Rating</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
@@ -54,6 +55,7 @@
                 <td>{{article.createdOn | date:'mediumDate'}}</td>
                 <td>{{article.modifiedBy}}</td>
                 <td>{{article.modifiedOn | date:'mediumDate'}}</td>
+                <td><p-rating [(ngModel)]="article.rating" readonly = "true"></p-rating></td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

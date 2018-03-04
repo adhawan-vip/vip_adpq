@@ -60,6 +60,17 @@ public class Article implements Serializable {
 
     @Column(name = "modified_on")
     private LocalDate modifiedOn;
+    
+    @Column(name="rating")
+    private int rating;
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {

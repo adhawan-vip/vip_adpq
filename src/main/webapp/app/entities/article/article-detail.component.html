@@ -46,6 +46,11 @@
              <a (click)="openFile(document.docFileContentType, document.docFile)">{{document.docName}} (Click to Open)</a>
           </li>
           </dd>
+          
+          <dt><span>Rate this article! (Click Edit)</span></dt>        
+          <dd>
+          <p-rating [(ngModel)]="article.rating" readonly='true'></p-rating>
+          </dd>
        
     </dl>
 

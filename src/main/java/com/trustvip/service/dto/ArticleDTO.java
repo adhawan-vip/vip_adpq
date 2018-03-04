@@ -41,8 +41,18 @@ public class ArticleDTO implements Serializable {
 
     private LocalDate modifiedOn;
     
+    private int rating;
+    
     private List<RelatedDocument> docList;
     
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
     public List<RelatedDocument> getDocList() {
         return docList;
     }
