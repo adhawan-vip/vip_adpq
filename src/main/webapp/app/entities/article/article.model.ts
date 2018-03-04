@@ -24,6 +24,7 @@ export class Article implements BaseEntity {
         public createdOn?: any,
         public modifiedBy?: string,
         public modifiedOn?: any,
+        public rating?: any 
     ) {
     }
 }
