@@ -127,7 +127,7 @@ public class RelatedDocumentServiceImpl implements RelatedDocumentService {
         article.setId(articleId);
         document.setArticle(article);
         Example<RelatedDocument> example = Example.of(document);
-        
+        log.debug(example.toString());
         return relatedDocumentRepository.findAll(example);
     }
 }

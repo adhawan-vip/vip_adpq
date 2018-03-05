@@ -61,14 +61,14 @@ public class Article implements Serializable {
     @Column(name = "modified_on")
     private LocalDate modifiedOn;
     
-    @Column(name="rating", columnDefinition="NUMERIC(2)")
-    private int rating;
+    @Column(name="rating")
+    private Integer rating;
 
-    public int getRating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 

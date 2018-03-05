@@ -29,30 +29,24 @@
         <table class="table table-striped">
             <thead>
             <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
-            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="articleName"><span jhiTranslate="vipAdpqApp.article.articleName">Article Name</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="publishDate"><span jhiTranslate="vipAdpqApp.article.publishDate">Publish Date</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="type"><span jhiTranslate="vipAdpqApp.article.type">Type</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="status"><span jhiTranslate="vipAdpqApp.article.status">Status</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="createdBy"><span jhiTranslate="vipAdpqApp.article.createdBy">Created By</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="createdOn"><span jhiTranslate="vipAdpqApp.article.createdOn">Created On</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="modifiedBy"><span jhiTranslate="vipAdpqApp.article.modifiedBy">Modified By</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="modifiedOn"><span jhiTranslate="vipAdpqApp.article.modifiedOn">Modified On</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="createdBy"><span>Created By/On</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="modifiedBy"><span>Modified By/On</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="rating"><span>Rating</span> <span class="fa fa-sort"></span></th>
             <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let article of articles ;trackBy: trackId">
-                <td>{{article.id}}</td>
                 <td><a [routerLink]="['../article', article.id ]">{{article.articleName}}</a></td>
                 <td>{{article.publishDate | date:'mediumDate'}}</td>
                 <td jhiTranslate="{{'vipAdpqApp.ArticleType.' + article.type}}">{{article.type}}</td>
                 <td jhiTranslate="{{'vipAdpqApp.ArticleStatus.' + article.status}}">{{article.status}}</td>
-                <td>{{article.createdBy}}</td>
-                <td>{{article.createdOn | date:'mediumDate'}}</td>
-                <td>{{article.modifiedBy}}</td>
-                <td>{{article.modifiedOn | date:'mediumDate'}}</td>
+                <td>{{article.createdBy}} - {{article.createdOn | date:'mediumDate'}}</td>
+                <td>{{article.modifiedBy}} - {{article.modifiedOn | date:'mediumDate'}}</td>
                 <td><p-rating [(ngModel)]="article.rating" readonly = "true"></p-rating></td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">

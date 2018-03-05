@@ -1,20 +1,17 @@
 
 <div *ngIf="article">
-    <h2><span jhiTranslate="vipAdpqApp.article.detail.title">Article</span> {{article.id}}</h2>
+    <h2>{{article.articleName}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="vipAdpqApp.article.articleName">Article Name</span></dt>
-        <dd>
-            <span>{{article.articleName}}</span>
-        </dd>
         <dt><span jhiTranslate="vipAdpqApp.article.publishDate">Publish Date</span></dt>
         <dd>
             <span>{{article.publishDate | date:'mediumDate'}}</span>
         </dd>
         <dt><span jhiTranslate="vipAdpqApp.article.content">Content</span></dt>
         <dd>
-            <span>{{article.content}}</span>
+            <p-editor [(ngModel)]="article.content" name="content" id="field_content" [style]="{'height':'320px'}" readonly="true"> 
+            </p-editor>
         </dd>
         <dt><span jhiTranslate="vipAdpqApp.article.type">Type</span></dt>
         <dd>

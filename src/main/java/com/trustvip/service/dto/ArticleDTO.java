@@ -41,15 +41,15 @@ public class ArticleDTO implements Serializable {
 
     private LocalDate modifiedOn;
     
-    private int rating;
+    private Integer rating;
     
     private List<RelatedDocument> docList;
     
-    public int getRating() {
+    public Integer getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(Integer rating) {
         this.rating = rating;
     }
 
