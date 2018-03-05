@@ -4,6 +4,7 @@ import static org.elasticsearch.index.query.QueryBuilders.queryStringQuery;
 
 import java.time.LocalDate;
 
+import org.jsoup.Jsoup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Example;
@@ -57,7 +58,9 @@ public class ArticleServiceImpl implements ArticleService {
         Article article = articleMapper.toEntity(articleDTO);
         article = articleRepository.save(article);
         ArticleDTO result = articleMapper.toDto(article);
-        articleSearchRepository.save(article);
+        Article searhArticle = articleMapper.toEntity(articleDTO);
+        searhArticle.setContent(Jsoup.parse(searhArticle.getContent()).text());
+        articleSearchRepository.save(searhArticle);
         return result;
     }
 
