@@ -55,8 +55,8 @@
 		<div class="form-group">
 			<label class="form-control-label"
 				jhiTranslate="vipAdpqApp.article.content" for="field_content">Content</label>
-			<textarea class="form-control" name="content" id="field_content"
-				[(ngModel)]="article.content" required></textarea>
+				<p-editor [(ngModel)]="article.content" name="content" id="field_content" [style]="{'height':'320px'}"></p-editor>
+			
 			<div
 				[hidden]="!(editForm.controls.content?.dirty && editForm.controls.content?.invalid)">
 				<small class="form-text text-danger"
@@ -115,3 +115,4 @@
 		</button>
 	</div>
 </form>
+

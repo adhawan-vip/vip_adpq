@@ -32,7 +32,6 @@
             <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="articleName"><span jhiTranslate="vipAdpqApp.article.articleName">Article Name</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="publishDate"><span jhiTranslate="vipAdpqApp.article.publishDate">Publish Date</span> <span class="fa fa-sort"></span></th>
-            <th jhiSortBy="content"><span jhiTranslate="vipAdpqApp.article.content">Content</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="type"><span jhiTranslate="vipAdpqApp.article.type">Type</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="status"><span jhiTranslate="vipAdpqApp.article.status">Status</span> <span class="fa fa-sort"></span></th>
             <th jhiSortBy="createdBy"><span jhiTranslate="vipAdpqApp.article.createdBy">Created By</span> <span class="fa fa-sort"></span></th>
@@ -48,7 +47,6 @@
                 <td>{{article.id}}</td>
                 <td><a [routerLink]="['../article', article.id ]">{{article.articleName}}</a></td>
                 <td>{{article.publishDate | date:'mediumDate'}}</td>
-                <td>{{article.content}}</td>
                 <td jhiTranslate="{{'vipAdpqApp.ArticleType.' + article.type}}">{{article.type}}</td>
                 <td jhiTranslate="{{'vipAdpqApp.ArticleStatus.' + article.status}}">{{article.status}}</td>
                 <td>{{article.createdBy}}</td>

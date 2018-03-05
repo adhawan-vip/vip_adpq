@@ -1,6 +1,7 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { RatingModule } from 'primeng/primeng';
+import { EditorModule } from 'primeng/primeng';
 
 import { VipAdpqSharedModule } from '../../shared';
 import {
@@ -25,6 +26,7 @@ const ENTITY_STATES = [
 @NgModule({
     imports: [
         VipAdpqSharedModule,
+        EditorModule,
         RatingModule,
         RouterModule.forChild(ENTITY_STATES)
     ],
