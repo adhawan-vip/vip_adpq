@@ -88,16 +88,34 @@ Generic styles
 
 .footer {
     border-top: 1px solid rgba(0,0,0,.125);
-	padding: 1.5%;
+    padding-top: 1.5%;
+    padding-right: 1.5%;
+    padding-bottom: 1.5%;
+    padding-left: 1.5%;
 	margin-top: 20px;
 }
 
 .footer-img-logo {
+	display: block;
+    margin-left: auto;
+    margin-right: auto;
 	width: 330px;
 	max-height: 80px;
 	height: auto;
 	position: static;
-	vertical-align: middle;
+}
+
+.footer-copyright {
+	float: left;
+}
+
+.footer-contacts {
+	float: right;
+}
+
+.footer-contacts > a, .footer-copyright > a {
+	color: #495057;
+	font-weight: 100;
 }
 
 .home-img-logo-image {
@@ -107,6 +125,14 @@ Generic styles
 	vertical-align: middle;
 }
 
+#navbarResponsive {
+	font-size: 1.2rem;
+	line-height: 1.5;
+}
+
+.navbar-collapse > ul > li:first-child {
+	display: none;
+}
 
 /* ==========================================================================
 make sure browsers use the pointer cursor for anchors, even with no href
