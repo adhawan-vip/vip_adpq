@@ -27,9 +27,9 @@
     "@ngtools/json-schema" "^1.1.0"
     rxjs "^5.5.6"
 
-"@angular/animations@5.2.0":
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-5.2.0.tgz#a3ce02c01b074f0de7c2c23c1f08b4a00f0bec5f"
+"@angular/animations@^5.2.7":
+  version "5.2.7"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-5.2.7.tgz#a99fe128f3809e3f8082441a6e676992b9352db7"
   dependencies:
     tslib "^1.7.1"
 
@@ -6542,9 +6542,9 @@ pretty-error@^2.0.2:
     renderkid "^2.0.1"
     utila "~0.4"
 
-primeng@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/primeng/-/primeng-4.1.0.tgz#0868e68fa057b382ddd720cae02b4f5707f668fb"
+primeng@^5.2.0:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/primeng/-/primeng-5.2.1.tgz#c32399c73a5e0071d4e8d10edc24869be5546fac"
 
 private@^0.1.6, private@~0.1.5:
   version "0.1.8"

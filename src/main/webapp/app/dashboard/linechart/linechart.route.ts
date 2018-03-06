@@ -6,7 +6,7 @@ export const linechartRoute: Route = {
     path: 'linechart',
     component: LinechartComponent,
     data: {
-        authorities: ['ROLE_USER'],
+        authorities: ['ROLE_ADMIN'],
         pageTitle: 'dashboard.linechart.home.title'
     },
     canActivate: [UserRouteAccessService]

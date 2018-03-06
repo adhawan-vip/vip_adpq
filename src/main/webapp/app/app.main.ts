@@ -1,6 +1,9 @@
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { ProdConfig } from './blocks/config/prod.config';
 import { VipAdpqAppModule } from './app.module';
+import 'font-awesome/css/font-awesome.min.css';
+import 'primeng/resources/themes/omega/theme.css';
+import 'primeng/resources/primeng.min.css';
 
 ProdConfig();
 

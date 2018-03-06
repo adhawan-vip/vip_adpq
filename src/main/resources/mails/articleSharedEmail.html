@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title th:text="#{email.article.share.title}">Recommended Reading</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link rel="shortcut icon" th:href="@{|${baseUrl}/favicon.ico|}" />
+    </head>
+    <body>
+        <p th:text="#{email.reset.text1}">
+            A CA Department of Technology user has shared the following article with you: <p th:text="#{article.articleName}">
+       </p>
+       </body>
+</html>

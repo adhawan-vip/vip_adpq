@@ -1,7 +1,9 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { RatingModule } from 'primeng/primeng';
-import { EditorModule } from 'primeng/primeng';
+import { RatingModule } from 'primeng/rating';
+import { EditorModule } from 'primeng/editor';
+import { TabViewModule } from 'primeng/tabview';
+import { Component } from '@angular/core';
 
 import { VipAdpqSharedModule } from '../../shared';
 import {
@@ -28,6 +30,7 @@ const ENTITY_STATES = [
         VipAdpqSharedModule,
         EditorModule,
         RatingModule,
+        TabViewModule,
         RouterModule.forChild(ENTITY_STATES)
     ],
     declarations: [

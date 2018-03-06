@@ -1,55 +1,44 @@
+<div>
 
+</div>
 <div *ngIf="article">
     <h2>{{article.articleName}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
-    <dl class="row-md jh-entity-details">
-        <dt><span jhiTranslate="vipAdpqApp.article.publishDate">Publish Date</span></dt>
-        <dd>
-            <span>{{article.publishDate | date:'mediumDate'}}</span>
-        </dd>
-        <dt><span jhiTranslate="vipAdpqApp.article.content">Content</span></dt>
-        <dd>
-            <p-editor [(ngModel)]="article.content" name="content" id="field_content" [style]="{'height':'320px'}" readonly="true"> 
+   <p-tabView>
+    <p-tabPanel header="Content" leftIcon="fa-calendar">
+        <p-editor [(ngModel)]="article.content" name="content" id="field_content" [style]="{'height':'320px'}" readonly="true"> 
             </p-editor>
-        </dd>
-        <dt><span jhiTranslate="vipAdpqApp.article.type">Type</span></dt>
-        <dd>
-            <span jhiTranslate="{{'vipAdpqApp.ArticleType.' + article.type}}">{{article.type}}</span>
-        </dd>
-        <dt><span jhiTranslate="vipAdpqApp.article.status">Status</span></dt>
-        <dd>
-            <span jhiTranslate="{{'vipAdpqApp.ArticleStatus.' + article.status}}">{{article.status}}</span>
-        </dd>
-        <dt><span jhiTranslate="vipAdpqApp.article.createdBy">Created By</span></dt>
-        <dd>
-            <span>{{article.createdBy}}</span>
-        </dd>
-        <dt><span jhiTranslate="vipAdpqApp.article.createdOn">Created On</span></dt>
-        <dd>
-            <span>{{article.createdOn | date:'mediumDate'}}</span>
-        </dd>
-        <dt><span jhiTranslate="vipAdpqApp.article.modifiedBy">Modified By</span></dt>
-        <dd>
-            <span>{{article.modifiedBy}}</span>
-        </dd>
-        <dt><span jhiTranslate="vipAdpqApp.article.modifiedOn">Modified On</span></dt>
-        <dd>
-            <span>{{article.modifiedOn | date:'mediumDate'}}</span>
-        </dd>
-        <dt><span>Related Documents</span></dt>        
-          <dd>
-          <li *ngFor="let document of article.docList">
+              </p-tabPanel>
+    <p-tabPanel header="Documents" leftIcon="fa-file">
+       <li *ngFor="let document of article.docList">
              <a (click)="openFile(document.docFileContentType, document.docFile)">{{document.docName}} (Click to Open)</a>
-          </li>
-          </dd>
-          
-          <dt><span>Rate this article! (Click Edit)</span></dt>        
-          <dd>
-          <p-rating [(ngModel)]="article.rating" readonly='true'></p-rating>
-          </dd>
-       
-    </dl>
+          </li> </p-tabPanel>
+    <p-tabPanel header="About" leftIcon="fa-info-circle">
+      <div class="ui-datatable">
+       <table>
+       <tr>
+       <th>Publish Date </th>
+       <th>Type </th>
+       <th>Status </th>
+       <th>Created By </th>
+       <th>Created On </th>
+       <th>Modified By </th>
+       <th>Modified On </th>
+       <th>Rating </th>
+       </tr>
+       <tr>
+       <td>{{article.publishDate | date:'mediumDate'}}</td>
+       <td>{{article.type}}</td>
+       <td>{{article.status}}</td>
+       <td>{{article.createdBy}}</td>
+       <td>{{article.createdOn | date:'mediumDate'}}</td>
+       <td>{{article.modifiedBy}}</td>
+       <td>{{article.modifiedOn | date:'mediumDate'}}</td>
+       <td> <p-rating [(ngModel)]="article.rating" readonly='true'></p-rating></td>
+       </tr>
+       </table>   </div> </p-tabPanel>
+</p-tabView>
 
     <button type="submit"
             (click)="previousState()"
@@ -63,5 +52,13 @@
             queryParamsHandling="merge"
             class="btn btn-primary">
         <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+    </button>
+    
+      <button *jhiHasAnyAuthority="['ROLE_USER']" type="button"
+            [routerLink]="['/', { outlets: { popup: 'article/'+ article.id + '/edit'} }]"
+            replaceUrl="true"
+            queryParamsHandling="merge"
+            class="btn btn-primary">
+        <span class="fa fa-pencil"></span>&nbsp;<span jhiTranslate="entity.action.edit"> Rate this Article</span>
     </button>
 </div>

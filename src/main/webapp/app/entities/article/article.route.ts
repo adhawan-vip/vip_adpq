@@ -62,7 +62,7 @@ export const articlePopupRoute: Routes = [
         path: 'article/:id/edit',
         component: ArticlePopupComponent,
         data: {
-            authorities: ['ROLE_ADMIN', 'ROLE_AUTHOR', 'ROLE_REVIEWER'],
+            authorities: ['ROLE_ADMIN', 'ROLE_AUTHOR', 'ROLE_REVIEWER', 'ROLE_USER'],
             pageTitle: 'vipAdpqApp.article.home.title'
         },
         canActivate: [UserRouteAccessService],

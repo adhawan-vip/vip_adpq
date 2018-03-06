@@ -1,8 +1,8 @@
 package com.trustvip.service;
 
-import com.trustvip.domain.User;
+import java.util.Locale;
 
-import io.github.jhipster.config.JHipsterProperties;
+import javax.mail.internet.MimeMessage;
 
 import org.apache.commons.lang3.CharEncoding;
 import org.slf4j.Logger;
@@ -15,8 +15,11 @@ import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 
-import javax.mail.internet.MimeMessage;
-import java.util.Locale;
+import com.trustvip.config.Constants;
+import com.trustvip.domain.User;
+import com.trustvip.service.dto.ArticleDTO;
+
+import io.github.jhipster.config.JHipsterProperties;
 
 /**
  * Service for sending emails.
@@ -102,5 +105,23 @@ public class MailService {
     public void sendPasswordResetMail(User user) {
         log.debug("Sending password reset email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "passwordResetEmail", "email.reset.title");
+    }
+    
+    @Async
+    public void sendShareArticleEmail(String email, ArticleDTO article) {
+        log.debug("Sending article sharing email to: " + email );
+        sendEmailFromTemplate(email, "articleSharedEmail", "email.article.share.title", article);
+    }
+    
+
+    @Async
+    public void sendEmailFromTemplate(String email, String templateName, String titleKey, ArticleDTO article) {
+        Locale locale = Locale.forLanguageTag(Constants.DEFAULT_LANGUAGE);
+        Context context = new Context(locale);
+        context.setVariable("article", article);
+        context.setVariable(BASE_URL, jHipsterProperties.getMail().getBaseUrl());
+        String content = templateEngine.process(templateName, context);
+        String subject = messageSource.getMessage(titleKey, null, locale);
+        sendEmail(email, subject, content, false, true);
     }
 }
