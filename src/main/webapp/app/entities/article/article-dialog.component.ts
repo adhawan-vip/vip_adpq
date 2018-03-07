@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { EmailValidator } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
@@ -21,6 +22,7 @@ export class ArticleDialogComponent implements OnInit {
     publishDateDp: any;
     createdOnDp: any;
     modifiedOnDp: any;
+    email: string;
 
     constructor(
         public activeModal: NgbActiveModal,
@@ -59,6 +61,9 @@ export class ArticleDialogComponent implements OnInit {
             this.subscribeToSaveResponse(
                 this.articleService.create(this.article));
         }
+        if (this.email) {
+            this.subscribeToSaveResponse(this.articleService.share(this.email, this.article.id));
+        }
     }
 
     private subscribeToSaveResponse(result: Observable<HttpResponse<Article>>) {
@@ -67,7 +72,7 @@ export class ArticleDialogComponent implements OnInit {
     }
 
     private onSaveSuccess(result: Article) {
-        this.eventManager.broadcast({ name: 'articleListModification', content: 'OK'});
+        this.eventManager.broadcast({ name: 'articleListModification', content: 'OK' });
         this.isSaving = false;
         this.activeModal.dismiss(result);
     }
@@ -88,11 +93,11 @@ export class ArticlePopupComponent implements OnInit, OnDestroy {
     constructor(
         private route: ActivatedRoute,
         private articlePopupService: ArticlePopupService
-    ) {}
+    ) { }
 
     ngOnInit() {
         this.routeSub = this.route.params.subscribe((params) => {
-            if ( params['id'] ) {
+            if (params['id']) {
                 this.articlePopupService
                     .open(ArticleDialogComponent as Component, params['id']);
             } else {

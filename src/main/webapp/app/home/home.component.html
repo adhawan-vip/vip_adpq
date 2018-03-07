@@ -1,120 +1,120 @@
-<div class="row">
-	<div class="col-md-3">
-		<span class="home-img-logo"> <img class="home-img-logo-image"
-			src="http://ca.gov/images/template2014/header-ca.gov.png"
-			alt="California Government Logo">
-		</span>
+<div>
+	<h1 class="display-4" jhiTranslate="home.title">Welcome, CDT User!</h1>
+	<div [ngSwitch]="isAuthenticated()">
+		<div class="alert alert-success" *ngSwitchCase="true">
+			<span *ngIf="account" jhiTranslate="home.logged.message"
+				translateValues="{username: '{{account.login}}'}"> You are
+				logged in as user "{{account.login}}".</span>
+		</div>
+
+		<div class="alert alert-warning" *ngSwitchCase="false">
+			<span jhiTranslate="global.messages.info.authenticated.prefix">If
+				you want to </span> <a class="alert-link" (click)="login()"
+				jhiTranslate="global.messages.info.authenticated.link">sign in</a><span>,
+				you can use the default accounts: <br />- Administrator (login="admin" and
+				password="admin") <br />- User (login="user" and password="user").<br />- Author (login="author"
+                and password="author") <br />- Reviewer (login="reviewer" and
+                password="reviewer"). 
+			</span>
+
+		</div>
+		<div class="alert alert-warning" *ngSwitchCase="false">
+			<span jhiTranslate="global.messages.info.register.noaccount">You
+				don't have an account yet?</span> <a class="alert-link"
+				routerLink="register"
+				jhiTranslate="global.messages.info.register.link">Register a new
+				account</a>
+		</div>
 	</div>
-	<div class="col-md-9">
-		<h1 class="display-4" jhiTranslate="home.title">Welcome, CDT
-			User!</h1>
-		<div [ngSwitch]="isAuthenticated()">
-			<div class="alert alert-success" *ngSwitchCase="true">
-				<span *ngIf="account" jhiTranslate="home.logged.message"
-					translateValues="{username: '{{account.login}}'}"> You are
-					logged in as user "{{account.login}}".</span>
-			</div>
 
+	<div>
+		<p-accordion expandIcon="" collapseIcon=""> <p-accordionTab *jhiHasAnyAuthority="['ROLE_USER', 'ROLE_AUTHOR', 'ROLE_REVIEWER', 'ROLE_ADMIN']"
+			header="Welcome!" [selected]="true"> <p-card
+			
+			title="Welcome to the CDT Knowledge Center!"
+			styleClass="ui-card-shadow"> Our Knowledge Management Tool
+		is the 'one stop shop' for all of your knowledge needs. This
+		collaborative workspace allows for you and your peers to access FAQs,
+		Create and View Knowledge Articles, Content, Packages, and More! Get
+		started by navigating through the ribbon, the easy access buttons, or
+		our sitewide search bar. <BR>
+		<BR>
+		<div style="text-align: center">
 
-
-
-			<div class="alert alert-warning" *ngSwitchCase="false">
-				<span jhiTranslate="global.messages.info.authenticated.prefix">If
-					you want to </span> <a class="alert-link" (click)="login()"
-					jhiTranslate="global.messages.info.authenticated.link">sign in</a><span
-					jhiTranslate="global.messages.info.authenticated.suffix">,
-					you can use the default accounts: <br />- Author (login="author"
-					and password="author") <br />- Reviewer (login="reviewer" and
-					password="reviewer"). <br />- Administrator (login="admin" and
-					password="admin") <br />- User (login="user" and password="user").
-
-
-				</span>
-
-			</div>
-			<div class="alert alert-warning" *ngSwitchCase="false">
-				<span jhiTranslate="global.messages.info.register.noaccount">You
-					don't have an account yet?</span> <a class="alert-link"
-					routerLink="register"
-					jhiTranslate="global.messages.info.register.link">Register a
-					new account</a>
-			</div>
+			<button class="btn btn-warning">
+				<a href="http://google.com"><span class="fa fa-save"></span>&nbsp;<span>WATCH
+						A DEMO</span></a>
+			</button>
 		</div>
+		<BR>
+		<BR>
+		<div>Get a brief video demonstration of how to navigate the CDT
+			Knowledge Center and its key features.</div>
 
-		<p
-			*jhiHasAnyAuthority="['ROLE_USER', 'ROLE_AUTHOR', 'ROLE_REVIEWER', 'ROLE_ADMIN']">
-			Welcome to the CDT Knowledge Center! Our Knowledge Management Tool is
-			the 'one stop shop' for all of your knowledge needs. This
-			collaborative workspace allows for you and your peers to access FAQs,
-			Create and View Knowledge Articles, Content, Packages, and More! Get
-			started by navigating through the ribbon, the easy access buttons, or
-			our sitewide search bar.</p>
-
-		<div
-			*jhiHasAnyAuthority="['ROLE_USER', 'ROLE_AUTHOR', 'ROLE_REVIEWER', 'ROLE_ADMIN']">
-			You have the following roles and permissions:
-			<ul>
-				<li><span *jhiHasAnyAuthority="['ROLE_USER']"> <b>USER:</b>
-						Users can view Articles and Related Documents. Users can only view
-						PUBLISHED articles.<BR></span> <span
-					*jhiHasAnyAuthority="['ROLE_AUTHOR']"> <b>AUTHOR:</b>
-						Authors can create, view, edit, and delete Articles and Related
-						Documents. Authors can view articles in DRAFT status only.<BR></span>
-					<span *jhiHasAnyAuthority="['ROLE_REVIEWER']"> <b>REVIEWER:</b>
-						Reviewers can view and edit Articles, Related Documents, and
-						Tasks. Reviewers can view articles in DRAFT status only. Reviewers
-						can view OPEN tasks only.<BR></span> <span
-					*jhiHasAnyAuthority="['ROLE_ADMIN']"> <b>ADMIN:</b> Admins
-						can do all functions in the system and have full access to
-						Articles, Related Documents, and Tasks.<BR></span></li>
-			</ul>
-		</div>
-
-
-
-		<table class='table borderless'>
+		</p-card> </p-accordionTab> <p-accordionTab *jhiHasAnyAuthority="['ROLE_USER', 'ROLE_AUTHOR', 'ROLE_REVIEWER', 'ROLE_ADMIN']" header="Your Roles and Permissions">
+		<p-card
+			title="You have the following roles and permissions:"
+			styleClass="ui-card-shadow">
+		<ul>
+			<li><span *jhiHasAnyAuthority="['ROLE_USER']"> <b>USER:</b>
+					Users can view Articles and Related Documents. Users can only view
+					PUBLISHED articles.<BR></span> <span
+				*jhiHasAnyAuthority="['ROLE_AUTHOR']"> <b>AUTHOR:</b> Authors
+					can create, view, edit, and delete Articles and Related Documents.
+					Authors can view articles in DRAFT status only.<BR></span> <span
+				*jhiHasAnyAuthority="['ROLE_REVIEWER']"> <b>REVIEWER:</b>
+					Reviewers can view and edit Articles, Related Documents, and Tasks.
+					Reviewers can view articles in DRAFT status only. Reviewers can
+					view OPEN tasks only.<BR></span> <span
+				*jhiHasAnyAuthority="['ROLE_ADMIN']"> <b>ADMIN:</b> Admins
+					can do all functions in the system and have full access to
+					Articles, Related Documents, and Tasks.<BR></span></li>
+		</ul>
+		</p-card> </p-accordionTab> <p-accordionTab header="How to Get Around">
+		<table class='table borderless table-responsive'>
 			<tr>
-				<th colspan=3>Recommended Workflow Steps are:</th>
+				<th class="col-md-auto" colspan=5>Recommended Workflow Steps
+					are:</th>
 			</tr>
 			<tr valign="top">
-				<td><p-card title="Step 1">
+				<td class="col-md-auto"><p-card title="1">
 					<div>Log in as author. Click on Articles & Documents ->
 						Article. Click "Create a new Article". Enter required fields and
 						click Save. Content can be added using a WYSIWYG editor. Saving
 						will automatically convert the content to a PDF and attach it to
 						the article under the Related Documents tab</div>
 					</p-card></td>
-				<td><p-card title="Step 2">
+				<td class="col-md-auto"><p-card title="2">
 					<div>Click on Articles & Documents -> Related Document. Click
 						"Create a new Related Document". Enter required fields, select the
 						article you just created from the dropdown, and click Save.
 						Multiple documents can be uploaded to the same article as part of
 						a package.</div>
 					</p-card></td>
-				<td><p-card title="Step 3">
+				<td class="col-md-auto"><p-card title="3">
 					<div>Log in as reviewer. Click on Task Tracking -> Task.
 						Select the task for the article you just created and click view.
 						View related article and use the application (not browser) back
 						button to go back to the task. Edit the task's status to "CLOSED"
 						to PUBLISH the article. Click Save.</div>
 					</p-card></td>
-			</tr>
-			<tr>
-				<td><p-card title="Step 4" [style]="{width: '360px'}">
+				<td class="col-md-auto"><p-card title="4">
 					<div>Log in as user. Click on Articles & Documents ->
 						Article. You should be able to view the article you just created
 						and approved as reviewer.</div>
 					</p-card></td>
-				<td><p-card title="Step 5" [style]="{width: '360px'}">
+				<td class="col-md-auto"><p-card title="5">
 					<div>Log in as author. Click on Articles & Documents ->
 						Article. Click "Create a new Article". Enter required fields and
 						click Save.</div>
 					</p-card></td>
-				<td><p-card title="Demo">
-					<div>For a brief video demonstration of how to navigate the
-						CDT Knowledge Center and its key features, please click here.</div>
-					</p-card></td>
 			</tr>
 		</table>
+		</p-accordionTab> </p-accordion>
+
+
+
 	</div>
+
+
 </div>

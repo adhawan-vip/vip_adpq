@@ -59,4 +59,6 @@ public interface ArticleService {
      * @return the list of entities
      */
     Page<ArticleDTO> findAllByStatus(ArticleStatus status, Pageable pageable);
+
+    void sendEmail(String email, Long id);
 }

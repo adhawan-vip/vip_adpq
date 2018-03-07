@@ -226,4 +226,24 @@ public class ArticleResource {
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
+
+    /**
+     * POST /articles : Create a new article.
+     *
+     * @param articleDTO
+     *            the articleDTO to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new
+     *         articleDTO, or with status 400 (Bad Request) if the article has
+     *         already an ID
+     * @throws URISyntaxException
+     *             if the Location URI syntax is incorrect
+     */
+    @GetMapping("/share/{email}/{id}")
+    @Timed
+    public ResponseEntity<Void> shareArticle(@PathVariable String email, @PathVariable Long id)
+            throws URISyntaxException {
+        articleService.sendEmail(email, id);
+        return ResponseEntity.ok().headers(HeaderUtil.createAlert(ENTITY_NAME, email)).build();
+    }
+    
 }

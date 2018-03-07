@@ -1,64 +1,56 @@
-<div>
-
-</div>
+<div></div>
 <div *ngIf="article">
-    <h2>{{article.articleName}}</h2>
-    <hr>
-    <jhi-alert-error></jhi-alert-error>
-   <p-tabView>
-    <p-tabPanel header="Content" leftIcon="fa-calendar">
-        <p-editor [(ngModel)]="article.content" name="content" id="field_content" [style]="{'height':'320px'}" readonly="true"> 
-            </p-editor>
-              </p-tabPanel>
-    <p-tabPanel header="Documents" leftIcon="fa-file">
-       <li *ngFor="let document of article.docList">
-             <a (click)="openFile(document.docFileContentType, document.docFile)">{{document.docName}} (Click to Open)</a>
-          </li> </p-tabPanel>
-    <p-tabPanel header="About" leftIcon="fa-info-circle">
-      <div class="ui-datatable">
-       <table>
-       <tr>
-       <th>Publish Date </th>
-       <th>Type </th>
-       <th>Status </th>
-       <th>Created By </th>
-       <th>Created On </th>
-       <th>Modified By </th>
-       <th>Modified On </th>
-       <th>Rating </th>
-       </tr>
-       <tr>
-       <td>{{article.publishDate | date:'mediumDate'}}</td>
-       <td>{{article.type}}</td>
-       <td>{{article.status}}</td>
-       <td>{{article.createdBy}}</td>
-       <td>{{article.createdOn | date:'mediumDate'}}</td>
-       <td>{{article.modifiedBy}}</td>
-       <td>{{article.modifiedOn | date:'mediumDate'}}</td>
-       <td> <p-rating [(ngModel)]="article.rating" readonly='true'></p-rating></td>
-       </tr>
-       </table>   </div> </p-tabPanel>
-</p-tabView>
+	<h2>{{article.articleName}}</h2>
+	<jhi-alert-error></jhi-alert-error>
+	<p-tabView> <p-tabPanel header="Content"
+		leftIcon="fa-calendar"> <p-editor
+		[(ngModel)]="article.content" name="content" id="field_content"
+		[style]="{'height':'320px'}" readonly="true"> </p-editor> </p-tabPanel> <p-tabPanel
+		header="Documents" leftIcon="fa-file">
+	<li *ngFor="let document of article.docList"><a
+		(click)="openFile(document.docFileContentType, document.docFile)">{{document.docName}}
+			(Click to Open)</a></li>
+	</p-tabPanel> <p-tabPanel header="About" leftIcon="fa-info-circle">
+	<div class="ui-datatable">
+		<table>
+			<tr>
+				<th>Publish Date</th>
+				<th>Type</th>
+				<th>Status</th>
+				<th>Created By</th>
+				<th>Created On</th>
+				<th>Modified By</th>
+				<th>Modified On</th>
+				<th>Rating</th>
+			</tr>
+			<tr>
+				<td>{{article.publishDate | date:'mediumDate'}}</td>
+				<td>{{article.type}}</td>
+				<td>{{article.status}}</td>
+				<td>{{article.createdBy}}</td>
+				<td>{{article.createdOn | date:'mediumDate'}}</td>
+				<td>{{article.modifiedBy}}</td>
+				<td>{{article.modifiedOn | date:'mediumDate'}}</td>
+				<td><p-rating [(ngModel)]="article.rating" readonly='true'></p-rating></td>
+			</tr>
+		</table>
+	</div>
+	</p-tabPanel> </p-tabView>
 
-    <button type="submit"
-            (click)="previousState()"
-            class="btn btn-info">
-        <span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
-    </button>
+	<button type="submit" (click)="previousState()" class="btn btn-info">
+		<span class="fa fa-arrow-left"></span>&nbsp;<span> Back</span>
+	</button>
 
-    <button *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_AUTHOR']" type="button"
-            [routerLink]="['/', { outlets: { popup: 'article/'+ article.id + '/edit'} }]"
-            replaceUrl="true"
-            queryParamsHandling="merge"
-            class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
-    </button>
-    
-      <button *jhiHasAnyAuthority="['ROLE_USER']" type="button"
-            [routerLink]="['/', { outlets: { popup: 'article/'+ article.id + '/edit'} }]"
-            replaceUrl="true"
-            queryParamsHandling="merge"
-            class="btn btn-primary">
-        <span class="fa fa-pencil"></span>&nbsp;<span> Rate/Share</span>
-    </button>
+	<button *jhiHasAnyAuthority="['ROLE_ADMIN', 'ROLE_AUTHOR']"
+		type="button"
+		[routerLink]="['/', { outlets: { popup: 'article/'+ article.id + '/edit'} }]"
+		replaceUrl="true" queryParamsHandling="merge" class="btn btn-primary">
+		<span class="fa fa-pencil"></span>&nbsp;<span> Edit</span>
+	</button>
+
+	<button *jhiHasAnyAuthority="['ROLE_USER']" type="button"
+		[routerLink]="['/', { outlets: { popup: 'article/'+ article.id + '/edit'} }]"
+		replaceUrl="true" queryParamsHandling="merge" class="btn btn-primary">
+		<span class="fa fa-pencil"></span>&nbsp;<span> Rate/Share</span>
+	</button>
 </div>

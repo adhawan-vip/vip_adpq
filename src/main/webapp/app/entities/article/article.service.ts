@@ -15,6 +15,7 @@ export class ArticleService {
 
     private resourceUrl =  SERVER_API_URL + 'api/articles';
     private resourceSearchUrl = SERVER_API_URL + 'api/_search/articles';
+    private resourceShareUrl = SERVER_API_URL + 'api/share';
 
     constructor(private http: HttpClient, private dateUtils: JhiDateUtils) { }
 
@@ -44,6 +45,10 @@ export class ArticleService {
     delete(id: number): Observable<HttpResponse<any>> {
         return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
     }
+
+    share(email: string, id: number): Observable<HttpResponse<any>> {
+        return this.http.get(`${this.resourceShareUrl}/${email}/${id}`, { observe: 'response'});
+        }
 
     search(req?: any): Observable<HttpResponse<Article[]>> {
         const options = createRequestOption(req);

@@ -23,6 +23,7 @@ import com.trustvip.repository.ArticleRepository;
 import com.trustvip.repository.search.ArticleSearchRepository;
 import com.trustvip.security.SecurityUtils;
 import com.trustvip.service.ArticleService;
+import com.trustvip.service.MailService;
 import com.trustvip.service.RelatedDocumentService;
 import com.trustvip.service.dto.ArticleDTO;
 import com.trustvip.service.dto.RelatedDocumentDTO;
@@ -43,16 +44,17 @@ public class ArticleServiceImpl implements ArticleService {
     private final ArticleMapper articleMapper;
     private final RelatedDocumentMapper documentMapper;
     private final ArticleSearchRepository articleSearchRepository;
-    
+    private final MailService mailService;
     private final RelatedDocumentService relatedDocumentService;
 
     public ArticleServiceImpl(ArticleRepository articleRepository, ArticleMapper articleMapper,
-            ArticleSearchRepository articleSearchRepository, RelatedDocumentService relatedDocumentService, RelatedDocumentMapper documentMapper) {
+            ArticleSearchRepository articleSearchRepository, RelatedDocumentService relatedDocumentService, RelatedDocumentMapper documentMapper, MailService mailService) {
         this.articleRepository = articleRepository;
         this.articleMapper = articleMapper;
         this.articleSearchRepository = articleSearchRepository;
         this.relatedDocumentService = relatedDocumentService;
         this.documentMapper = documentMapper;
+        this.mailService = mailService;
     }
 
     /**
@@ -205,6 +207,13 @@ public class ArticleServiceImpl implements ArticleService {
         article.setStatus(status);
         Example<Article> example = Example.of(article);
         return articleRepository.findAll(example, pageable).map(articleMapper::toDto);
+    }
+    
+    @Override
+    public void sendEmail(String email, Long id)
+    {
+        ArticleDTO article = findOne(id);
+        mailService.sendShareArticleEmail(email, article);
     }
 
 }

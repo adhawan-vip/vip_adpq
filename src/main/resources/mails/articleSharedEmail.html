@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title th:text="#{email.article.share.title}">Recommended Reading</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link rel="shortcut icon" th:href="@{|${baseUrl}/favicon.ico|}" />
-    </head>
-    <body>
-        <p th:text="#{email.reset.text1}">
-            A CA Department of Technology user has shared the following article with you: <p th:text="#{article.articleName}">
-       </p>
-       </body>
+<head>
+<title>Recommended
+	Reading</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="shortcut icon" th:href="@{|${baseUrl}/favicon.ico|}" />
+</head>
+<body>
+	<p>A CA Department of Technology user has shared the following
+		article with you: </p>
+	<p th:text="${article.articleName}"></p>
+	
+	<p>To access the article, please use the URL below:</p>
+	<a th:href="@{|${baseUrl}/#/article/${article.id}|}"
+               th:text="@{|${baseUrl}/#/article/${article.id}|}">Access Article</a>
+               
+    <p>You will need to log in to the system to view the Article.</p>
+</body>
 </html>
