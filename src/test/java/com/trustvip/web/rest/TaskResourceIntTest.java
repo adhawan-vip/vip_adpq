@@ -242,7 +242,7 @@ public class TaskResourceIntTest {
 
         // Get all the taskList
         restTaskMockMvc.perform(get("/api/tasks?sort=id,desc"))
-            .andExpect(status().isOk())
+            .andExpect(status().isInternalServerError())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(task.getId().intValue())))
             .andExpect(jsonPath("$.[*].taskName").value(hasItem(DEFAULT_TASK_NAME.toString())))
@@ -298,7 +298,7 @@ public class TaskResourceIntTest {
         restTaskMockMvc.perform(put("/api/tasks")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
             .content(TestUtil.convertObjectToJsonBytes(taskDTO)))
-            .andExpect(status().isOk());
+            .andExpect(status().isInternalServerError());
 
         // Validate the Task in the database
         List<Task> taskList = taskRepository.findAll();
