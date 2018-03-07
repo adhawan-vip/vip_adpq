@@ -1,17 +1,24 @@
 package com.trustvip.domain;
 
-
-import javax.persistence.*;
-import javax.validation.constraints.*;
-
-import org.springframework.data.elasticsearch.annotations.Document;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-import com.trustvip.domain.enumeration.ArticleType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Lob;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.data.elasticsearch.annotations.Document;
 
 import com.trustvip.domain.enumeration.ArticleStatus;
+import com.trustvip.domain.enumeration.ArticleType;
 
 /**
  * A Article.

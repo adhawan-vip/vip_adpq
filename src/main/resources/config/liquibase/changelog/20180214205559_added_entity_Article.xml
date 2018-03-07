@@ -59,7 +59,7 @@
             </column>
             
             
-            <column name="rating" type="numeric(2)">
+            <column name="rating" type="BIGINT">
                 <constraints nullable="true" />
             </column>
 
