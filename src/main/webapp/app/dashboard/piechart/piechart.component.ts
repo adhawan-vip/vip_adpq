@@ -11,13 +11,13 @@ export class PiechartComponent implements OnInit {
 
     constructor() {
         this.data = {
-            labels: ['A', 'B', 'C'],
+            labels: ['JOBAID', 'CONTENT', 'PACKAGE'],
             datasets: [{
                 data: [300, 50, 100],
                 backgroundColor: [
                     '#FF6384',
-                    '#36A2EB',
-                    '#FFCE56'
+                    '#164675',
+                    '#FDB81E'
                 ],
                 hoverBackgroundColor: [
                     '#FF6384',
