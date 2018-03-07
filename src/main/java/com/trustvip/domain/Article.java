@@ -68,9 +68,7 @@ public class Article implements Serializable {
     @Column(name = "modified_on")
     private LocalDate modifiedOn;
     
-    @Column(name="rating",
-            columnDefinition = "NUMERIC(2)"
-        )
+    @Column(name="rating")
     private Integer rating;
 
     public Integer getRating() {
