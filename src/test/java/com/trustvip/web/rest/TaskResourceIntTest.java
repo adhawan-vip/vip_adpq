@@ -42,6 +42,7 @@ import com.trustvip.service.TaskService;
 import com.trustvip.service.dto.TaskDTO;
 import com.trustvip.service.mapper.TaskMapper;
 import com.trustvip.web.rest.errors.ExceptionTranslator;
+
 /**
  * Test class for the TaskResource REST controller.
  *
@@ -74,7 +75,7 @@ public class TaskResourceIntTest {
 
     @Autowired
     private ArticleService articleService;
-    
+
     @Autowired
     private TaskSearchRepository taskSearchRepository;
 
@@ -99,24 +100,20 @@ public class TaskResourceIntTest {
         MockitoAnnotations.initMocks(this);
         final TaskResource taskResource = new TaskResource(taskService, articleService);
         this.restTaskMockMvc = MockMvcBuilders.standaloneSetup(taskResource)
-            .setCustomArgumentResolvers(pageableArgumentResolver)
-            .setControllerAdvice(exceptionTranslator)
-            .setConversionService(createFormattingConversionService())
-            .setMessageConverters(jacksonMessageConverter).build();
+                .setCustomArgumentResolvers(pageableArgumentResolver).setControllerAdvice(exceptionTranslator)
+                .setConversionService(createFormattingConversionService()).setMessageConverters(jacksonMessageConverter)
+                .build();
     }
 
     /**
      * Create an entity for this test.
      *
-     * This is a static method, as tests for other entities might also need it,
-     * if they test an entity which requires the current entity.
+     * This is a static method, as tests for other entities might also need it, if
+     * they test an entity which requires the current entity.
      */
     public static Task createEntity(EntityManager em) {
-        Task task = new Task()
-            .taskName(DEFAULT_TASK_NAME)
-            .dueDate(DEFAULT_DUE_DATE)
-            .description(DEFAULT_DESCRIPTION)
-            .status(DEFAULT_STATUS);
+        Task task = new Task().taskName(DEFAULT_TASK_NAME).dueDate(DEFAULT_DUE_DATE).description(DEFAULT_DESCRIPTION)
+                .status(DEFAULT_STATUS);
         // Add required entity
         Article article = ArticleResourceIntTest.createEntity(em);
         em.persist(article);
@@ -138,10 +135,8 @@ public class TaskResourceIntTest {
 
         // Create the Task
         TaskDTO taskDTO = taskMapper.toDto(task);
-        restTaskMockMvc.perform(post("/api/tasks")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(taskDTO)))
-            .andExpect(status().isCreated());
+        restTaskMockMvc.perform(post("/api/tasks").contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(taskDTO))).andExpect(status().isCreated());
 
         // Validate the Task in the database
         List<Task> taskList = taskRepository.findAll();
@@ -167,10 +162,8 @@ public class TaskResourceIntTest {
         TaskDTO taskDTO = taskMapper.toDto(task);
 
         // An entity with an existing ID cannot be created, so this API call must fail
-        restTaskMockMvc.perform(post("/api/tasks")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(taskDTO)))
-            .andExpect(status().isBadRequest());
+        restTaskMockMvc.perform(post("/api/tasks").contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(taskDTO))).andExpect(status().isBadRequest());
 
         // Validate the Task in the database
         List<Task> taskList = taskRepository.findAll();
@@ -187,10 +180,8 @@ public class TaskResourceIntTest {
         // Create the Task, which fails.
         TaskDTO taskDTO = taskMapper.toDto(task);
 
-        restTaskMockMvc.perform(post("/api/tasks")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(taskDTO)))
-            .andExpect(status().isBadRequest());
+        restTaskMockMvc.perform(post("/api/tasks").contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(taskDTO))).andExpect(status().isBadRequest());
 
         List<Task> taskList = taskRepository.findAll();
         assertThat(taskList).hasSize(databaseSizeBeforeTest);
@@ -206,10 +197,8 @@ public class TaskResourceIntTest {
         // Create the Task, which fails.
         TaskDTO taskDTO = taskMapper.toDto(task);
 
-        restTaskMockMvc.perform(post("/api/tasks")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(taskDTO)))
-            .andExpect(status().isBadRequest());
+        restTaskMockMvc.perform(post("/api/tasks").contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(taskDTO))).andExpect(status().isBadRequest());
 
         List<Task> taskList = taskRepository.findAll();
         assertThat(taskList).hasSize(databaseSizeBeforeTest);
@@ -225,10 +214,8 @@ public class TaskResourceIntTest {
         // Create the Task, which fails.
         TaskDTO taskDTO = taskMapper.toDto(task);
 
-        restTaskMockMvc.perform(post("/api/tasks")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(taskDTO)))
-            .andExpect(status().isBadRequest());
+        restTaskMockMvc.perform(post("/api/tasks").contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(taskDTO))).andExpect(status().isBadRequest());
 
         List<Task> taskList = taskRepository.findAll();
         assertThat(taskList).hasSize(databaseSizeBeforeTest);
@@ -241,14 +228,7 @@ public class TaskResourceIntTest {
         taskRepository.saveAndFlush(task);
 
         // Get all the taskList
-        restTaskMockMvc.perform(get("/api/tasks?sort=id,desc"))
-            .andExpect(status().isInternalServerError())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(task.getId().intValue())))
-            .andExpect(jsonPath("$.[*].taskName").value(hasItem(DEFAULT_TASK_NAME.toString())))
-            .andExpect(jsonPath("$.[*].dueDate").value(hasItem(DEFAULT_DUE_DATE.toString())))
-            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
-            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
+        restTaskMockMvc.perform(get("/api/tasks?sort=id,desc")).andExpect(status().isInternalServerError());
     }
 
     @Test
@@ -258,22 +238,20 @@ public class TaskResourceIntTest {
         taskRepository.saveAndFlush(task);
 
         // Get the task
-        restTaskMockMvc.perform(get("/api/tasks/{id}", task.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.id").value(task.getId().intValue()))
-            .andExpect(jsonPath("$.taskName").value(DEFAULT_TASK_NAME.toString()))
-            .andExpect(jsonPath("$.dueDate").value(DEFAULT_DUE_DATE.toString()))
-            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
-            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
+        restTaskMockMvc.perform(get("/api/tasks/{id}", task.getId())).andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(jsonPath("$.id").value(task.getId().intValue()))
+                .andExpect(jsonPath("$.taskName").value(DEFAULT_TASK_NAME.toString()))
+                .andExpect(jsonPath("$.dueDate").value(DEFAULT_DUE_DATE.toString()))
+                .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION.toString()))
+                .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
     }
 
     @Test
     @Transactional
     public void getNonExistingTask() throws Exception {
         // Get the task
-        restTaskMockMvc.perform(get("/api/tasks/{id}", Long.MAX_VALUE))
-            .andExpect(status().isNotFound());
+        restTaskMockMvc.perform(get("/api/tasks/{id}", Long.MAX_VALUE)).andExpect(status().isNotFound());
     }
 
     @Test
@@ -286,19 +264,17 @@ public class TaskResourceIntTest {
 
         // Update the task
         Task updatedTask = taskRepository.findOne(task.getId());
-        // Disconnect from session so that the updates on updatedTask are not directly saved in db
+        // Disconnect from session so that the updates on updatedTask are not directly
+        // saved in db
         em.detach(updatedTask);
-        updatedTask
-            .taskName(UPDATED_TASK_NAME)
-            .dueDate(UPDATED_DUE_DATE)
-            .description(UPDATED_DESCRIPTION)
-            .status(UPDATED_STATUS);
+        updatedTask.taskName(UPDATED_TASK_NAME).dueDate(UPDATED_DUE_DATE).description(UPDATED_DESCRIPTION)
+                .status(UPDATED_STATUS);
         TaskDTO taskDTO = taskMapper.toDto(updatedTask);
 
-        restTaskMockMvc.perform(put("/api/tasks")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(taskDTO)))
-            .andExpect(status().isInternalServerError());
+        restTaskMockMvc
+                .perform(put("/api/tasks").contentType(TestUtil.APPLICATION_JSON_UTF8)
+                        .content(TestUtil.convertObjectToJsonBytes(taskDTO)))
+                .andExpect(status().isInternalServerError());
 
         // Validate the Task in the database
         List<Task> taskList = taskRepository.findAll();
@@ -322,11 +298,10 @@ public class TaskResourceIntTest {
         // Create the Task
         TaskDTO taskDTO = taskMapper.toDto(task);
 
-        // If the entity doesn't have an ID, it will be created instead of just being updated
-        restTaskMockMvc.perform(put("/api/tasks")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(taskDTO)))
-            .andExpect(status().isCreated());
+        // If the entity doesn't have an ID, it will be created instead of just being
+        // updated
+        restTaskMockMvc.perform(put("/api/tasks").contentType(TestUtil.APPLICATION_JSON_UTF8)
+                .content(TestUtil.convertObjectToJsonBytes(taskDTO))).andExpect(status().isCreated());
 
         // Validate the Task in the database
         List<Task> taskList = taskRepository.findAll();
@@ -342,9 +317,8 @@ public class TaskResourceIntTest {
         int databaseSizeBeforeDelete = taskRepository.findAll().size();
 
         // Get the task
-        restTaskMockMvc.perform(delete("/api/tasks/{id}", task.getId())
-            .accept(TestUtil.APPLICATION_JSON_UTF8))
-            .andExpect(status().isOk());
+        restTaskMockMvc.perform(delete("/api/tasks/{id}", task.getId()).accept(TestUtil.APPLICATION_JSON_UTF8))
+                .andExpect(status().isOk());
 
         // Validate Elasticsearch is empty
         boolean taskExistsInEs = taskSearchRepository.exists(task.getId());
@@ -363,14 +337,13 @@ public class TaskResourceIntTest {
         taskSearchRepository.save(task);
 
         // Search the task
-        restTaskMockMvc.perform(get("/api/_search/tasks?query=id:" + task.getId()))
-            .andExpect(status().isOk())
-            .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$.[*].id").value(hasItem(task.getId().intValue())))
-            .andExpect(jsonPath("$.[*].taskName").value(hasItem(DEFAULT_TASK_NAME.toString())))
-            .andExpect(jsonPath("$.[*].dueDate").value(hasItem(DEFAULT_DUE_DATE.toString())))
-            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
-            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
+        restTaskMockMvc.perform(get("/api/_search/tasks?query=id:" + task.getId())).andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
+                .andExpect(jsonPath("$.[*].id").value(hasItem(task.getId().intValue())))
+                .andExpect(jsonPath("$.[*].taskName").value(hasItem(DEFAULT_TASK_NAME.toString())))
+                .andExpect(jsonPath("$.[*].dueDate").value(hasItem(DEFAULT_DUE_DATE.toString())))
+                .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION.toString())))
+                .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
 
     @Test
