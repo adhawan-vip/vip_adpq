@@ -253,7 +253,6 @@ public class ArticleResource {
     @Timed
     public ResponseEntity<List<String>> getPieChartLabels()
             throws URISyntaxException {
-        System.out.println("AAAAAA");
         List<String> labels = new ArrayList<String>();
         labels.add(ArticleType.CONTENT.toString());
         labels.add(ArticleType.JOBAID.toString());

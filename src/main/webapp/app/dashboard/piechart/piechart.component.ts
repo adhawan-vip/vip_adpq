@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { JhiLanguageService } from 'ng-jhipster';
 import { PieChartService } from './piechart.service';
-import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
+import { HttpResponse } from '@angular/common/http';
 
 @Component({
     selector: 'jhi-piechart',

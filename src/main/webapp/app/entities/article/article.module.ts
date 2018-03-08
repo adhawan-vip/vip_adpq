@@ -3,7 +3,6 @@ import { RouterModule } from '@angular/router';
 import { RatingModule } from 'primeng/rating';
 import { EditorModule } from 'primeng/editor';
 import { TabViewModule } from 'primeng/tabview';
-import { Component } from '@angular/core';
 
 import { VipAdpqSharedModule } from '../../shared';
 import {
