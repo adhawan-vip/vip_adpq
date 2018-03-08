@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { JhiLanguageService } from 'ng-jhipster';
+import { PieChartService } from './piechart.service';
+import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
 
 @Component({
     selector: 'jhi-piechart',
@@ -8,10 +10,22 @@ import { JhiLanguageService } from 'ng-jhipster';
 })
 export class PiechartComponent implements OnInit {
     data: any;
+    labels: any;
+    constructor(private pieChartService: PieChartService) {
+        this.load();
+    }
 
-    constructor() {
+    ngOnInit() {
+    }
+
+    load() {
+        this.pieChartService.getPieLabels()
+            .subscribe((res: HttpResponse<string[]>) => this.onSuccess(res.body, res.headers));
+    }
+
+    private onSuccess(data, headers) {
         this.data = {
-            labels: ['JOBAID', 'CONTENT', 'PACKAGE'],
+            labels: data,
             datasets: [{
                 data: [300, 50, 100],
                 backgroundColor: [
@@ -26,8 +40,5 @@ export class PiechartComponent implements OnInit {
                 ]
             }]
         };
-    }
-
-    ngOnInit() {
     }
 }

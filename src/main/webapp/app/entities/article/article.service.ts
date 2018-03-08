@@ -13,7 +13,7 @@ export type EntityResponseType = HttpResponse<Article>;
 @Injectable()
 export class ArticleService {
 
-    private resourceUrl =  SERVER_API_URL + 'api/articles';
+    private resourceUrl = SERVER_API_URL + 'api/articles';
     private resourceSearchUrl = SERVER_API_URL + 'api/_search/articles';
     private resourceShareUrl = SERVER_API_URL + 'api/share';
 
@@ -32,7 +32,7 @@ export class ArticleService {
     }
 
     find(id: number): Observable<EntityResponseType> {
-        return this.http.get<Article>(`${this.resourceUrl}/${id}`, { observe: 'response'})
+        return this.http.get<Article>(`${this.resourceUrl}/${id}`, { observe: 'response' })
             .map((res: EntityResponseType) => this.convertResponse(res));
     }
 
@@ -43,12 +43,12 @@ export class ArticleService {
     }
 
     delete(id: number): Observable<HttpResponse<any>> {
-        return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response'});
+        return this.http.delete<any>(`${this.resourceUrl}/${id}`, { observe: 'response' });
     }
 
     share(email: string, id: number): Observable<HttpResponse<any>> {
-        return this.http.get(`${this.resourceShareUrl}/${email}/${id}`, { observe: 'response'});
-        }
+        return this.http.get(`${this.resourceShareUrl}/${email}/${id}`, { observe: 'response' });
+    }
 
     search(req?: any): Observable<HttpResponse<Article[]>> {
         const options = createRequestOption(req);
@@ -58,7 +58,7 @@ export class ArticleService {
 
     private convertResponse(res: EntityResponseType): EntityResponseType {
         const body: Article = this.convertItemFromServer(res.body);
-        return res.clone({body});
+        return res.clone({ body });
     }
 
     private convertArrayResponse(res: HttpResponse<Article[]>): HttpResponse<Article[]> {
@@ -67,7 +67,7 @@ export class ArticleService {
         for (let i = 0; i < jsonResponse.length; i++) {
             body.push(this.convertItemFromServer(jsonResponse[i]));
         }
-        return res.clone({body});
+        return res.clone({ body });
     }
 
     /**

@@ -9,6 +9,8 @@ import {
     piechartRoute
 } from './';
 
+import { PieChartService } from './piechart.service';
+
 const DASHBOARD_STATES = [
     piechartRoute
 ];
@@ -21,6 +23,9 @@ const DASHBOARD_STATES = [
     ],
     declarations: [
         PiechartComponent
+    ],
+    providers: [
+        PieChartService
     ],
     schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

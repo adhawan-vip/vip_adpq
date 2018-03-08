@@ -3,10 +3,10 @@ package com.trustvip.web.rest;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 import javax.validation.Valid;
 
@@ -31,8 +31,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.codahale.metrics.annotation.Timed;
-import com.trustvip.domain.User;
 import com.trustvip.domain.enumeration.ArticleStatus;
+import com.trustvip.domain.enumeration.ArticleType;
 import com.trustvip.domain.enumeration.TaskStatus;
 import com.trustvip.security.AuthoritiesConstants;
 import com.trustvip.service.ArticleService;
@@ -97,17 +97,7 @@ public class ArticleResource {
     }
     
     
-    private void createTask(ArticleDTO article)
-    {
-        TaskDTO task = new TaskDTO();
-        task.setArticleId(article.getId());
-        task.setTaskName("Review: " + article.getArticleName());
-        task.setDueDate(LocalDate.now().plusDays(7));
-        task.setDescription(task.getTaskName());
-        task.setStatus(TaskStatus.OPEN);
-        //assignTask(task, AuthoritiesConstants.REVIEWER);
-        taskService.save(task);
-    }
+   
     
   
 
@@ -246,4 +236,40 @@ public class ArticleResource {
         return ResponseEntity.ok().headers(HeaderUtil.createAlert(ENTITY_NAME, email)).build();
     }
     
+    
+
+    /**
+     * POST /articles : Create a new article.
+     *
+     * @param articleDTO
+     *            the articleDTO to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new
+     *         articleDTO, or with status 400 (Bad Request) if the article has
+     *         already an ID
+     * @throws URISyntaxException
+     *             if the Location URI syntax is incorrect
+     */
+    @GetMapping("/labels/pie")
+    @Timed
+    public ResponseEntity<List<String>> getPieChartLabels()
+            throws URISyntaxException {
+        System.out.println("AAAAAA");
+        List<String> labels = new ArrayList<String>();
+        labels.add(ArticleType.CONTENT.toString());
+        labels.add(ArticleType.JOBAID.toString());
+        labels.add(ArticleType.PACKAGE.toString());
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(labels));
+    }
+    
+    private void createTask(ArticleDTO article)
+    {
+        TaskDTO task = new TaskDTO();
+        task.setArticleId(article.getId());
+        task.setTaskName("Review: " + article.getArticleName());
+        task.setDueDate(LocalDate.now().plusDays(7));
+        task.setDescription(task.getTaskName());
+        task.setStatus(TaskStatus.OPEN);
+        //assignTask(task, AuthoritiesConstants.REVIEWER);
+        taskService.save(task);
+    }
 }
