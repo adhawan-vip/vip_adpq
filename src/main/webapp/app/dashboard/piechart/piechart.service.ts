@@ -9,7 +9,7 @@ export type EntityResponseType = HttpResponse<string>;
 export class PieChartService {
     private resourceUrl = SERVER_API_URL + 'api';
     private pieLabelsUrl = this.resourceUrl + '/labels/pie';
-
+    private pieDataUrl = this.resourceUrl + '/data/pie';
     constructor(private http: HttpClient) { }
 
     getPieLabels(): Observable<HttpResponse<string[]>> {
@@ -17,9 +17,23 @@ export class PieChartService {
             .map((res: HttpResponse<string[]>) => this.convertArrayResponse(res));
     }
 
+    getPieData(): Observable<HttpResponse<number[]>> {
+        return this.http.get<number[]>(`${this.pieDataUrl}`, { observe: 'response' })
+            .map((res: HttpResponse<number[]>) => this.convertArrayResponseData(res));
+    }
+
     private convertArrayResponse(res: HttpResponse<string[]>): HttpResponse<string[]> {
         const jsonResponse: string[] = res.body;
         const body: string[] = [];
+        for (let i = 0; i < jsonResponse.length; i++) {
+            body.push(jsonResponse[i]);
+        }
+        return res.clone({ body });
+    }
+
+     private convertArrayResponseData(res: HttpResponse<number[]>): HttpResponse<number[]> {
+        const jsonResponse: number[] = res.body;
+        const body: number[] = [];
         for (let i = 0; i < jsonResponse.length; i++) {
             body.push(jsonResponse[i]);
         }

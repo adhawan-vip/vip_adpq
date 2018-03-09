@@ -1,6 +1,7 @@
 package com.trustvip.service;
 
 import com.trustvip.domain.enumeration.ArticleStatus;
+import com.trustvip.domain.enumeration.ArticleType;
 import com.trustvip.service.dto.ArticleDTO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -61,4 +62,6 @@ public interface ArticleService {
     Page<ArticleDTO> findAllByStatus(ArticleStatus status, Pageable pageable);
 
     void sendEmail(String email, Long id);
+
+    long getCountByType(ArticleType type);
 }

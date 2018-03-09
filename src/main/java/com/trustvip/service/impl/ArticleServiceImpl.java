@@ -19,6 +19,7 @@ import com.itextpdf.text.DocumentException;
 import com.trustvip.domain.Article;
 import com.trustvip.domain.RelatedDocument;
 import com.trustvip.domain.enumeration.ArticleStatus;
+import com.trustvip.domain.enumeration.ArticleType;
 import com.trustvip.repository.ArticleRepository;
 import com.trustvip.repository.search.ArticleSearchRepository;
 import com.trustvip.security.SecurityUtils;
@@ -214,6 +215,17 @@ public class ArticleServiceImpl implements ArticleService {
     {
         ArticleDTO article = findOne(id);
         mailService.sendShareArticleEmail(email, article);
+    }
+    
+    @Override
+    @Transactional(readOnly = true)
+    public long getCountByType(ArticleType type)
+    {
+        log.debug("Request to get articles by type: " + type.toString());
+        Article article = new Article();
+        article.setType(type);
+        Example<Article> example = Example.of(article);
+        return articleRepository.count(example);
     }
 
 }
