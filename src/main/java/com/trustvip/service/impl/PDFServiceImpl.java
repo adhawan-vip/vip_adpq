@@ -9,6 +9,7 @@ import java.nio.charset.StandardCharsets;
 import org.jsoup.Jsoup;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
+import org.springframework.scheduling.annotation.Async;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -20,7 +21,7 @@ import com.itextpdf.tool.xml.XMLWorkerHelper;
 
 public class PDFServiceImpl {
     private ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-    
+    @Async
     public ByteArrayOutputStream createPDFfromHTML(String HTML)
             throws DocumentException, IOException
     {
