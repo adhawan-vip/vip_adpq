@@ -44,7 +44,7 @@ export class PiechartComponent implements OnInit {
             }]
         };
     }
-    
+
     private onSuccessData(pieData, headers) {
         console.log(pieData);
         this.pieData = pieData;
