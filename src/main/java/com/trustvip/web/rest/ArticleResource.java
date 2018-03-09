@@ -17,7 +17,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
+//import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -91,7 +91,9 @@ public class ArticleResource {
             throw new BadRequestAlertException("A new article cannot already have an ID", ENTITY_NAME, "idexists");
         }
         ArticleDTO article = articleService.save(articleDTO);
-        createTask(article);
+        if(articleDTO.getStatus().toString()=="DRAFT") {
+        	createTask(article);
+        }
         return ResponseEntity.created(new URI("/api/articles/" + article.getId()))
                 .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, article.getId().toString())).body(article);
     }
@@ -138,7 +140,7 @@ public class ArticleResource {
     @Timed
     public ResponseEntity<List<ArticleDTO>> getAllArticles(Pageable pageable) {
         log.debug("REST request to get a page of Articles");
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         Collection<SimpleGrantedAuthority> authorities = (Collection<SimpleGrantedAuthority>) SecurityContextHolder
                 .getContext().getAuthentication().getAuthorities();
         // by default, only published articles are accessible
@@ -290,7 +292,6 @@ public class ArticleResource {
         task.setDueDate(LocalDate.now().plusDays(7));
         task.setDescription(task.getTaskName());
         task.setStatus(TaskStatus.OPEN);
-        //assignTask(task, AuthoritiesConstants.REVIEWER);
         taskService.save(task);
     }
 }
