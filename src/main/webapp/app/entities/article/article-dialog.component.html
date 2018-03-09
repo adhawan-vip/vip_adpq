@@ -103,7 +103,7 @@
 				type="email" class="form-control" name="email" id="field_email"
 				[(ngModel)]="email" />
 		</div>
-		<div class="form-group">
+		<div *jhiHasAnyAuthority="['ROLE_USER']" class="form-group">
 			<label class="form-control-label" for="field_articleName">Rating</label>
 			<p-rating [(ngModel)]="article.rating" name="rating"
 				id="field_rating"></p-rating>
