@@ -34,6 +34,7 @@ script:
   - ./mvnw clean test
   - yarn test
   - ./mvnw verify -Pprod -DskipTests
+  - sonar-scanner
 notifications:
   webhooks:
     on_success: change  # options: [always|never|change] default: always
@@ -44,6 +45,3 @@ addons:
     organization: adhawan-vip-github
     token:
       secure: TeeNnyyKX9YFVv2onngd0G8C5LQ0WwODLx8aHUIqWt0pSgxEXbJAgt3wG2gA6IdzxzVHg5jqpjmiU8X0OXW1+ax9xayIeroK8UBY+8ol7fjMutVLf9X41GLRPsD4Z4GupWCbil+BG5UngIkiYuEgMXC42UrHytFtp4ighhCVkZ8ePkx9OffeLXEuEn+ICpRVqZvx1RNaf4eMs9V+qDEwyMvUaEpJmRdpNwLrC3yfO3Fow6BPua7pexuGFqbHFGz7yOWID/zxgL2fCyflD+lHcLYkZTrnw/r+B4zEC3OSFdLu6QlGt92Ine55Qz/+oP4JOvPjUxfzUF7MATqs9u9ofvvxtXUK71YNmhaS5dkStL9okq4r1jmiZcUhAKXIFgTqegiK1vnDB/uwrc4JALIscs8L8nZYrXprbx5Q/BQ5UzRPVvP7gMVufIWlqDjeJmR313kAEGdRPj4uaO7iA14rYnpqikPnlW97BoMjy1ghFpnh6lsrAqFaXitYVP0dUK1O4OCyDwGd7D6kFXB6RT+nnhfDQLMt9psumz7Qk1J5B2KuurfOQkGFIAqsA1ATAn4gbvuSAQvFFi69l6nQywZ6q6mdsuRh1vPTyHpzRgXNn2Ge2St38UTwCjjcTQAStWR6ZuNWkE+NH1aJQTaZcOn/JbsNPuGsKAXP0C2fvAcSKV4=
-script:
-  # other script steps might be done before running the actual analysis
-    - sonar-scanner
