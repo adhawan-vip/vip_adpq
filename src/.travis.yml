@@ -34,7 +34,7 @@ script:
   - ./mvnw clean test
   - yarn test
   - ./mvnw verify -Pprod -DskipTests
-  - sonar-scanner
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
 notifications:
   webhooks:
     on_success: change  # options: [always|never|change] default: always
