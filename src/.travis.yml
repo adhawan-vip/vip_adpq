@@ -33,7 +33,6 @@ script:
   - chmod +x mvnw
   - ./mvnw clean test
   - yarn test
-  - ./mvnw verify -Pprod -DskipTests
   - ./mvnw clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar
 notifications:
   webhooks:
