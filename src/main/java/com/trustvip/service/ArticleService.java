@@ -64,4 +64,6 @@ public interface ArticleService {
     void sendEmail(String email, Long id);
 
     long getCountByType(ArticleType type);
+
+    long getCountByStatus(ArticleStatus status);
 }

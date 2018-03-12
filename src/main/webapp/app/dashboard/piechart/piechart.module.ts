@@ -1,6 +1,6 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { RouterModule } from '@angular/router';
-
+import {CardModule} from 'primeng/card';
 import { VipAdpqSharedModule } from '../../shared';
 import { ChartModule } from 'primeng/chart';
 
@@ -19,6 +19,7 @@ const DASHBOARD_STATES = [
     imports: [
         VipAdpqSharedModule,
         ChartModule,
+        CardModule,
         RouterModule.forRoot(DASHBOARD_STATES, { useHash: true })
     ],
     declarations: [

@@ -10,6 +10,9 @@ export class PieChartService {
     private resourceUrl = SERVER_API_URL + 'api';
     private pieLabelsUrl = this.resourceUrl + '/labels/pie';
     private pieDataUrl = this.resourceUrl + '/data/pie';
+    private pieStatusLabelsUrl = this.resourceUrl + '/labels/pie/status';
+    private pieStatusDataUrl = this.resourceUrl + '/data/pie/status';
+
     constructor(private http: HttpClient) { }
 
     getPieLabels(): Observable<HttpResponse<string[]>> {
@@ -19,6 +22,17 @@ export class PieChartService {
 
     getPieData(): Observable<HttpResponse<number[]>> {
         return this.http.get<number[]>(`${this.pieDataUrl}`, { observe: 'response' })
+            .map((res: HttpResponse<number[]>) => this.convertArrayResponseData(res));
+    }
+
+    getPieStatusLabels(): Observable<HttpResponse<string[]>> {
+        console.log('here');
+        return this.http.get<string[]>(`${this.pieStatusLabelsUrl}`, { observe: 'response' })
+            .map((res: HttpResponse<string[]>) => this.convertArrayResponse(res));
+    }
+
+    getPieStatusData(): Observable<HttpResponse<number[]>> {
+        return this.http.get<number[]>(`${this.pieStatusDataUrl}`, { observe: 'response' })
             .map((res: HttpResponse<number[]>) => this.convertArrayResponseData(res));
     }
 

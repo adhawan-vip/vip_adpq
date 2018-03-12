@@ -284,6 +284,48 @@ public class ArticleResource {
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(data));
     }
     
+    /**
+     * POST /articles : Create a new article.
+     *
+     * @param articleDTO
+     *            the articleDTO to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new
+     *         articleDTO, or with status 400 (Bad Request) if the article has
+     *         already an ID
+     * @throws URISyntaxException
+     *             if the Location URI syntax is incorrect
+     */
+    @GetMapping("/labels/pie/status")
+    @Timed
+    public ResponseEntity<List<String>> getPieChartLabelsByStatus()
+            throws URISyntaxException {
+        List<String> labels = new ArrayList<String>();
+        labels.add(ArticleStatus.DRAFT.toString());
+        labels.add(ArticleStatus.PUBLISHED.toString());
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(labels));
+    }
+    
+    /**
+     * POST /articles : Create a new article.
+     *
+     * @param articleDTO
+     *            the articleDTO to create
+     * @return the ResponseEntity with status 201 (Created) and with body the new
+     *         articleDTO, or with status 400 (Bad Request) if the article has
+     *         already an ID
+     * @throws URISyntaxException
+     *             if the Location URI syntax is incorrect
+     */
+    @GetMapping("/data/pie/status")
+    @Timed
+    public ResponseEntity<List<Long>> getPieChartTypeDataByStatus()
+            throws URISyntaxException {
+        List<Long> data = new ArrayList<Long>();
+        data.add(articleService.getCountByStatus(ArticleStatus.DRAFT));
+        data.add(articleService.getCountByStatus(ArticleStatus.PUBLISHED));
+        return ResponseUtil.wrapOrNotFound(Optional.ofNullable(data));
+    }
+    
     private void createTask(ArticleDTO article)
     {
         TaskDTO task = new TaskDTO();

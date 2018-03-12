@@ -58,7 +58,7 @@
 			<label class="form-control-label"
 				jhiTranslate="vipAdpqApp.article.content" for="field_content">Content</label>
 			<p-editor [(ngModel)]="article.content" name="content"
-				id="field_content" [style]="{'height':'320px'}"></p-editor>
+				id="field_content" [style]="{'height':'320px'}" required></p-editor>
 
 			<div
 				[hidden]="!(editForm.controls.content?.dirty && editForm.controls.content?.invalid)">

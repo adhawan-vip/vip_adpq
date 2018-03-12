@@ -227,5 +227,16 @@ public class ArticleServiceImpl implements ArticleService {
         Example<Article> example = Example.of(article);
         return articleRepository.count(example);
     }
+    
+    @Override
+    @Transactional(readOnly=true)
+    public long getCountByStatus(ArticleStatus status)
+    {
+        log.debug("Request to get articles by status: " + status.toString());
+        Article article = new Article();
+        article.setStatus(status);
+        Example<Article> example = Example.of(article);
+        return articleRepository.count(example);
+    }
 
 }
