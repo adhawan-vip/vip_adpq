@@ -1,0 +1,3 @@
+#!/bin/bash
+docker login -u adhawan-vip -p 3bff34d5-d86d-411e-9d5a-4aedb48add0b registry.heroku.com
+docker push registry.heroku.com/vip-adpq/web
