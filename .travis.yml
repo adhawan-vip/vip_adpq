@@ -26,6 +26,8 @@ before_install:
 - sudo /etc/init.d/postgresql stop
 - curl -o- -L https://yarnpkg.com/install.sh | bash
 - export PATH=$HOME/.yarn/bin:$PATH
+before_deploy:
+- "./mvnw package -Pprod dockerfile:build"
 install:
 - yarn install
 script:
