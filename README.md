@@ -126,7 +126,7 @@ We used Travis-CI for continuous integration.  Our travisTravis-ci CI configurat
 
 *p. Setup or used configuration management;*
 
-We used GitHub as our code repository, combined with BaseCamp, for configuration management. We leveraged  GitHub to manage code commits, as well as triggered builds and deployments from all check-ins and used various quality gates including unit tests, code quality checks and docker based deployments to ensure quality. Quality gates are part of our [Sonarcloud]((https://sonarcloud.io/dashboard?id=com.trustvip%3Avip-adpq)) setup.
+We used GitHub as our code repository, combined with BaseCamp, for configuration management. We leveraged  GitHub to manage code commits, as well as triggered builds and deployments from all check-ins and used various quality gates including unit tests, code quality checks and docker based deployments to ensure quality. Quality gates are part of our [Sonarcloud]((https://sonarcloud.io/dashboard?id=com.trustvip%3Avip-adpq)) setup and are run as part of [each build](https://travis-ci.org/adhawan-vip/vip_adpq/jobs/352387242#L2742)
 
 *q. Setup or used continuous monitoring;*
 
@@ -136,7 +136,7 @@ One compelling reason for choosing Heroku as our PaaS provider was their built i
 
 Our build process ends with a containerized deployment via docker.  Once the docker image is built, our build process tags the built image with an appropriate tag so that it can be pushed out to the docker registry hosted on Heroku.  Finally, our build process uses the docker push command to push the built docker image and deploy it to the Heroku PaaS platform as shown below.
  
-A full log of a sample build including output from docker is located [here](https://travis-ci.org/adhawan-vip/vip_adpq/jobs/352387242)
+A full log of a sample build including output from docker is located [here](https://travis-ci.org/adhawan-vip/vip_adpq/jobs/352387242).  [This link](https://travis-ci.org/adhawan-vip/vip_adpq/jobs/352387242#L4552) shows docker output with the labeled images and push to the registry on Heroku.
 
 *s. Provided sufficient documentation to install and run their prototype on another machine; and*
 
