@@ -6,7 +6,7 @@ User Credentials: user/user
 Author Credentials: author/author
 Reviewer Credentials: reviewer/reviewer
 
-#Technical Approach
+# Technical Approach
 *Documentation must show code flow from client UI, to JavaScript library, to REST service to database, pointing to code in the GitHub repository.*
 
 An example of the code flow is provided below:
@@ -19,7 +19,8 @@ An example of the code flow is provided below:
 - From the REST layer, the server side application code invokes the service layer [located here](https://github.com/adhawan-vip/vip_adpq/blob/ef6503cbe32b276016d405ff6468c9e355be3cc1/src/main/java/com/trustvip/service/impl/ArticleServiceImpl.java#L69).  Please note that the service layer component is an [interface](https://github.com/adhawan-vip/vip_adpq/blob/480f3e4f97dfe0b11a0e59572c86c1263654441c/src/main/java/com/trustvip/service/ArticleService.java#L18) and is implemented by the implementation class previously referenced.  
 - From here, the framework components for persistence (JPA, Hibernate) are invoked and carry the data to the MySQL DB.
 
-#Following the Playbook
+# Following the Playbook
+
 *a. Assigned one (1) leader and gave that person authority and responsibility and held that person accountable for the quality of the prototype submitted;*
 
 We assigned a single Product Owner - Eric Scully who worked with the remainder of our Scrum team to build the prototype.
