@@ -41,7 +41,7 @@ TeamVIP assembled a multidisciplinary team including:
 
 *c. Understood what people needed, by including people in the prototype development and design process;*
 
-TeamVIP included our UX stakeholders, John Carmean and JP Mattingly from day one to establish the vision and needs for the prototype. In addition, we interviewed 3 different users/user groups with unique backgrounds and experiences to develop a baseline and sought their continuous feedback during our design and development.
+TeamVIP included our UX stakeholders, John Carmean and JP Mattingly from day one to establish the vision and needs for the prototype. In addition, we interviewed 3 different users/user groups with unique backgrounds and experiences to develop a baseline and sought their continuous feedback during our design and development.  Our interviews and feedback received are catalogued [here](https://github.com/adhawan-vip/vip_adpq/blob/master/UserCentricDesign.md)
 
 *d. Used at least a minimum of three (3) “user-centric design” techniques and/or tools;*
 
