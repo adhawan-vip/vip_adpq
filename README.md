@@ -37,4 +37,4 @@ Our approach and core processes are defined below, and we have also included sup
 The README.md file should also make reference to the following: (a-t)
 
 ## How We Met the Requirement
-Our response's to items a-m from the RFP are located [here](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/a-m.MD)
+Our response's to items a-t from the RFP are located [here](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/a-m.MD)
