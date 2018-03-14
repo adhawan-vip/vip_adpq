@@ -14,13 +14,13 @@ In addition, we have included a response to the core requirements/guidelines pro
 # Technical Approach
 ## Requirement
 *Documentation must show code flow from client UI, to JavaScript library, to REST service to database, pointing to code in the GitHub repository.*
-## How Met
+## How We Met the Requirement
 An example of the code flow is provided [here](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/CodeFlow.MD).
 
 ## Requirement
 *In addition to the description/narrative above, the Vendor must demonstrate that they followed the US Digital Services Playbook (visit https://playbook.cio.gov or see Attachment 2: US Digital Services Playbook) by providing evidence in the repository.*
 
-## How Met
+## How We Met the Requirement
 TeamVIP handpicked a small and versatile core team to develop the Knowledge Management Tool prototype. While most of our team was co-located in Sacramento, CA, we also had a developer located at our Reston, VA office to demonstrate our ability to collaborate using open source tools and within different time zones. 
 
 We further augmented our team with a broad user base with different backgrounds, experience, and expertise; this team was dispersed across the United States and from different industries to give us a broad perspective. 
@@ -36,5 +36,5 @@ Our approach and core processes are defined below, and we have also included sup
 
 The README.md file should also make reference to the following: (a-t)
 
-## How Met
+## How We Met the Requirement
 Our response's to items a-m from the RFP are located [here](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/a-m.MD)
