@@ -36,4 +36,4 @@ Our core usergroup was essential to our process from the very beginning and thro
 The README.md file should also make reference to the following: (a-t)
 
 ## How We Met the Requirement
-TeamVIP has included the response to each of the RFI Technical Narrative Requirements A-T below. For the full list including the description of each requirement, please [click here](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/a-m.MD)
+TeamVIP has included the response to each of the RFI Technical Narrative Requirements A-T below. For the full list including the description of each requirement, please [click here](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/a-t.MD)
