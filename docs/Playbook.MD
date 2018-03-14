@@ -51,7 +51,7 @@ TeamVIP used a modern technology stack as shown [here](https://github.com/adhawa
 TeamVIP used a flexible hosting environment at our hosting vendor Heroku.  We used docker based deployments to allow for easy migration of hosting vendors, should the need arise.
 
 ## Play 10 - Automate testing and deployments
-TeamVIP used automated testing and deployments.  Uur team used Karma and Junit for automated testing.  We developed 175+ automated unit tests for our code which are integrated into our build.  At the end of each commit, unit tests are run automatically by Sonarcloud as shown [here](https://sonarcloud.io/dashboard?id=com.trustvip%3Avip-adpq).
+TeamVIP used automated testing and deployments.  Our team used Karma and Junit for automated testing.  We developed 175+ automated unit tests for our code which are integrated into our build.  At the end of each commit, unit tests are run automatically by Sonarcloud as shown [here](https://sonarcloud.io/dashboard?id=com.trustvip%3Avip-adpq).
 
 Our deployments were automated using Travis-CI for continuous integration and continuous deployment as shown [here](https://travis-ci.org/adhawan-vip/vip_adpq).  
 

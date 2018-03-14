@@ -14,7 +14,7 @@ In addition, we have included a response to the core requirements/guidelines pro
 # Technical Approach Narrative
 ## Requirement
 *Vendors shall write a brief description/narrative, no greater than 2,000 words, of the Technical Approach used to create their Working Prototype and place this description/narrative in the README.md file located in the root directory of its GitHub repository. This 2,000 word limit applies to the Technical Approach description/narrative only.*
-
+## How We Met the Requirement
 TeamVIP handpicked a small and versatile core team to develop the Knowledge Management Tool prototype. While most of our team was co-located in Sacramento, CA, we also had a developer located at our Reston, VA office to demonstrate our ability to collaborate using open source tools and within different time zones. We further augmented our team with a broad user base with different backgrounds, experience, and expertise; this team was dispersed across the United States and from different industries to give us a broad perspective. We chose this structure to demonstrate our ability to work as a cohesive group, and avoid potential groupthink or shortfalls of a small team by having a diverse user community to provide continuous feedback. 
 
 
