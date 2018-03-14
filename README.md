@@ -1,23 +1,36 @@
 # Knowledge Management Tool - VIP's Working Prototype
-Our prototype is located [here](https://vip-adpq.herokuapp.com/#/).  The following four roles are supported and a description of capabilities of each role is found on the landing page of the prototype under "How to get around?"
+Our prototype is located [here](https://vip-adpq.herokuapp.com/#/).  Four roles types are supported and capabilities of each role is included on the landing page of the prototype (See "How to get around").
 
-Admin Credentials: admin/admin
-User Credentials: user/user
-Author Credentials: author/author
-Reviewer Credentials: reviewer/reviewer
+Credentials (username/password) for each role:
+* Admin: admin/admin
+* User: user/user
+* Author: author/author
+* Approver: approver/approver
+
+We have included a video demo of core functionality located [here](TODO).
+
+In addition, we have included a response to the core requirements/guidelines provided by CDT [here](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/Requirements.MD).
 
 # Technical Approach
+## Requirement
 *Documentation must show code flow from client UI, to JavaScript library, to REST service to database, pointing to code in the GitHub repository.*
+## How Met
+An example of the code flow is provided [here](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/CodeFlow.MD).
 
-An example of the code flow is provided below:
+## Requirement
+*In addition to the description/narrative above, the Vendor must demonstrate that they followed the US Digital Services Playbook (visit https://playbook.cio.gov or see Attachment 2: US Digital Services Playbook) by providing evidence in the repository.*
 
-1. The request to create an article originates at [this button](https://github.com/adhawan-vip/vip_adpq/blob/480f3e4f97dfe0b11a0e59572c86c1263654441c/src/main/webapp/app/entities/article/article.component.html#L4).  
-- Clicking this button generates a popup where data can be populated and saved using [this button](https://github.com/adhawan-vip/vip_adpq/blob/480f3e4f97dfe0b11a0e59572c86c1263654441c/src/main/webapp/app/entities/article/article-dialog.component.html#L87).
-- The request is then routed to the typescript based Angular application component located [here](https://github.com/adhawan-vip/vip_adpq/blob/480f3e4f97dfe0b11a0e59572c86c1263654441c/src/main/webapp/app/entities/article/article-dialog.component.ts#L51).
-- The component invokes the UI-application's service layer's create method located [here](https://github.com/adhawan-vip/vip_adpq/blob/480f3e4f97dfe0b11a0e59572c86c1263654441c/src/main/webapp/app/entities/article/article.service.ts#L20).  
-- This routes the request to the server-side application's RESTful resource [located here](https://github.com/adhawan-vip/vip_adpq/blob/ef6503cbe32b276016d405ff6468c9e355be3cc1/src/main/java/com/trustvip/web/rest/ArticleResource.java#L87).
-- From the REST layer, the server side application code invokes the service layer [located here](https://github.com/adhawan-vip/vip_adpq/blob/ef6503cbe32b276016d405ff6468c9e355be3cc1/src/main/java/com/trustvip/service/impl/ArticleServiceImpl.java#L69).  Please note that the service layer component is an [interface](https://github.com/adhawan-vip/vip_adpq/blob/480f3e4f97dfe0b11a0e59572c86c1263654441c/src/main/java/com/trustvip/service/ArticleService.java#L18) and is implemented by the implementation class previously referenced.  
-- From here, the framework components for persistence (JPA, Hibernate) are invoked and carry the data to the MySQL DB.
+## How Met
+TeamVIP handpicked a small and versatile core team to develop the Knowledge Management Tool prototype. While most of our team was co-located in Sacramento, CA, we also had a developer located at our Reston, VA office to demonstrate our ability to collaborate using open source tools and within different time zones. 
+
+We further augmented our team with a broad user base with different backgrounds, experience, and expertise; this team was dispersed across the United States and from different industries to give us a broad perspective. 
+
+We chose this structure to demonstrate our ability to work as a cohesive group, and avoid potential groupthink or shortfalls of a small team by having a diverse user community to provide continuous feedback. The userbase was core to our process from the beginning and throughout the development. 
+
+We closely followed the US Digital Services playbook to ensure the proper care and steps were taken to improve our prototype.
+
+Our approach and core processes are defined below, and we have also included supporting documentation in our Github repository. In addition, we have included our responses to the requirements from the RFI and how we aligned with the US Digital Services Playbook [here](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/Playbook.MD). 
+
 
 # Following the Playbook
 
@@ -25,7 +38,7 @@ An example of the code flow is provided below:
 
 We assigned a single Product Owner - Eric Scully who worked with the remainder of our Scrum team to build the prototype.
 
-*b. Assembled a multidisciplinary and collaborative team that includes, at a minimum, five (5) of the labor categories as identified in Attachment B: PQVP AD-DS Labor Category Descriptions; *
+*b. Assembled a multidisciplinary and collaborative team that includes, at a minimum, five (5) of the labor categories as identified in Attachment B: PQVP AD-DS Labor Category Descriptions;*
 
 TeamVIP assembled a multidisciplinary team including:
 
@@ -119,7 +132,7 @@ TeamVIP used several modern and open-source technologies in development of our p
 We used [Heroku](http://www.heroku.com) as our Infrastructure provider at the PaaS level.
 
 *n. Developed automated unit tests for their code;*
-As described above, our team used Karma and Junit for automated testing.  We developed 175+ unit tests for our code which are integrated into our build.  At the end of each commit, unit tests are run automatically by Sonarcloud as shown [here](https://sonarcloud.io/dashboard?id=com.trustvip%3Avip-adpq)
+As described above, our team used Karma and Junit for automated testing.  We developed 175+ automated unit tests for our code which are integrated into our build.  At the end of each commit, unit tests are run automatically by Sonarcloud as shown [here](https://sonarcloud.io/dashboard?id=com.trustvip%3Avip-adpq)
 
 *o. Setup or used a continuous integration system to automate the running of tests and continuously deployed their code to their IaaS or PaaS provider;*
 
