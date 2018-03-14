@@ -203,11 +203,10 @@ Interviewees:
  
 **Initial Feedback Notes from Jeremy & Hardian-**
 
-* Public wiki / quora
-* Commenting - user contributions
-* Admin add a rating - is this a vote or override?
-* Admin ability to override rating - doesn’t seem right
-* Also don’t track vote counts 
+* Public wiki / quora / other tools have spent a lot of time tuning to broad userbase needs
+* Commenting - user contribution
+* Rating is a nice feature, would be a good item to tailor in future enhancements for user needs
+
 
 **Q&A**
 
@@ -221,6 +220,7 @@ Interviewees:
   * Lack motive to use it.
   * Tools must be engaging and easy to use.
   * Content should be compelling - here because I have to be, or here because its valuable to me?
+  
 * What is it about government agencies in particular that makes a knowledge management tool important? That makes it effective?
   * Government has a certain level of credibility, important that knowledge in the tool is accurate. Organization could lose credibility with inaccurate entries.
   * Indicate the authors role or level within the organization to add credibility (even if we do not name them). Without associating a users rank or role credibility is unknown*
@@ -254,6 +254,7 @@ Interviewees:
 
 * How do you currently share knowledge in your organization?
   * Through commercial KMT-type tools, Confluence, Rally
+  * Word of mouth!
 
 * Who do you typically go to when you have a knowledge gap?
   * My manager, my team, appropriate people who might have the answer

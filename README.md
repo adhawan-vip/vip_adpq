@@ -17,6 +17,51 @@ In addition, we have included a response to the core requirements/guidelines pro
 ## How We Met the Requirement
 TeamVIP handpicked a small and versatile core team to develop the Knowledge Management Tool prototype. While most of our team was co-located in Sacramento, CA, we also had a developer located at our Reston, VA office to demonstrate our ability to collaborate using open source tools and within different time zones. We further augmented our team with a broad user base with different backgrounds, experience, and expertise; this team was dispersed across the United States and from different industries to give us a broad perspective. We chose this structure to demonstrate our ability to work as a cohesive group, and avoid potential groupthink or shortfalls of a small team by having a diverse user community to provide continuous feedback. 
 
+* a.  We assigned a single Product Owner - Eric Scully who worked with the remainder of our Scrum team to build the prototype.
+* b.  TeamVIP assembled a multidisciplinary team including:
+  * Product Manager - Eric Scully
+  * Technical Architect - Ankur Dhawran
+  * Frontend Web Developer – Dmytro Kudriashov
+  * Backend Web Developer - Lynda Wacht
+  * Business Analyst – Ameet Joshi
+  * Interaction Designer / User Research/ Usability Tester - John Carmean
+  * Writer / Content Designer / Content Strategist - Meredith Ginsbach, Ned Dana
+  * Visual Designer - JP Mattingly
+  * Delivery Manager - Hank Chin
+  * Agile Coach - Ean Darbo
+* c.  TeamVIP included our UX stakeholders, John Carmean and JP Mattingly from day one to establish the vision and needs for the prototype. In addition, we interviewed 3 different users/user groups with unique backgrounds and experiences to develop a baseline and sought their continuous feedback during our design and development. Our interviews and feedback received are catalogued here
+* d.  TeamVIP utilized the following User Centric Design techniques/tools:
+  * i.  Research Interviews: One-on-one sessions with users were a fundamental component of our human-centered design process. By engaging with a diverse group of individuals including State employees involved with Knowledge Management, Sales teams from Knowledge Management Solutions and other user groups, we conceived of and designed a digital portal, focusing on the most important outcomes.
+  * ii. Concept Validation: With an overall concept of the service in mind, we presented high-level sketches and drawings to users. We solicited feedback early and often, spotting necessary changes soon and pivoting quickly in response. Concept validation helped make the design process efficient, iterative and accurate.
+  * iii.    Usability tests with focused user groups.
+* e.  TeamVIP used GitHub repository. Our GitHub repository is located [here] (https://github.com/adhawan-vip/vip_adpq) and code commits can be found here.
+* f.  TeamVIP used Swagger. Our Swagger API documentation is located here and can be accessed using credentials admin/admin.
+* g.  TeamVIP used HTML and CSS in a manner that complies with the ADA and WCAG 2.0. Additionally, we tested our prototype for 508 compliance using open source tools and remediated any issues that would block a screen reader from using our prototype.
+* h.  TeamVIP used several openly available UI/UX frameworks during its build. Our system is based upon the openly available bootstrap libraries which allow us to design and build industry standard responsive websites. We took advantage of the PrimeNG framework which is a UI/UX pattern library. This open source library allows us access to 70+ components ranging from input controls such as the Quill.js WYSIWYG editor to charts and overlays that support our site.
+* i.  TeamVIP performed usability tests with the following individuals:
+  * John Carmean
+  * JP Mattingly
+  * Jonna Ward
+  * Nishant Agrawal
+  * David Teater
+  * Ned Dana
+  * Meredith Ginsbach
+* j.  TeamVIP used an Agile approach towards in developing this prototype. We embraced Scrum as our development methodology and performed work in the following Sprints:
+  * i.  Sprint 1: Setup Base Environment
+  * ii. Sprint 2: Core Functions
+  * iii.    Sprint 3: Security and Workflows
+  * iv. Sprint 4: Enhanced Features
+  * Our daily scrum notes and sprint retrospective notes can be found in the GitHub document repository. ERIC PROVIDE LINK
+* k.  TeamVIP’s prototype was developed with multiple devices in mind and continuously tested to ensure it presents a responsive design regardless of the device. We tested our prototype against a variety of devices including iPads/iPhones/Android Phones etc. Screenshots of each device with our prototype are here.
+* l.  TeamVIP used several modern and open-source technologies in development of our prototype. Please see LINK for our modern and open-source technologies used.
+* m.  TeamVIP used Heroku as our Infrastructure provider at the PaaS level.
+* n.  Our team used Karma and Junit for automated testing. We developed 175+ automated unit tests for our code which are integrated into our build. At the end of each commit, unit tests are run automatically by Sonarcloud as shown here
+* o.  We used Travis-CI for continuous integration. Our travisTravis-ci CI configuration allows us to promote code to Heroku if all quality gates are met. An example of the automated tests/quality gates checks is demonstrated here
+* p.  We used GitHub as our code repository, combined with BaseCamp, for configuration management. We leveraged GitHub to manage code commits, as well as triggered builds and deployments from all check-ins and used various quality gates including unit tests, code quality checks and docker based deployments to ensure quality. Quality gates are part of our Sonarcloud setup and are run as part of each build
+* q.  One compelling reason for choosing Heroku as our PaaS provider was their built in continuous monitoring for all applications deployed on their platform. We used their continuous monitoring platform for our prototype, with the images here as an example of the data/metrics being monitored.
+* r.  Our build process ends with a containerized deployment via docker. Once the docker image is built, our build process tags the built image with an appropriate tag so that it can be pushed out to the docker registry hosted on Heroku. Finally, our build process uses the docker push command to push the built docker image and deploy it to the Heroku PaaS platform as shown below. A full log of a sample build including output from docker is located here. This link shows docker output with the labeled images and push to the registry on Heroku.
+* s.  We used these instructions/documentation (LINK)  to allow our developers to quickly setup their local development environments.
+* t.  TeamVIP’s prototype and underlying platforms are openly licensed and free of charge.
 
 
 ## Requirement
