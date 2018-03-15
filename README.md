@@ -83,7 +83,7 @@ An example of the code flow is provided [here](https://github.com/adhawan-vip/vi
 *In addition to the description/narrative above, the Vendor must demonstrate that they followed the US Digital Services Playbook (visit https://playbook.cio.gov or see Attachment 2: US Digital Services Playbook) by providing evidence in the repository.*
 
 ## How We Met the Requirement
-Our core usergroup was essential to our process from the very beginning and throughout the development. We closely followed the US Digital Services playbook to ensure the proper care and steps were taken to improve our prototype. We did continuous checks (daily scrum calls) to ensure we were aligning ourselves with the plays appropriately. How we aligned with each of the plays in the US Digital Services Playbook in located [here](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/Playbook.MD). 
+Our core usergroup was essential to our process from the very beginning and throughout the development. We closely followed the US Digital Services playbook to ensure the proper care and steps were taken to improve our prototype. We did continuous checks (daily scrum calls) to ensure we were aligning ourselves with the plays appropriately. How we aligned with each of the plays in the US Digital Services Playbook is located [here](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/Playbook.MD). 
 
 
 ## Requirement
