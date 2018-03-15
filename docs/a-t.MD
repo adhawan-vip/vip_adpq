@@ -90,7 +90,8 @@ TeamVIP used an Agile approach towards in developing this prototype.  We embrace
 3. **Sprint 3: Security and Workflows:**  This sprint focused on user role creation and implementation of a workflow.  Based on input from our user group, we decided to create four user roles (Author, Reviewer, User, and Administrator).  Our workflow implementation allows Authors to create articles, Reviewers to review and/or publish articles, Users to view published articles and Administrators full access to the system.  During this Sprint we implemented various functions that each role should be able to perform including any field-level security for each role (such as the ability only for Users to provide ratings to articles).
 4.  **Sprint 4:  Enhanced Features:** With the base system stable, it was time to build some features that our user community really wanted.  During this Sprint we added automatic conversion of articles to PDF files, organized the UI to be more user friendly, and added the ability for users to share articles with others via email.  We were able to re-use the base email system that was previously implemented for user registration.
 
-Our daily scrum notes and sprint retrospective notes can be found in the GitHub document repository. *ERIC PROVIDE LINK*
+Our [daily scrum notes](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/PQVP%20Daily%20Scrum%20Notes.pdf) and sprint [retrospective notes](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/PQVP%20Sprint%20Retrospectives.pdf) can be found in the GitHub document repository. 
+
 See our team in action: [photo](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/team_vip_photos/Scrum%20Team_Sprint%20Review.jpg?raw=true).
 
 ## Requirement
