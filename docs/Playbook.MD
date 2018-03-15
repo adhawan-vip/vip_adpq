@@ -12,7 +12,7 @@ Involving different users with multiple techniques ensured our prototype was add
 
 Our interviewees included the following to gather a well-rounded perspective:
 * Jennifer Salazar, a former State employee with over 10 years supporting the State of CA.
-* Jeremy Piontek & Hardian Muljadi, a Product Designers at a SaaS software company (Learning Management System).
+* Jeremy Piontek & Hardian Muljadi, Product Designers at a SaaS software company (Learning Management System).
 * John Carmean, a Vice President of Marketing and Communications at a SaaS software company.
 
 ## Play 2 - Address the whole experience, from start to finish
