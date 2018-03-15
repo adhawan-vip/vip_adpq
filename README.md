@@ -38,11 +38,12 @@ Since this is a prototype, we used a single branch within GitHub across all thre
   * Visual Designer - JP Mattingly
   * Delivery Manager - Hank Chin
   * Agile Coach - Ean Darbo
-* c.  TeamVIP included our UX stakeholders, John Carmean and JP Mattingly from day one to establish the vision and needs for the prototype. In addition, we interviewed 3 different users/user groups with unique backgrounds and experiences to develop a baseline and sought their continuous feedback during our design and development. Our interviews and feedback received are catalogued here
+* c.  TeamVIP included our UX stakeholders, John Carmean and JP Mattingly from day one to establish the vision and needs for the prototype. In addition, we interviewed 3 different users/user groups with unique backgrounds and experiences to develop a baseline and sought their continuous feedback during our design and development. Our interviews and feedback received are catalogued [here](https://github.com/adhawan-vip/vip_adpq/blob/master/UserCentricDesign.md).
 * d.  TeamVIP utilized the following User Centric Design techniques/tools:
   * i.  Research Interviews: One-on-one sessions with users were a fundamental component of our human-centered design process. By engaging with a diverse group of individuals including State employees involved with Knowledge Management, Sales teams from Knowledge Management Solutions and other user groups, we conceived of and designed a digital portal, focusing on the most important outcomes.
   * ii. Concept Validation: With an overall concept of the service in mind, we presented high-level sketches and drawings to users. We solicited feedback early and often, spotting necessary changes soon and pivoting quickly in response. Concept validation helped make the design process efficient, iterative and accurate.
   * iii.    Usability tests with focused user groups.
+  * iv. Research: TeamVIP and our user groups set out to see what features/functions are available (and not available) in today’s learning/knowledge management marketplace. Example sites and tools include: Wikipedia, Meridian KS, Blackboard, Quora, Confluence, Rally, SharePoint, Google, OpenSesame and more. 
 * e.  TeamVIP used GitHub repository. Our GitHub repository is located [here] (https://github.com/adhawan-vip/vip_adpq) and code commits can be found here.
 * f.  TeamVIP used Swagger. Our Swagger API documentation is located here and can be accessed using credentials admin/admin.
 * g.  TeamVIP used HTML and CSS in a manner that complies with the ADA and WCAG 2.0. Additionally, we tested our prototype for 508 compliance using open source tools and remediated any issues that would block a screen reader from using our prototype.

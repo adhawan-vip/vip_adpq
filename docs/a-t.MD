@@ -46,7 +46,7 @@ TeamVIP utilized the following User Centric Design techniques/tools:
 ## Requirement
 *e. Used GitHub to document code commits;*
 ## How We Met the Requirement
-Our GitHub repository is located [here] (https://github.com/adhawan-vip/vip_adpq) and code commits can be found [here](https://github.com/adhawan-vip/vip_adpq/commits/master).
+Our GitHub repository is located [here](https://github.com/adhawan-vip/vip_adpq) and code commits can be found [here](https://github.com/adhawan-vip/vip_adpq/commits/master).
 
 ## Requirement
 *f. Used Swagger to document the RESTful API, and provided a link to the Swagger API;*
