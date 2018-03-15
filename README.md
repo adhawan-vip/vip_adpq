@@ -45,7 +45,7 @@ Since this is a prototype, we used a single branch within GitHub across all thre
   * iii.    Usability tests with focused user groups.
   * iv. Research: TeamVIP and our user groups set out to see what features/functions are available (and not available) in today’s learning/knowledge management marketplace. Example sites and tools include: Wikipedia, Meridian KS, Blackboard, Quora, Confluence, Rally, SharePoint, Google, OpenSesame and more. 
 * e.  TeamVIP used GitHub repository. Our GitHub repository is located [here](https://github.com/adhawan-vip/vip_adpq) and code commits can be found [here](https://github.com/adhawan-vip/vip_adpq/commits/master).
-* f.  TeamVIP used Swagger. Our Swagger API documentation is located here and can be accessed using credentials admin/admin.
+* f.  TeamVIP used Swagger. Our Swagger API documentation is located [here](https://vip-adpq.herokuapp.com/#/docs) and can be accessed using credentials admin/admin.
 * g.  TeamVIP used HTML and CSS in a manner that complies with the ADA and WCAG 2.0. Additionally, we tested our prototype for 508 compliance using open source tools and remediated any issues that would block a screen reader from using our prototype.
 * h.  TeamVIP used several openly available UI/UX frameworks during its build. Our system is based upon the openly available bootstrap libraries which allow us to design and build industry standard responsive websites. We took advantage of the PrimeNG framework which is a UI/UX pattern library. This open source library allows us access to 70+ components ranging from input controls such as the Quill.js WYSIWYG editor to charts and overlays that support our site.
 * i.  TeamVIP performed usability tests with the following individuals:
