@@ -29,7 +29,7 @@ Since this is a prototype, we used a single branch within GitHub across all thre
 * a.  We assigned a single Product Owner - Eric Scully who worked with the remainder of our Scrum team to build the prototype.
 * b.  TeamVIP assembled a multidisciplinary team including:
   * Product Manager - Eric Scully
-  * Technical Architect - Ankur Dhawran
+  * Technical Architect - Ankur Dhawan
   * Frontend Web Developer – Dmytro Kudriashov
   * Backend Web Developer - Lynda Wacht
   * Business Analyst – Ameet Joshi
