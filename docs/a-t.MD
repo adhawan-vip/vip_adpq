@@ -59,7 +59,7 @@ Our Swagger API documentation is located [here](https://vip-adpq.herokuapp.com/#
 
 ## How We Met the Requirement
 
-We used HTML and CSS in a manner that complies with the ADA and WCAG 2.0.  Additionally, we tested our prototype for 508 compliance using open source tools and remediated any issues that would block a screen reader from using our prototype.
+We used HTML and CSS in a manner that complies with the ADA and WCAG 2.0.  Additionally, we tested our prototype for 508 compliance using open source tools and remediated any issues that would block a screen reader from using our prototype.  We provide the [full results of our 508 compliance check](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/508%20Compliance%20Check.pdf) in GitHub.
 
 ## Requirement
 *h. Created or used a design style guide and/or a pattern library;*
@@ -116,6 +116,7 @@ VIP used several modern and open-source technologies in development of our proto
 10. MySQL: We used MySQL as a database management system due to its open source nature and wide adoption.  MySQL was a natural fit with the remainder of the tech stack that we chose.
 11. GitHub: We used GitHub as our code repository.  As of this writing, our team was well on its way to almost 100 code check-ins through our development activities.
 
+Additionally, an application-level architecture diagram showing the various layers and components of our application is located [here](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/Application%20Architecture.pdf).
 
 ## Requirement
 *m. Deployed the prototype on an Infrastructure as a Service (IaaS) or Platform as Service (PaaS) provider, and indicated which provider they used;*
