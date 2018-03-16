@@ -22,7 +22,7 @@ Our choice of users took into account the different perspectives that different 
 Simplicity and ease of use was core to our product. We noted from our user centric design techniques (interviews, usability tests, etc.) that eventual adoption of the prototype would be heavily tied to the ability for a broad user base to use the tool without guidance or direction.  We utilized industry leading frameworks and technologies such as the open source Twitter Bootstrap library, Facebook's Node.js and other standard open source frameworks used in private industry.
 
 ## Play 4 - Build the service using agile and iterative practices
-TeamVIP shipped a functioning MVP within 4 weeks.  We utilized daily scrum meetings, documenting our discussions and including users in the process via notes and updates.
+VIP shipped a functioning MVP within 4 weeks.  We utilized daily scrum meetings, documenting our discussions and including users in the process via notes and updates.
 
 We conducted usability tests and weekly sprint reviews open to a broad team.
 
@@ -33,7 +33,7 @@ We consistently reviewed the core goals of the project to ensure our product was
 
 ## Play 5 - Structure budgets and contracts to support delivery
 
-TeamVIP had an aggressive timeline to create a functioning prototype. We immediately set out to find free and open source tools and technologies to use in the development of our prototype, prioritizing and comparing the features and functionalities of each tool through research and discovery.  
+VIP had an aggressive timeline to create a functioning prototype. We immediately set out to find free and open source tools and technologies to use in the development of our prototype, prioritizing and comparing the features and functionalities of each tool through research and discovery.  
 
 ## Play 6 - Assign one leader and hold that person accountable
 
@@ -45,13 +45,13 @@ We utilized a high-performing team with key roles from the agile labor categorie
 
 ## Play 8 - Choose a modern technology stack
 
-TeamVIP used a modern technology stack as shown [here](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/TechStack.MD).
+VIP used a modern technology stack as shown [here](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/TechStack.MD).
 
 ## Play 9 - Deploy in a flexible hosting environment
-TeamVIP used a flexible hosting environment at our hosting vendor Heroku.  We used docker based deployments to allow for easy migration of hosting vendors, should the need arise.
+VIP used a flexible hosting environment at our hosting vendor Heroku.  We used docker based deployments to allow for easy migration of hosting vendors, should the need arise.
 
 ## Play 10 - Automate testing and deployments
-TeamVIP used automated testing and deployments.  Our team used Karma and Junit for automated testing.  We developed 175+ automated unit tests for our code which are integrated into our build.  At the end of each commit, unit tests are run automatically by Sonarcloud as shown [here](https://sonarcloud.io/dashboard?id=com.trustvip%3Avip-adpq).
+VIP used automated testing and deployments.  Our team used Karma and Junit for automated testing.  We developed 175+ automated unit tests for our code which are integrated into our build.  At the end of each commit, unit tests are run automatically by Sonarcloud as shown [here](https://sonarcloud.io/dashboard?id=com.trustvip%3Avip-adpq).
 
 Our deployments were automated using Travis-CI for continuous integration and continuous deployment as shown [here](https://travis-ci.org/adhawan-vip/vip_adpq).  
 
@@ -69,4 +69,4 @@ We used the following reusable processes to account for security and privacy:
 Our prototype had a limited user base.  Even so, we collected data on which navigation paths were most popular across our application and worked to simplify access to those paths.  Additionally, we collected system usage metrics to determine appropriate sizing and monitored response times to ensure a smooth user experience.
 
 ## Play 13 - Default to open
-TeamVIP used free and open source technologies extensively, and whenever possible.  This allows us to provide our prototype as open source.
+VIP used free and open source technologies extensively, and whenever possible.  This allows us to provide our prototype as open source.

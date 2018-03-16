@@ -1,6 +1,6 @@
 # User Centric Design - Interviews
 
-*TeamVIP Knowledge Management Tool (KMT) User Interviews*
+*VIP Knowledge Management Tool (KMT) User Interviews*
 
 Our interview process takes 15-30 minutes to complete, on average.
  
@@ -39,7 +39,7 @@ Knowledge Development
 1.  Shall have ability to update and improve Knowledge articles and access the value of usage predicting new records or record types
 2.  Shall show innovation by learning from existing records (e.g. prompting to create new Knowledge Articles)
  
-TeamVIP has intentionally left the KMT requirements high-level for the user interviews.  Our goal is to receive raw feedback from our users to better improve our product.
+VIP has intentionally left the KMT requirements high-level for the user interviews.  Our goal is to receive raw feedback from our users to better improve our product.
  
 
 ## Interview 1 – Jennifer Salazar

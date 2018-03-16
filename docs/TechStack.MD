@@ -1,5 +1,5 @@
 # Technology Stack for our ADPQ Prototype
-TeamVIP used several modern and open-source technologies in development of our prototype. A sample of the technologies used includes:
+VIP used several modern and open-source technologies in development of our prototype. A sample of the technologies used includes:
 
 1.  Spring Security: We used Spring Security for authentication/authorization.
 2.  Spring Boot: We used Spring Boot as a wrapper around the Spring framework to get going as quickly as possible with as little Spring configuration as possible.
