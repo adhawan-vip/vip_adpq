@@ -12,7 +12,7 @@ We assigned a single Product Owner - Eric Scully who worked with the remainder o
 
 *b. Assembled a multidisciplinary and collaborative team that includes, at a minimum, five (5) of the labor categories as identified in Attachment B: PQVP AD-DS Labor Category Descriptions;*
 ## How We Met the Requirement
-TeamVIP assembled a multidisciplinary team including:
+VIP assembled a multidisciplinary team including:
 
 - Product Manager - Eric Scully
 - Technical Architect - Ankur Dhawran
@@ -29,13 +29,13 @@ TeamVIP assembled a multidisciplinary team including:
 
 *c. Understood what people needed, by including people in the prototype development and design process;*
 ## How We Met the Requirement
-TeamVIP included our UX stakeholders, John Carmean and JP Mattingly from day one to establish the vision and needs for the prototype. In addition, we interviewed 3 different users/user groups with unique backgrounds and experiences to develop a baseline and sought their continuous feedback during our design and development.  Our interviews and feedback received are catalogued [here](https://github.com/adhawan-vip/vip_adpq/blob/master/UserCentricDesign.md)
+VIP included our UX stakeholders, John Carmean and JP Mattingly from day one to establish the vision and needs for the prototype. In addition, we interviewed 3 different users/user groups with unique backgrounds and experiences to develop a baseline and sought their continuous feedback during our design and development.  Our interviews and feedback received are catalogued [here](https://github.com/adhawan-vip/vip_adpq/blob/master/UserCentricDesign.md)
 ## Requirement
 
 *d. Used at least a minimum of three (3) “user-centric design” techniques and/or tools;*
 
 ## How We Met the Requirement
-TeamVIP utilized the following User Centric Design techniques/tools:
+VIP utilized the following User Centric Design techniques/tools:
 
 1. Research Interviews: One-on-one sessions with users were a fundamental component of our human-centered design process. By engaging with a diverse group of individuals including State employees involved with Knowledge Management, Sales teams from Knowledge Management Solutions and other user groups, we conceived of and designed a digital portal, focusing on the most important outcomes.
 
@@ -64,13 +64,13 @@ We used HTML and CSS in a manner that complies with the ADA and WCAG 2.0.  Addit
 ## Requirement
 *h. Created or used a design style guide and/or a pattern library;*
 ## How We Met the Requirement
-TeamVIP used several openly available UI/UX frameworks during its build.  Our system is based upon the openly available bootstrap libraries which allow us to design and build industry standard responsive websites.  We took advantage of the [PrimeNG](http://primefaces.org/primeng/) framework which is a UI/UX pattern library.  This open source library allows us access to 70+ components ranging from input controls such as the Quill.js WYSIWYG editor to charts and overlays that support our site.
+VIP used several openly available UI/UX frameworks during its build.  Our system is based upon the openly available bootstrap libraries which allow us to design and build industry standard responsive websites.  We took advantage of the [PrimeNG](http://primefaces.org/primeng/) framework which is a UI/UX pattern library.  This open source library allows us access to 70+ components ranging from input controls such as the Quill.js WYSIWYG editor to charts and overlays that support our site.
 
 
 ## Requirement
 *i. Performed usability tests with people;*
 ## How We Met the Requirement
-TeamVIP performed usability tests with the following individuals:
+VIP performed usability tests with the following individuals:
 - John Carmean
 - JP Mattingly
 - Jonna Ward
@@ -83,7 +83,7 @@ TeamVIP performed usability tests with the following individuals:
 ## Requirement
 *j. Used an iterative approach, where feedback informed subsequent work or versions of the prototype;*
 ## How We Met the Requirement
-TeamVIP used an Agile approach towards in developing this prototype.  We embraced Scrum as our development methodology and performed work in the following Sprints:
+VIP used an Agile approach towards in developing this prototype.  We embraced Scrum as our development methodology and performed work in the following Sprints:
 
 1.  **Sprint 1: Setup base environment** – During this Sprint, we identified base technology stack compatible with CDT requirements.  For example, we used primarily open source technologies such as Spring and Angular to perform our work.  Additionally, we adopted the maven and webpack build systems for the back-end and front-end applications respectively.  We adopted Liquibase for our database management system, and MySQL as the database engine.  We identified PrimeNG as the UI/UX framework we wanted to leverage and used jHipster to put it all together.  We conducted research interviews during this Sprint and started populating a product backlog. We utilized Basecamp to manage our product backlog and as a collaboration tool.  Lastly, we identified non-functional requirements put forth by the CDT that should be part of our product backlog (such as Swagger API integration, User Role management etc.). See our team in action: [photo](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/team_vip_photos/Product%20Planning.jpg?raw=true).
 2.  **Sprint 2: Core Functions:** Based on the items in our product backlog and discussions between the Scrum team and the product owner, we identified the core entities we wanted to build in our system.  We designed a data model using the open source JDL studio and used it to generate JDL files which could then be converted into code.  We completed the initial development of the system which included CRUD operations to the database, setting up base entities such as an Article, Related Documents, and Tasks within our system.  We also implemented various data fields that were necessary for the prototype to function.  We identified various field-level validations and implemented them with appropriate error messages.  At the end of this Sprint, we demonstrated this core application to our user base.  We received valuable input which resulted in creation of additional product backlog items.  We chose to include several of these items in the very next Sprint.
@@ -102,7 +102,7 @@ Our prototype was developed with multiple devices in mind and continuously teste
 ## Requirement
 *l. Used at least five (5) modern and open-source technologies, regardless of architectural layer (frontend, backend, etc.);*
 ## How We Met the Requirement
-TeamVIP used several modern and open-source technologies in development of our prototype. A sample of the technologies used includes:
+VIP used several modern and open-source technologies in development of our prototype. A sample of the technologies used includes:
 
 1.  Spring Security: We used Spring Security for authentication/authorization.  See our team in action: [photo](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/team_vip_photos/Prototype%20Security%20Mapping.jpg?raw=true).
 2.  Spring Boot –: We used Spring Boot as a wrapper around the Spring framework to get going as quickly as possible with as little Spring configuration as possible.
@@ -181,4 +181,4 @@ and separately
 ## Requirement
 *t. Prototype and underlying platforms used to create and run the prototype are openly licensed and free of charge.*
 ## How We Met the Requirement
-TeamVIP’s prototype and underlying platforms are openly licensed and free of charge under the [Apache License 2.0](https://github.com/adhawan-vip/vip_adpq/blob/master/LICENSE).
+VIP’s prototype and underlying platforms are openly licensed and free of charge under the [Apache License 2.0](https://github.com/adhawan-vip/vip_adpq/blob/master/LICENSE).
