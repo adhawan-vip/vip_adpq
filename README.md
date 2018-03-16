@@ -71,7 +71,7 @@ Since this is a prototype, we used a single branch within GitHub across all thre
 * q.  One compelling reason for choosing Heroku as our PaaS provider was their built in continuous monitoring for all applications deployed on their platform. We used their continuous monitoring platform for our prototype, with the images [here](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/monitoring.JPG?raw=true) as an example of the data/metrics being monitored.
 * r.  Our build process ends with a containerized deployment via docker. Once the docker image is built, our build process tags the built image with an appropriate tag so that it can be pushed out to the docker registry hosted on Heroku. Finally, our build process uses the docker push command to push the built docker image and deploy it to the Heroku PaaS platform. A full log of a sample build including output from docker is located [here](https://travis-ci.org/adhawan-vip/vip_adpq/jobs/352387242). [This link](https://travis-ci.org/adhawan-vip/vip_adpq/jobs/352387242#L4552) shows docker output with the labeled images and push to the registry on Heroku.
 * s.  We used [these instructions/documentation](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/a-t.MD#how-we-met-the-requirement-18) to allow our developers to quickly setup their local development environments.
-* t.  TeamVIP’s prototype and underlying platforms are openly licensed and free of charge.
+* t.  TeamVIP’s prototype and underlying platforms are openly licensed and free of charge under the [Apache License 2.0](https://github.com/adhawan-vip/vip_adpq/blob/master/LICENSE).
 
 
 ## Requirement

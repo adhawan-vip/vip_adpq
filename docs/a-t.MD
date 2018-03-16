@@ -181,4 +181,4 @@ and separately
 ## Requirement
 *t. Prototype and underlying platforms used to create and run the prototype are openly licensed and free of charge.*
 ## How We Met the Requirement
-TeamVIP’s prototype and underlying platforms are openly licensed and free of charge.
+TeamVIP’s prototype and underlying platforms are openly licensed and free of charge under the [Apache License 2.0](https://github.com/adhawan-vip/vip_adpq/blob/master/LICENSE).
