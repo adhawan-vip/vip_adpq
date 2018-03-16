@@ -7,7 +7,7 @@ Credentials (username/password) for each role:
 * Author: author/author
 * Approver: approver/approver
 
-We have included a video demo of core functionality located [here](TODO).
+We have included a video demo of core functionality located [here](https://youtu.be/FEDKrXFYCqE).
 
 In addition, we have included a response to the core requirements/guidelines provided by CDT [here](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/Requirements.MD).
 
