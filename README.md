@@ -61,7 +61,7 @@ Since this is a prototype, we used a single branch within GitHub across all thre
   * ii. Sprint 2: Core Functions
   * iii.    Sprint 3: Security and Workflows
   * iv. Sprint 4: Enhanced Features
-  * Our [daily scrum notes](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/PQVP%20Daily%20Scrum%20Notes.pdf) and sprint [retrospective notes](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/PQVP%20Sprint%20Retrospectives.pdf) can be found in the GitHub document repository. 
+  * Our [product backlog](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/Basecamp%20Product%20Backlog.pdf) and sprint [retrospective notes](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/PQVP%20Sprint%20Retrospectives.pdf) can be found in the GitHub document repository. 
 * k.  TeamVIP’s prototype was developed with multiple devices in mind and continuously tested to ensure it presents a responsive design regardless of the device. We tested our prototype against a variety of devices including iPads/iPhones/Android Phones etc. Screenshots of each device with our prototype are [here](https://s3-us-west-1.amazonaws.com/909technologies/multi-device.PNG).
 * l.  TeamVIP used several modern and open-source technologies in development of our prototype. Please see [this link](https://github.com/adhawan-vip/vip_adpq/blob/master/docs/TechStack.MD) for our modern and open-source technologies used.
 * m.  TeamVIP used Heroku as our Infrastructure provider at the PaaS level.
